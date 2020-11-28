@@ -52,15 +52,21 @@ class Master_data extends MX_Controller {
     // 
 
     public function addUkuran(){
-        var_dump($_POST['nama'],$_POST['singkatan']);die;
-
+        date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
         $data['singkatan'] = $_POST['singkatan'];
         $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
         
         $res = $this->model_master->insertUkuran($data);
 
-        var_dump($res);
+        if($res){
+            $this->session->set_flashdata('insertUkuran', 'berhasil');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }else{
+            $this->session->set_flashdata('insertUkuran', 'failed');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }
 
     }
 	

@@ -20,6 +20,21 @@
                         <a href="<?= site_url('Master_Data/ukuran') ?>" type="button" class="btn btn-info"><i class="fas fa-arrow-left"> Back</i></a>
                       </div>
                       <div class="card-body">
+                      <!-- Alert jika gagal login -->
+                      <?php if ($this->session->flashdata('insertUkuran') == 'failed'): ?>
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+                          <span>Username atau password salah</span>
+                        </div>
+                      <?php endif; ?>
+
+                      <?php if ($this->session->flashdata('insertUkuran') == 'berhasil'): ?>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+                          <span>Berhasil masuk</span>
+                        </div>
+                      <?php endif; ?>
+                  <!--  -->
                         <form method="POST" action="<?= site_url('Master_Data/addUkuran') ?>">
                           <div class="form-group">
                             <label for="nama">Nama Ukuran</label>
