@@ -6,7 +6,7 @@ class Master_data extends MX_Controller {
 	public function __construct(){
 		parent::__construct();
 		
-		$this->page->use_directory();
+        $this->page->use_directory();
 		$this->load->model('model_master');
 	}
 	
@@ -41,6 +41,27 @@ class Master_data extends MX_Controller {
     public function user(){
         $data['daftar'] = $this->model_master->listAlluser();
         $this->page->view('master_data/userIndex',$data);
+    }
+
+    // 
+
+    public function ukuranForm(){
+        $this->page->view('master_data/add/ukuranForm');
+    }
+
+    // 
+
+    public function addUkuran(){
+        var_dump($_POST['nama'],$_POST['singkatan']);die;
+
+        $data['nama'] = $_POST['nama'];
+        $data['singkatan'] = $_POST['singkatan'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        
+        $res = $this->model_master->insertUkuran($data);
+
+        var_dump($res);
+
     }
 	
 	

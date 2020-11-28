@@ -40,6 +40,22 @@ class Model_master extends CI_Model {
 
         return $data;
     }
+
+    // 
+    public function insertUkuran($data)
+    {
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('singkatan',$data['singkatan']);
+        $this->db->set('deleted','0');
+        $this->db->set('create_at',now());
+        $this->db->set('create_by',$data['create_by']);
+        $this->db->set('update_at',now());
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',now());
+        $data = $this->db->insert('tbl_ukuran');
+
+        return $data;
+    }
 	
 }
 

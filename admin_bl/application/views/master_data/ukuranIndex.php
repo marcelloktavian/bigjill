@@ -17,7 +17,7 @@
                     <div class="col-12">
                       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-default">Data Ukuran</h6>
-                        <a href="tambah.html" type="button" class="btn btn-info"><i class="fas fa-plus"> Tambah</i></a>
+                        <a href="<?= site_url('Master_Data/ukuranForm') ?>" type="button" class="btn btn-info"><i class="fas fa-plus"> Tambah</i></a>
                       </div>
                       <div class="table-responsive p-3">
                         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
