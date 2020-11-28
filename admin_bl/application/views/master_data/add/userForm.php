@@ -65,7 +65,7 @@
                             <label for="Keterangan">keterangan</label>
                             <textarea name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" cols="30" rows="5"></textarea>
                           </div>
-                          <button type="submit" class="btn btn-success">Simpan</button>
+                          <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
                           <button type="reset" class="btn btn-danger">Reset</button>
 
                         </form>
@@ -77,6 +77,29 @@
               <!--Row-->
 
             </div>
+            <script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
+	        <script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
             <script>
-                
+            $(document).ready(function () {
+            $("#kpass").change(function(){
+			    if($("#kpass").val() !== $("#password").val()){
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Password Tidak Sama!'
+                    });
+
+                    $('form input').keydown(function (e) {
+                        if (e.keyCode == 13) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+
+                    $("#simpan").attr("disabled", true);
+                }else{
+                    $("#simpan").attr("disabled", false);
+                }
+                });
+		    });
             </script>

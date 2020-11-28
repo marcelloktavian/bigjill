@@ -125,14 +125,14 @@ class Master_data extends MX_Controller {
         $data['create_by'] = $this->session->admin->admin_id;
         $data['now'] = date('Y-m-d H:m:s');
         
-        $res = $this->model_master->insertKategori($data);
+        $res = $this->model_master->insertUser($data);
 
         if($res){
-            $this->session->set_flashdata('insertKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            $this->session->set_flashdata('insertUser', 'berhasil');
+			redirect(site_url('Master_Data/userForm'));	
         }else{
-            $this->session->set_flashdata('insertKategori', 'failed');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            $this->session->set_flashdata('insertUser', 'failed');
+			redirect(site_url('Master_Data/userForm'));	
         }
     }
 	

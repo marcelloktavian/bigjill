@@ -85,7 +85,24 @@ class Model_master extends CI_Model {
 
         return $data;
     }
-	
+    
+    public function insertUser($data)
+    {
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('username',$data['username']);
+        $this->db->set('email',$data['email']);
+        $this->db->set('password',$data['password']);
+        $this->db->set('keterangan',$data['keterangan']);
+        $this->db->set('deleted','0');
+        $this->db->set('create_at',$data['now']);
+        $this->db->set('create_by',$data['create_by']);
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',$data['now']);
+        $data = $this->db->insert('tbl_admin');
+
+        return $data;
+    }
 }
 
 /* End of file Model_dashboard.php */
