@@ -51,6 +51,9 @@ class Master_data extends MX_Controller {
     public function warnaForm(){
         $this->page->view('master_data/add/warnaForm');
     }
+    public function kategoriForm(){
+        $this->page->view('master_data/add/kategoriForm');
+    }
     // 
 
     public function addUkuran(){
@@ -81,15 +84,31 @@ class Master_data extends MX_Controller {
         $res = $this->model_master->insertWarna($data);
 
         if($res){
-            $this->session->set_flashdata('insertUkuran', 'berhasil');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            $this->session->set_flashdata('insertWarna', 'berhasil');
+			redirect(site_url('Master_Data/warnaForm'));	
         }else{
-            $this->session->set_flashdata('insertUkuran', 'failed');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            $this->session->set_flashdata('insertWarna', 'failed');
+			redirect(site_url('Master_Data/warnaForm'));	
         }
     }
 	
-	
+	public function addKategori(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['opsi'] = $_POST['opsiUkuran'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertKategori($data);
+
+        if($res){
+            $this->session->set_flashdata('insertKategori', 'berhasil');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }else{
+            $this->session->set_flashdata('insertKategori', 'failed');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }
+    }
 	
 }
 
