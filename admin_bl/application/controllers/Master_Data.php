@@ -166,6 +166,84 @@ class Master_data extends MX_Controller {
 			redirect(site_url('Master_Data/userForm'));	
         }
     }
+
+    // 
+
+    public function editUkuran(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['singkatan'] = $_POST['singkatan'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertUkuran($data);
+
+        if($res){
+            $this->session->set_flashdata('insertUkuran', 'berhasil');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }else{
+            $this->session->set_flashdata('insertUkuran', 'failed');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }
+
+    }
+
+    public function editWarna(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertWarna($data);
+
+        if($res){
+            $this->session->set_flashdata('insertWarna', 'berhasil');
+			redirect(site_url('Master_Data/warnaForm'));	
+        }else{
+            $this->session->set_flashdata('insertWarna', 'failed');
+			redirect(site_url('Master_Data/warnaForm'));	
+        }
+    }
+	
+	public function editKategori(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['opsi'] = $_POST['opsiUkuran'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertKategori($data);
+
+        if($res){
+            $this->session->set_flashdata('insertKategori', 'berhasil');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }else{
+            $this->session->set_flashdata('insertKategori', 'failed');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }
+    }
+
+    public function editUser(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['username'] = $_POST['username'];
+        $data['email'] = $_POST['email'];
+        $data['password'] = md5($_POST['password']);
+        $data['kpass'] = md5($_POST['kpass']);
+        $data['keterangan'] = $_POST['keterangan'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertUser($data);
+
+        if($res){
+            $this->session->set_flashdata('insertUser', 'berhasil');
+			redirect(site_url('Master_Data/userForm'));	
+        }else{
+            $this->session->set_flashdata('insertUser', 'failed');
+			redirect(site_url('Master_Data/userForm'));	
+        }
+    }
 	
 }
 
