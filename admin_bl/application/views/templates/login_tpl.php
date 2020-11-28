@@ -1,3 +1,10 @@
+<?php 
+if ($this->session->has_userdata('admin')){
+	redirect('dashboard');
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
