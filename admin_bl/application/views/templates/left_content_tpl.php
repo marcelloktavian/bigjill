@@ -1,67 +1,69 @@
-<div class="col-md-3 col-md-2 sidebar">
-	<div class="breadLine">            
-		<div class="arrow"></div>
-		<div class="adminControl active"> Info Login User </div>
-	</div>
-	<div class="admin">
-		<div class="image">
-			<?php 
-			// if ($this->session->userdata('pengguna')->foto != '') $img_photo = $this->session->userdata('pengguna')->foto;
-			// else 
-			$img_photo = "administrator.jpg"; 
-			?>
-			<img src="<?php echo base_url('foto/foto_pengguna/thumbnails/'.$img_photo); ?>" class="img-responsive img-thumbnail" alt="Responsive image" />
+<?php 
+if (!$this->session->has_userdata('admin')){
+	redirect('site');
+	exit;
+}
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+?>
+
+<!-- Sidebar -->
+<ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
+	<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+		<div class="sidebar-brand-icon">
+			<!-- <img src="img/logo/logo.png"> -->
 		</div>
-		<ul class="control"> 
-			<li><p><span class="glyphicon glyphicon-user"></span>  <?php echo $this->session->userdata('user')->nama; ?></p></li>               
-			<li><p><span class="glyphicon glyphicon-log-out"></span> <a href="<?php echo site_url('/site/logout'); ?>">Logout</a> </p></li>
-		</ul>
+		<div class="sidebar-brand-text mx-3">BigJill Official</div>
+	</a>
+	<hr class="sidebar-divider my-0">
+
+	<!-- Dashboard -->
+	<li class="nav-item <?php if($actual_link == base_url('/dashboard')){echo "active";} ?>">
+		<a class="nav-link" href="<?php echo base_url('/dashboard'); ?>">
+			<i class="fas fa-fw fa-tachometer-alt"></i>
+			<span>Dashboard</span></a>
+		</li>
+		<hr class="sidebar-divider">
+
+		<!-- Features -->
+		<div class="sidebar-heading">
+			Features
+		</div>
+
+		<!-- Menu Data Master -->
+		<li class="nav-item">
+			<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#dataMaster" aria-expanded="true"
+			aria-controls="dataMaster">
+			<i class="fab fa-fw fa-wpforms"></i>
+			<span>Data Master</span>
+		</a>
+
+		<div id="dataMaster" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+			<div class="bg-white py-2 collapse-inner rounded">
+				<h6 class="collapse-header">Data Master</h6>
+				<a class="collapse-item" href="<?php echo base_url('/master_data/ukuran'); ?>">Ukuran</a>
+				<a class="collapse-item" href="<?php echo base_url('/master_data/warna'); ?>">Warna</a>
+				<a class="collapse-item" href="<?php echo base_url('/master_data/kategori'); ?>">Kategori</a>
+				<a class="collapse-item" href="<?php echo base_url('/master_data/barang'); ?>">Barang</a>
+				<a class="collapse-item" href="<?php echo base_url('/master_data/user'); ?>">User</a>
+			</div>
+		</div>
+	</li>
+	<!-- End Menu Data Master -->
+
+	<!-- Menu Setting -->
+	<hr class="sidebar-divider">
+	<div class="sidebar-heading">
+		Settings
 	</div>
-	<ul class="navigation">
-		<li><a href="<?php echo site_url('/dashboard'); ?>"><span class="isw-grid"></span><span class="text">Beranda</span></a></li>
-		<?php
-		$menu_group = '';
-		$dont_show_child_parent_id = 0;
 
-		$group_id = $this->session->userdata('user')->group_id;
-		$query = "
-		SELECT m.*,COALESCE(ga.policy,'') as ga_policy FROM menu1 m
-		LEFT JOIN group_access ga ON m.menu_id = ga.menu_id AND ga.group_id = '{$group_id}' 
-		WHERE m.hide = 0
-		ORDER BY m.menu_id
-		";
-		$parents = $this->db->query($query);
-		foreach($parents->result() as $parent){ 
-			// $pos = strpos($parent->ga_policy,VIEW_POLICY);
-      // var_dump($pos);
-			// $show = false;
+	<!-- Menu Change Password -->
+	<li class="nav-item">
+		<a class="nav-link" href="<?php echo base_url('/settings/change_pass'); ?>"> 
+			<i class="fas fa-fw fa fa-cogs"></i>
+			<span>Change Password</span>
+		</a>
+	</li>
 
-			if ($parent->url=="#") {
-				// if ($show==false){
-				if ($menu_group==''){
-
-					echo '<li class="openable"><a href="'.$parent->url.'"><span class="isw-list"></span><span class="text">'.$parent->menu_name.'</span></a>
-					<ul>';
-					$menu_group=$parent->menu_group;
-				}
-				else if ($menu_group!=$parent->menu_group){
-					echo '</ul>';
-					echo '<li class="openable"><a href="'.$parent->url.'"><span class="isw-list"></span><span class="text">'.$parent->menu_name.'</span></a>
-					<ul>';
-					$menu_group=$parent->menu_group;
-				}
-				// }else {
-				// 	$dont_show_child_parent_id = $parent->menu_id;
-				// }
-			} else {
-				// if (($show)&&($parent->menu_parent!=$dont_show_child_parent_id)){
-				echo '<li><a href="'.site_url($parent->url).'"><span class="text"><span class="fa fa-tags"></span> '.$parent->menu_name.'</span></a></li>';
-				// }
-			}
-		}
-		echo "</ul>";
-		?>
-	</ul>
-	
-	<div class="dr"><span></span></div>
-</div>
+	<hr class="sidebar-divider">
+	<div class="version" id="version-bigjill"></div>
+</ul>

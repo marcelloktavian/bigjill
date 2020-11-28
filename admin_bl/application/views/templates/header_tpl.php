@@ -1,30 +1,41 @@
 <?php 
-if (!$this->session->has_userdata('user')){
+if (!$this->session->has_userdata('admin')){
 	redirect('site');
 	exit;
 }
 ?>
-<nav class="navbar navbar-default navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="<?php echo site_url('/dashboard'); ?>">Aplikasi Apotek</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $this->session->userdata('user')->nama;?> <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="<?php echo site_url('/account/ubah_password'); ?>">Ubah Password</a></li>
-						<li><a href="<?php echo site_url('/site/logout'); ?>">Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-	</div>
+
+<!-- TopBar -->
+<nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+
+	<!-- SideBar Toogle -->
+	<button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+		<i class="fa fa-bars"></i>
+	</button>
+	<!-- End Sidebar Toogle -->
+
+	<!-- Menu Profile -->
+	<ul class="navbar-nav ml-auto">
+		<div class="topbar-divider d-none d-sm-block"></div>
+		<li class="nav-item dropdown no-arrow">
+			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<img class="img-profile rounded-circle" src="<?php echo base_url('/assets/img/boy.png'); ?>" style="max-width: 60px">
+				<span class="ml-2 d-none d-lg-inline text-white small"><?php echo $this->session->userdata('admin')->nama;?></span>
+			</a>
+			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+				<a class="dropdown-item" href="<?php echo base_url('/settings/change_pass'); ?>">
+					<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+					Change Password
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="javascript:void(0);" onclick="logout()">
+					<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+					Logout
+				</a>
+			</div>
+		</li>
+	</ul>
+	<!-- End Menu Profile -->
+
 </nav>
+<!-- End Topbar -->
