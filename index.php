@@ -4,6 +4,6 @@
 	<title></title>
 </head>
 <body>
-Untuk Aplikasi Catalog
+Untuk Aplikasi Catalog "SIP"
 </body>
 </html>
