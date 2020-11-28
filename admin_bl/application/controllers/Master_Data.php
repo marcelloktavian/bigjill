@@ -48,7 +48,9 @@ class Master_data extends MX_Controller {
     public function ukuranForm(){
         $this->page->view('master_data/add/ukuranForm');
     }
-
+    public function warnaForm(){
+        $this->page->view('master_data/add/warnaForm');
+    }
     // 
 
     public function addUkuran(){
@@ -68,6 +70,23 @@ class Master_data extends MX_Controller {
 			redirect(site_url('Master_Data/ukuranForm'));	
         }
 
+    }
+
+    public function addWarna(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertWarna($data);
+
+        if($res){
+            $this->session->set_flashdata('insertUkuran', 'berhasil');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }else{
+            $this->session->set_flashdata('insertUkuran', 'failed');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }
     }
 	
 	
