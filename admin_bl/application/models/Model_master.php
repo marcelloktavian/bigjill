@@ -1,0 +1,47 @@
+<?php 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Model_master extends CI_Model {
+    /*
+	public	$propose   	  = '';
+	public	$unpaid   	  = '';
+	*/
+	public function listAllUkuran(){
+        $data = $this->db->get("tbl_ukuran")->result();
+
+        return $data;
+    }
+
+    public function listAllbarang(){
+       $this->db->select('a.barang_id,a.nama,a.harga,a.deskripsi,a.link,b.singkatan as ukuran,c.nama as warna,d.foto');
+       $this->from('tbl_barang a');
+       $this->db->join('tbl_warna b','a.ukuran_id=b.id');
+       $this->db->join('tbl_warna c','a.warna_id=c.id');
+       $this->db->join('tbl_barang_foto d','a.barang_id = d.barang_id');
+       $this->db->where('deleted = 0');
+       $data = $this->db->get()->result();
+         return $data;
+    }
+
+    public function listAllwarna(){
+        $data = $this->db->get("tbl_warna")->result();
+
+        return $data;
+    }
+
+    public function listAlluser(){
+        $data = $this->db->get("tbl_admin")->result();
+
+        return $data;
+    }
+
+    public function listAllkategori(){
+        $data = $this->db->get("tbl_kategori")->result();
+
+        return $data;
+    }
+	
+}
+
+/* End of file Model_dashboard.php */
+/* Location: ./application/models/Model_dashboard.php */

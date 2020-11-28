@@ -17,8 +17,8 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 	<hr class="sidebar-divider my-0">
 
 	<!-- Dashboard -->
-	<li class="nav-item <?php if($actual_link == base_url('/dashboard')){echo "active";} ?>">
-		<a class="nav-link" href="<?php echo base_url('/dashboard'); ?>">
+	<li class="nav-item <?php if($actual_link == site_url('/dashboard')){echo "active";} ?>">
+		<a class="nav-link" href="<?php echo site_url('/dashboard'); ?>">
 			<i class="fas fa-fw fa-tachometer-alt"></i>
 			<span>Dashboard</span></a>
 		</li>
@@ -40,11 +40,11 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 		<div id="dataMaster" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">Data Master</h6>
-				<a class="collapse-item" href="<?php echo base_url('/master_data/ukuran'); ?>">Ukuran</a>
-				<a class="collapse-item" href="<?php echo base_url('/master_data/warna'); ?>">Warna</a>
-				<a class="collapse-item" href="<?php echo base_url('/master_data/kategori'); ?>">Kategori</a>
-				<a class="collapse-item" href="<?php echo base_url('/master_data/barang'); ?>">Barang</a>
-				<a class="collapse-item" href="<?php echo base_url('/master_data/user'); ?>">User</a>
+				<a class="collapse-item" href="<?php echo site_url('/Master_Data/ukuran'); ?>">Ukuran</a>
+				<a class="collapse-item" href="<?php echo site_url('/Master_Data/warna'); ?>">Warna</a>
+				<a class="collapse-item" href="<?php echo site_url('/Master_Data/kategori'); ?>">Kategori</a>
+				<a class="collapse-item" href="<?php echo site_url('/Master_Data/barang'); ?>">Barang</a>
+				<a class="collapse-item" href="<?php echo site_url('/Master_Data/user'); ?>">User</a>
 			</div>
 		</div>
 	</li>
@@ -58,7 +58,7 @@ $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
 
 	<!-- Menu Change Password -->
 	<li class="nav-item">
-		<a class="nav-link" href="<?php echo base_url('/settings/change_pass'); ?>"> 
+		<a class="nav-link" href="<?php echo site_url('/settings/change_pass'); ?>"> 
 			<i class="fas fa-fw fa fa-cogs"></i>
 			<span>Change Password</span>
 		</a>

@@ -63,7 +63,7 @@ if ($this->session->has_userdata('admin')){
 										</div>
 									<?php endif; ?>
 
-									<form class="user" action="<?php echo base_url('/site/login'); ?>" method="post">
+									<form class="user" action="<?php echo site_url('/site/login'); ?>" method="post">
 										<div class="form-group">
 											<input type="text" id="username" name="username" class="form-control" placeholder="Username atau Email" value="<?php if(isset($_COOKIE["admin_loginbl"])) { echo $_COOKIE["admin_loginbl"]; } ?>" required>
 										</div>
