@@ -11,11 +11,7 @@ class Master_data extends MX_Controller {
 	}
 	
 	public function index(){		
-		// $this->page->view();
-		// $data_master = null;
-        // $data_master = $this->model_master->get_notice();		
-		// var_dump($data_master);die;
-		// $this->page->view('master_Data/barangIndex');
+        // 
     }
     
     public function ukuran(){
@@ -53,6 +49,14 @@ class Master_data extends MX_Controller {
     }
     public function kategoriForm(){
         $this->page->view('master_data/add/kategoriForm');
+    }
+
+    public function barangForm(){
+        $this->page->view('master_data/add/kategoriForm');
+    }
+
+    public function userForm(){
+        $this->page->view('master_data/add/userForm');
     }
     // 
 
@@ -96,6 +100,28 @@ class Master_data extends MX_Controller {
         date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
         $data['opsi'] = $_POST['opsiUkuran'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->insertKategori($data);
+
+        if($res){
+            $this->session->set_flashdata('insertKategori', 'berhasil');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }else{
+            $this->session->set_flashdata('insertKategori', 'failed');
+			redirect(site_url('Master_Data/kategoriForm'));	
+        }
+    }
+
+    public function addUser(){
+        date_default_timezone_set('Asia/Jakarta');
+        $data['nama'] = $_POST['nama'];
+        $data['username'] = $_POST['username'];
+        $data['email'] = $_POST['email'];
+        $data['password'] = md5($_POST['password']);
+        $data['kpass'] = md5($_POST['kpass']);
+        $data['keterangan'] = $_POST['keterangan'];
         $data['create_by'] = $this->session->admin->admin_id;
         $data['now'] = date('Y-m-d H:m:s');
         
