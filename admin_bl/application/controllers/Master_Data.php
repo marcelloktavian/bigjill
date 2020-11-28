@@ -59,6 +59,37 @@ class Master_data extends MX_Controller {
         $this->page->view('master_data/add/userForm');
     }
     // 
+    public function editUkuranForm($id)
+    {
+        $data['detail'] = $this->model_master->listUkuranById($id);
+        $this->page->view('master_data/edit/ukuranForm',$data);
+    }
+
+    public function editWarnaForm($id)
+    {
+        $data['detail'] = $this->model_master->listWarnaById($id);
+        $this->page->view('master_data/edit/warnaForm',$data);
+    }
+
+    public function editKategoriForm($id)
+    {
+        $data['detail'] = $this->model_master->listKategoriById($id);
+        $this->page->view('master_data/edit/kategoriForm',$data);
+    }
+
+    public function editBarangForm($id)
+    {
+        $data['detail'] = $this->model_master->listBarangById($id);
+        $this->page->view('master_data/edit/barangForm',$data);
+    }
+
+    public function editUserForm($id)
+    {
+        $data['detail'] = $this->model_master->listUserById($id);
+        $this->page->view('master_data/edit/userForm',$data);
+    }
+
+    // 
 
     public function addUkuran(){
         date_default_timezone_set('Asia/Jakarta');

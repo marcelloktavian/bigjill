@@ -40,6 +40,36 @@ class Model_master extends CI_Model {
 
         return $data;
     }
+    // 
+    public function listUkuranById($id)
+    {
+        $data = $this->db->get_where('tbl_ukuran',array('ukuran_id'=>$id))->row();
+        return $data;
+    }
+
+    public function listWarnaById($id)
+    {
+        $data = $this->db->get_where('tbl_warna',array('warna_id'=>$id))->row();
+        return $data;
+    }
+
+    public function listKategoriById($id)
+    {
+        $data = $this->db->get_where('tbl_kategori',array('kategori_id'=>$id))->row();
+        return $data;
+    }
+
+    public function listBarangById($id)
+    {
+        $data = $this->db->get_where('tbl_barang',array('barang_id'=>$id))->row();
+        return $data;
+    }
+
+    public function listUserById($id)
+    {
+        $data = $this->db->get_where('tbl_admin',array('admin_id'=>$id))->row();
+        return $data;
+    }
 
     // 
     public function insertUkuran($data)

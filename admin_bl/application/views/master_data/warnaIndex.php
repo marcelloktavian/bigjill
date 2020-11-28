@@ -36,7 +36,7 @@
                                     <td><?= $no; ?></td>
                                     <td><?= $d->nama; ?></td>
                                     <td>
-                                        <a type="button" href="edit2.html" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                        <a type="button" href="<?= site_url('Master_Data/editWarnaForm/'.$d->warna_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
                                         <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Data"><i class="fas fa-trash" onclick="hapus('2','Medium')"></i></button>
                                     </td>
                                 </tr>
