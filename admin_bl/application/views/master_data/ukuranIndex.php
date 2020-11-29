@@ -1,4 +1,3 @@
-<!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Data Ukuran</h1>
@@ -28,10 +27,10 @@
           <?php endif; ?>
 
           <?php if ($this->session->flashdata('deleteUkuran') == 'berhasil'): ?>
-           <div class="alert alert-success alert-dismissible" role="alert">
+           <!-- <div class="alert alert-success alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
               <span>Berhasil Menghapus Data</span>
-            </div>
+            </div> -->
           <?php endif; ?>
           <!--  -->
           <div class="table-responsive p-3">
@@ -70,3 +69,4 @@
   <!--Row-->
 </div>
 <!---Container Fluid-->
+<!-- Container Fluid-->

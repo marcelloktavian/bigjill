@@ -296,7 +296,7 @@ class Master_Data extends MX_Controller {
 
 		$where = array('kategori_id' => $id);
 		$res = $this->model_master->deleteData($where, 'tbl_kategori', $data);
-
+		// var_dump($res);die;
 		if($res){
 			$this->session->set_flashdata('deleteKategori', 'berhasil');
 			redirect(site_url('Master_Data/kategori')); 

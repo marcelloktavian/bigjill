@@ -22,6 +22,7 @@ if (!$this->session->has_userdata('admin')){
 	<link href="<?php echo base_url('/assets/css/ruang-admin.min.css'); ?>" rel="stylesheet">
 	<link href="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap-select/css/bootstrap-select.min.css'); ?>">
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 </head>
 
 <body id="page-top">
@@ -60,7 +61,7 @@ if (!$this->session->has_userdata('admin')){
 	<script src="<?php echo base_url('/assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
-
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 	<script>
 		$(document).ready(function () {
 			$('#dataTableHover').DataTable();
@@ -101,6 +102,10 @@ if (!$this->session->has_userdata('admin')){
 			}).then((result) => {
 				if (result.isConfirmed) {
 					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
+					toastr.options.closeMethod = 'fadeOut';
+					toastr.options.closeDuration = 300;
+					toastr.options.closeEasing = 'swing';
+					toastr.success('Berhasil Dihapus!');
 				}
 			})
 		});

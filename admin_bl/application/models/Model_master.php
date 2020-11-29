@@ -145,6 +145,8 @@ class Model_master extends CI_Model {
 
         $this->db->where($where);
         $data = $this->db->update($table);
+
+        return $data;
     }
 
     // 

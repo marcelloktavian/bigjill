@@ -87,7 +87,7 @@
               <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
-                placeholder="Password" minlength="8" pattern="(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                placeholder="Password" minlength="8" required>
               </div>
               <div id="message">
                 <h6>Password harus terdiri dari: </h6>
