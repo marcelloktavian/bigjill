@@ -38,7 +38,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Total Warna</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "".$notice->total_warna; ?></div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span><a href="<?php echo base_url('/master_data/warna'); ?>">Lebih Lengkap</a></span>
+                                <span><a href="<?php echo site_url('/Master_Data/warna'); ?>">Lebih Lengkap</a></span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -59,7 +59,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Total Kategori</div>
                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo "".$notice->total_kategori; ?></div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span><a href="<?php echo base_url('/master_data/kategori'); ?>">Lebih Lengkap</a></span>
+                                <span><a href="<?php echo site_url('/Master_Data/kategori'); ?>">Lebih Lengkap</a></span>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -80,7 +80,7 @@
                             <div class="text-xs font-weight-bold text-uppercase mb-1">Total Barang</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "".$notice->total_barang; ?></div>
                             <div class="mt-2 mb-0 text-muted text-xs">
-                                <span><a href="<?php echo base_url('/master_data/barang'); ?>">Lebih Lengkap</a></span>
+                                <span><a href="<?php echo site_url('/Master_Data/barang'); ?>">Lebih Lengkap</a></span>
                             </div>
                         </div>
                         <div class="col-auto">

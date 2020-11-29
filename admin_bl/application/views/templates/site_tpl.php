@@ -21,6 +21,7 @@ if (!$this->session->has_userdata('admin')){
 	<link href="<?php echo base_url('/assets/vendor/bootstrap/css/bootstrap.min.css'); ?>" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url('/assets/css/ruang-admin.min.css'); ?>" rel="stylesheet">
 	<link href="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap-select/css/bootstrap-select.min.css'); ?>">
 </head>
 
 <body id="page-top">
@@ -58,6 +59,7 @@ if (!$this->session->has_userdata('admin')){
 	<script src="<?php echo base_url('/assets/js/ruang-admin.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
 
 	<script>
 		$(document).ready(function () {
@@ -79,11 +81,83 @@ if (!$this->session->has_userdata('admin')){
 				confirmButtonText: 'Yes, logout!'
 			}).then((result) => {
 				if (result.isConfirmed) {
-    					window.location.href = "<?php echo base_url('/site/logout'); ?>";
-    				}
-    			})
+					window.location.href = "<?php echo base_url('/site/logout'); ?>";
+				}
+			})
 		}
-	</script>
 
+
+		$('.deleteUkuran').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
+				}
+			})
+		});
+
+		$('.deleteWarna').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusWarna/') ?>" + id);
+				}
+			})
+		});
+
+		$('.deleteKategori').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusKategori/') ?>" + id);
+				}
+			})
+		});
+
+		$('.deleteUser').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusUser/') ?>" + id);
+				}
+			})
+		});
+	</script>
 </body>
 </html>

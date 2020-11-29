@@ -23,7 +23,7 @@ if (!$this->session->has_userdata('admin')){
 				<span class="ml-2 d-none d-lg-inline text-white small"><?php echo $this->session->userdata('admin')->nama;?></span>
 			</a>
 			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="<?php echo base_url('/settings/change_pass'); ?>">
+				<a class="dropdown-item" href="<?php echo site_url('/Settings/changePass'); ?>">
 					<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
 					Change Password
 				</a>

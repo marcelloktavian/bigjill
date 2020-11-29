@@ -7,36 +7,38 @@ class Model_master extends CI_Model {
 	public	$unpaid   	  = '';
 	*/
 	public function listAllUkuran(){
-        $data = $this->db->get("tbl_ukuran")->result();
+        $data = $this->db->from('tbl_ukuran')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
         return $data;
     }
 
     public function listAllbarang(){
-       $this->db->select('a.barang_id,a.nama,a.harga,a.deskripsi,a.link,b.singkatan as ukuran,c.nama as warna,d.foto');
-       $this->from('tbl_barang a');
-       $this->db->join('tbl_warna b','a.ukuran_id=b.id');
-       $this->db->join('tbl_warna c','a.warna_id=c.id');
+       $this->db->select('a.barang_id,a.nama,a.harga,a.deskripsi,a.link,b.singkatan as ukuran,c.nama as warna,d.foto_utama');
+       $this->db->from('tbl_barang a');
+       $this->db->join('tbl_ukuran b','a.ukuran_id=b.ukuran_id');
+       $this->db->join('tbl_warna c','a.warna_id=c.warna_id');
        $this->db->join('tbl_barang_foto d','a.barang_id = d.barang_id');
-       $this->db->where('deleted = 0');
+       $this->db->where(array('a.deleted' => '0', 'b.deleted' => '0', 'c.deleted' => '0'));
+       $this->db->order_by('a.nama', 'asc');
+
        $data = $this->db->get()->result();
          return $data;
     }
 
     public function listAllwarna(){
-        $data = $this->db->get("tbl_warna")->result();
+        $data = $this->db->from('tbl_warna')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
         return $data;
     }
 
     public function listAlluser(){
-        $data = $this->db->get("tbl_admin")->result();
+        $data = $this->db->from('tbl_admin')->where(array('deleted' => '0'))->get()->result();
 
         return $data;
     }
 
     public function listAllkategori(){
-        $data = $this->db->get("tbl_kategori")->result();
+        $data = $this->db->from('tbl_kategori')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
         return $data;
     }
@@ -131,6 +133,19 @@ class Model_master extends CI_Model {
         $this->db->set('lastmodified',$data['now']);
         $data = $this->db->insert('tbl_admin');
 
+        return $data;
+    }
+    //
+    public function deleteData($where, $table, $data)
+    {   
+        $this->db->set('deleted','1');
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['update_by']);
+        $this->db->set('lastmodified',$data['now']);
+
+        $this->db->where($where);
+        $data = $this->db->update($table);
+        
         return $data;
     }
 }

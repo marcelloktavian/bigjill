@@ -13,6 +13,3 @@ class Model_dashboard extends CI_Model {
 	}
 	
 }
-
-/* End of file Model_dashboard.php */
-/* Location: ./application/models/Model_dashboard.php */

@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Master_data extends MX_Controller {
+class Master_Data extends MX_Controller {
 	
 	public function __construct(){
 		parent::__construct();
 		
         $this->page->use_directory();
-		$this->load->model('model_master');
-	}
-	
-	public function index(){		
+        $this->load->model('model_master');
+    }
+
+    public function index(){		
         // 
     }
     
@@ -102,10 +102,10 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertUkuran', 'berhasil');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            redirect(site_url('Master_Data/ukuranForm'));	
         }else{
             $this->session->set_flashdata('insertUkuran', 'failed');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            redirect(site_url('Master_Data/ukuranForm'));	
         }
 
     }
@@ -120,14 +120,14 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertWarna', 'berhasil');
-			redirect(site_url('Master_Data/warnaForm'));	
+            redirect(site_url('Master_Data/warnaForm'));	
         }else{
             $this->session->set_flashdata('insertWarna', 'failed');
-			redirect(site_url('Master_Data/warnaForm'));	
+            redirect(site_url('Master_Data/warnaForm'));	
         }
     }
-	
-	public function addKategori(){
+
+    public function addKategori(){
         date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
         $data['opsi'] = $_POST['opsiUkuran'];
@@ -138,10 +138,10 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            redirect(site_url('Master_Data/kategoriForm'));	
         }else{
             $this->session->set_flashdata('insertKategori', 'failed');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            redirect(site_url('Master_Data/kategoriForm'));	
         }
     }
 
@@ -160,10 +160,10 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertUser', 'berhasil');
-			redirect(site_url('Master_Data/userForm'));	
+            redirect(site_url('Master_Data/userForm'));	
         }else{
             $this->session->set_flashdata('insertUser', 'failed');
-			redirect(site_url('Master_Data/userForm'));	
+            redirect(site_url('Master_Data/userForm'));	
         }
     }
 
@@ -180,10 +180,10 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertUkuran', 'berhasil');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            redirect(site_url('Master_Data/ukuranForm'));	
         }else{
             $this->session->set_flashdata('insertUkuran', 'failed');
-			redirect(site_url('Master_Data/ukuranForm'));	
+            redirect(site_url('Master_Data/ukuranForm'));	
         }
 
     }
@@ -198,14 +198,14 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertWarna', 'berhasil');
-			redirect(site_url('Master_Data/warnaForm'));	
+            redirect(site_url('Master_Data/warnaForm'));	
         }else{
             $this->session->set_flashdata('insertWarna', 'failed');
-			redirect(site_url('Master_Data/warnaForm'));	
+            redirect(site_url('Master_Data/warnaForm'));	
         }
     }
-	
-	public function editKategori(){
+
+    public function editKategori(){
         date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
         $data['opsi'] = $_POST['opsiUkuran'];
@@ -216,10 +216,10 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            redirect(site_url('Master_Data/kategoriForm'));	
         }else{
             $this->session->set_flashdata('insertKategori', 'failed');
-			redirect(site_url('Master_Data/kategoriForm'));	
+            redirect(site_url('Master_Data/kategoriForm'));	
         }
     }
 
@@ -238,14 +238,84 @@ class Master_data extends MX_Controller {
 
         if($res){
             $this->session->set_flashdata('insertUser', 'berhasil');
-			redirect(site_url('Master_Data/userForm'));	
+            redirect(site_url('Master_Data/userForm'));	
         }else{
             $this->session->set_flashdata('insertUser', 'failed');
-			redirect(site_url('Master_Data/userForm'));	
+            redirect(site_url('Master_Data/userForm'));	
         }
     }
-	
-}
 
-/* End of file site.php */
-/* Location: .bigjill/admin_bl/application/controllers/site.php */
+    //
+
+    public function hapusUkuran($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $data['update_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+
+        $where = array('ukuran_id' => $id);
+        $res = $this->model_master->deleteData($where, 'tbl_ukuran', $data);
+
+        if($res){
+            $this->session->set_flashdata('deleteUkuran', 'berhasil');
+            redirect(site_url('Master_Data/ukuran')); 
+        }else{
+            $this->session->set_flashdata('deleteUkuran', 'failed');
+            redirect(site_url('Master_Data/ukuran')); 
+        }
+    }
+
+    public function hapusWarna($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $data['update_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+
+        $where = array('warna_id' => $id);
+        $res = $this->model_master->deleteData($where, 'tbl_warna', $data);
+
+        if($res){
+            $this->session->set_flashdata('deleteWarna', 'berhasil');
+            redirect(site_url('Master_Data/warna')); 
+        }else{
+            $this->session->set_flashdata('deleteWarna', 'failed');
+            redirect(site_url('Master_Data/warna')); 
+        }
+    }
+
+    public function hapusKategori($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $data['update_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+
+        $where = array('kategori_id' => $id);
+        $res = $this->model_master->deleteData($where, 'tbl_kategori', $data);
+
+        if($res){
+            $this->session->set_flashdata('deleteKategori', 'berhasil');
+            redirect(site_url('Master_Data/kategori')); 
+        }else{
+            $this->session->set_flashdata('deleteKategori', 'failed');
+            redirect(site_url('Master_Data/kategori')); 
+        }
+    }
+
+    public function hapusUser($id)
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        $data['update_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+
+        $where = array('admin_id' => $id);
+        $res = $this->model_master->deleteData($where, 'tbl_admin', $data);
+
+        if($res){
+            $this->session->set_flashdata('deleteUser', 'berhasil');
+            redirect(site_url('Master_Data/user')); 
+        }else{
+            $this->session->set_flashdata('deleteUser', 'failed');
+            redirect(site_url('Master_Data/user')); 
+        }
+    }
+}

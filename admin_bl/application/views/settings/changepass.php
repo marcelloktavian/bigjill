@@ -34,88 +34,69 @@
 
 <div class="container-fluid" id="container-wrapper">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Data User</h1>
+    <h1 class="h3 mb-0 text-gray-800">Change Password</h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="<?= site_url('dashboard') ?>">Home</a></li>
-      <li class="breadcrumb-item">Data Master</li>
-      <li class="breadcrumb-item"><a href="<?= site_url('Master_Data/user') ?>">User</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
+      <li class="breadcrumb-item">Settings</li>
+      <li class="breadcrumb-item active" aria-current="page">Change Password</li>
     </ol>
   </div>
-
   <!-- Row -->
   <div class="row">
     <div class="col-lg-12">
       <div class="card mb-4">
         <div class="col-12">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-default">Edit Data User</h6>
-            <a href="<?= site_url('Master_Data/user') ?>" type="button" class="btn btn-info"><i class="fas fa-arrow-left"> Back</i></a>
+            <h6 class="m-0 font-weight-bold text-default">Change Password</h6>
           </div>
           <div class="card-body">
             <!-- Alert jika gagal insert -->
-            <?php if ($this->session->flashdata('insertUser') == 'failed'): ?>
+            <?php if ($this->session->flashdata('editPass') == 'failed'): ?>
               <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
-                <span>Gagal Mengubah Data</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+                <span>Gagal Mengubah Password</span>
               </div>
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('insertUser') == 'berhasil'): ?>
+            <?php if ($this->session->flashdata('editPass') == 'berhasil'): ?>
               <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
-                <span>Berhasil Mengubah Data</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
+                <span>Berhasil Mengubah Password</span>
               </div>
             <?php endif; ?>
             <!--  -->
-            <form method="POST" action="<?= site_url('Master_Data/addUser') ?>">
-              <div class="form-group">
-                <label for="nama">Nama</label>
-                <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"
-                placeholder="Nama" maxlength="60" value="<?= $detail->nama ?>" required autofocus>
-              </div>
-              <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name='username' id="username" aria-describedby="username"
-                placeholder="Username" minlength="6" maxlength="8" value="<?= $detail->username ?>" required>
-              </div>
-              <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" name='email' id="email" aria-describedby="email"
-                placeholder="Email" maxlength="50" value="<?= $detail->email ?>" required>
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
-                placeholder="Password" minlength="8" pattern="(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
-              </div>
-              <div id="message">
-                <h6>Password harus terdiri dari: </h6>
-                <p id="letter" class="invalid">Memiliki <b>huruf kecil</b></p>
-                <p id="capital" class="invalid">Memiliki <b>huruf besar</b></p>
-                <p id="number" class="invalid">Memiliki <b>nomor</b></p>
-                <p id="length" class="invalid">Minimal <b>8 karakter</b></p>
-              </div>
-              <div class="form-group">
-                <label for="kpass">Konfirmasi Password</label>
-                <input type="password" class="form-control" name='kpass' id="kpass" aria-describedby="konfirmasi password"
-                placeholder="Konfirmasi Password" minlength="8" required>
-              </div>
-              <div class="form-group">
-                <label for="Keterangan">Keterangan</label>
-                <textarea name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" cols="30" rows="5" placeholder="Keterangan"><?= $detail->keterangan ?></textarea>
-              </div>
-              <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
-              <button type="reset" class="btn btn-danger">Reset</button>
-
-            </form>
-          </div>
+            <form method="POST" action="<?= site_url('Settings/editPass') ?>">
+             <div class="form-group">
+              <label for="passlama">Password Lama</label>
+              <input type="password" class="form-control" name='passlama' id="passlama" aria-describedby="passlama"
+              placeholder="Password Lama" minlength="8" autofocus required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
+              placeholder="Password" minlength="8" pattern="(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+            </div>
+            <div id="message">
+              <h6>Password harus terdiri dari: </h6>
+              <p id="letter" class="invalid">Memiliki <b>huruf kecil</b></p>
+              <p id="capital" class="invalid">Memiliki <b>huruf besar</b></p>
+              <p id="number" class="invalid">Memiliki <b>nomor</b></p>
+              <p id="length" class="invalid">Minimal <b>8 karakter</b></p>
+            </div>
+            <div class="form-group">
+              <label for="kpass">Konfirmasi Password</label>
+              <input type="password" class="form-control" name='kpass' id="kpass" aria-describedby="konfirmasi password"
+              placeholder="Konfirmasi Password" minlength="8" required>
+            </div>
+            <button id="simpan" type="submit" class="btn btn-success">Simpan</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+          </form>
         </div>
       </div>
-    </div>  
-  </div>
-  <!--Row-->
-
+    </div>
+  </div>  
+</div>
+<!--Row-->
 </div>
 <script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
