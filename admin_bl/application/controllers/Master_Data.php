@@ -170,13 +170,17 @@ class Master_Data extends MX_Controller {
     // 
 
     public function editUkuran(){
+        if(!isset($_POST['ukuran_id'])){
+            $this->session->set_flashdata('editUkuran', 'failed');
+			redirect(site_url('Master_Data/editUkuranForm'));
+        }
         date_default_timezone_set('Asia/Jakarta');
+        $data['ukuran_id'] = $_POST['ukuran_id'];
         $data['nama'] = $_POST['nama'];
-        $data['singkatan'] = $_POST['singkatan'];
         $data['create_by'] = $this->session->admin->admin_id;
         $data['now'] = date('Y-m-d H:m:s');
         
-        $res = $this->model_master->insertUkuran($data);
+        $res = $this->model_master->updateUkuran($data);
 
         if($res){
             $this->session->set_flashdata('insertUkuran', 'berhasil');
@@ -184,13 +188,18 @@ class Master_Data extends MX_Controller {
         }else{
             $this->session->set_flashdata('insertUkuran', 'failed');
             redirect(site_url('Master_Data/ukuranForm'));	
+            $this->session->set_flashdata('updateUkuran', 'berhasil');
+			redirect(site_url('Master_Data/editUkuranForm'));	
+        }else{
+            $this->session->set_flashdata('updateUkuran', 'failed');
+			redirect(site_url('Master_Data/editUkuranForm'));	
         }
-
     }
 
     public function editWarna(){
         date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
+        $data['singkatan'] = $_POST['singkatan'];
         $data['create_by'] = $this->session->admin->admin_id;
         $data['now'] = date('Y-m-d H:m:s');
         
@@ -202,7 +211,13 @@ class Master_Data extends MX_Controller {
         }else{
             $this->session->set_flashdata('insertWarna', 'failed');
             redirect(site_url('Master_Data/warnaForm'));	
+            $this->session->set_flashdata('insertUkuran', 'berhasil');
+			redirect(site_url('Master_Data/ukuranForm'));	
+        }else{
+            $this->session->set_flashdata('insertUkuran', 'failed');
+			redirect(site_url('Master_Data/ukuranForm'));	
         }
+
     }
 
     public function editKategori(){
