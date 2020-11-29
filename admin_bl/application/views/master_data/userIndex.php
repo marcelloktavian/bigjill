@@ -21,17 +21,23 @@
           </div>
           <!-- Alert jika gagal delete -->
           <?php if ($this->session->flashdata('deleteUser') == 'failed'): ?>
-            <div class="alert alert-danger alert-dismissible" role="alert">
+            <!-- <div class="alert alert-danger alert-dismissible" role="alert">
               <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
               <span>Gagal Menghapus Data</span>
-            </div>
+            </div> -->
+            <script>
+              toastr.error('Gagal Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000"});
+            </script>
           <?php endif; ?>
 
           <?php if ($this->session->flashdata('deleteUser') == 'berhasil'): ?>
-           <div class="alert alert-success alert-dismissible" role="alert">
+           <!-- <div class="alert alert-success alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
             <span>Berhasil Menghapus Data</span>
-          </div>
+          </div> -->
+          <script>
+            toastr.success('Berhasil Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000",});
+          </script>
         <?php endif; ?>
         <!--  -->
         <div class="table-responsive p-3">
@@ -58,7 +64,7 @@
                   <td><?= $d->keterangan; ?></td>
                   <td>
                     <a type="button" href="<?= site_url('Master_Data/editUserForm/'.$d->admin_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
-                     <button type="button" class="btn btn-danger deleteUser" data-toggle="tooltip" data-placement="bottom" title="Delete Data" data-id="<?= $d->admin_id; ?>" data-nama="<?= $d->nama; ?>"><i class="fas fa-trash"></i></button>
+                    <button type="button" class="btn btn-danger deleteUser" data-toggle="tooltip" data-placement="bottom" title="Delete Data" data-id="<?= $d->admin_id; ?>" data-nama="<?= $d->nama; ?>"><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>
                 <?php
@@ -74,4 +80,4 @@
 <!--Row-->
 
 </div>
-            <!---Container Fluid-->
+<!---Container Fluid-->

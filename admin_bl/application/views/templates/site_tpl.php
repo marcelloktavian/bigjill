@@ -23,6 +23,15 @@ if (!$this->session->has_userdata('admin')){
 	<link href="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap-select/css/bootstrap-select.min.css'); ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
+
+	<script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 </head>
 
 <body id="page-top">
@@ -53,15 +62,8 @@ if (!$this->session->has_userdata('admin')){
 
 		</div>
 	</div>
-	<script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/vendor/jquery-easing/jquery.easing.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/js/ruang-admin.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
-	<script src="<?php echo base_url('/assets/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+
 	<script>
 		$(document).ready(function () {
 			$('#dataTableHover').DataTable();
@@ -102,7 +104,7 @@ if (!$this->session->has_userdata('admin')){
 			}).then((result) => {
 				if (result.isConfirmed) {
 					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
-					toastr.success('Notifikasi','Berhasil',{"timeOut": "5000000",});
+					// toastr.success('Notifikasi','Berhasil',{"timeOut": "5000000",});
 				}
 			})
 		});
