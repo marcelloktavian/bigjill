@@ -133,6 +133,24 @@ class Model_master extends CI_Model {
 
         return $data;
     }
+
+    // 
+
+    public function updateUkuran($data)
+    {
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('singkatan',$data['singkatan']);
+        $this->db->set('deleted','0');
+        $this->db->set('create_at',$data['now']);
+        $this->db->set('create_by',$data['create_by']);
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',$data['now']);
+        $this->db->where('ukuran_id',$data['ukuran_id']);
+        $data = $this->db->update('tbl_ukuran');
+
+        return $data;
+    }
 }
 
 /* End of file Model_dashboard.php */

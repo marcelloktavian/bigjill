@@ -21,21 +21,21 @@
                       </div>
                       <div class="card-body">
                       <!-- Alert jika gagal insert -->
-                      <?php if ($this->session->flashdata('insertUkuran') == 'failed'): ?>
+                      <?php if ($this->session->flashdata('updateUkuran') == 'failed'): ?>
                         <div class="alert alert-danger alert-dismissible" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
                           <span>Gagal Memasukan Data</span>
                         </div>
                       <?php endif; ?>
 
-                      <?php if ($this->session->flashdata('insertUkuran') == 'berhasil'): ?>
+                      <?php if ($this->session->flashdata('updateUkuran') == 'berhasil'): ?>
                         <div class="alert alert-success alert-dismissible" role="alert">
                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
                           <span>Berhasil Memasukan Data</span>
                         </div>
                       <?php endif; ?>
                   <!--  -->
-                        <form method="POST" action="<?= site_url('Master_Data/addUkuran') ?>">
+                        <form method="POST" action="<?= site_url('Master_Data/editUkuran') ?>">
                         <input type="hidden" name="ukuran_id" value="<?= $detail->ukuran_id ?>">
                           <div class="form-group">
                             <label for="nama">Nama Ukuran</label>

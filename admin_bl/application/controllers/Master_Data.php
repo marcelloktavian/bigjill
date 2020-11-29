@@ -170,13 +170,35 @@ class Master_data extends MX_Controller {
     // 
 
     public function editUkuran(){
+        if(!isset($_POST['ukuran_id'])){
+            $this->session->set_flashdata('editUkuran', 'failed');
+			redirect(site_url('Master_Data/editUkuranForm'));
+        }
+        date_default_timezone_set('Asia/Jakarta');
+        $data['ukuran_id'] = $_POST['ukuran_id'];
+        $data['nama'] = $_POST['nama'];
+        $data['create_by'] = $this->session->admin->admin_id;
+        $data['now'] = date('Y-m-d H:m:s');
+        
+        $res = $this->model_master->updateUkuran($data);
+
+        if($res){
+            $this->session->set_flashdata('updateUkuran', 'berhasil');
+			redirect(site_url('Master_Data/editUkuranForm'));	
+        }else{
+            $this->session->set_flashdata('updateUkuran', 'failed');
+			redirect(site_url('Master_Data/editUkuranForm'));	
+        }
+    }
+
+    public function editWarna(){
         date_default_timezone_set('Asia/Jakarta');
         $data['nama'] = $_POST['nama'];
         $data['singkatan'] = $_POST['singkatan'];
         $data['create_by'] = $this->session->admin->admin_id;
         $data['now'] = date('Y-m-d H:m:s');
         
-        $res = $this->model_master->insertUkuran($data);
+        $res = $this->model_master->insertWarna($data);
 
         if($res){
             $this->session->set_flashdata('insertUkuran', 'berhasil');
@@ -186,23 +208,6 @@ class Master_data extends MX_Controller {
 			redirect(site_url('Master_Data/ukuranForm'));	
         }
 
-    }
-
-    public function editWarna(){
-        date_default_timezone_set('Asia/Jakarta');
-        $data['nama'] = $_POST['nama'];
-        $data['create_by'] = $this->session->admin->admin_id;
-        $data['now'] = date('Y-m-d H:m:s');
-        
-        $res = $this->model_master->insertWarna($data);
-
-        if($res){
-            $this->session->set_flashdata('insertWarna', 'berhasil');
-			redirect(site_url('Master_Data/warnaForm'));	
-        }else{
-            $this->session->set_flashdata('insertWarna', 'failed');
-			redirect(site_url('Master_Data/warnaForm'));	
-        }
     }
 	
 	public function editKategori(){
