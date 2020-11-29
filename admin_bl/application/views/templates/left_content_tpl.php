@@ -65,7 +65,7 @@ $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 	</div>
 
 	<!-- Menu Change Password -->
-	<li class="nav-item">
+	<li class="nav-item <?php if($url == site_url('/Settings/changePass')){echo "active";} ?>">
 		<a class="nav-link" href="<?php echo site_url('/Settings/changePass'); ?>"> 
 			<i class="fas fa-fw fa fa-cogs"></i>
 			<span>Change Password</span>

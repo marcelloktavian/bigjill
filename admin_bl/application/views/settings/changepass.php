@@ -64,6 +64,13 @@
                 <span>Berhasil Mengubah Password</span>
               </div>
             <?php endif; ?>
+
+            <?php if ($this->session->flashdata('editPass') == 'beda'): ?>
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                <span>Password Lama Salah</span>
+              </div>
+            <?php endif; ?>
             <!--  -->
             <form method="POST" action="<?= site_url('Settings/editPass') ?>">
              <div class="form-group">
@@ -74,7 +81,7 @@
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
-              placeholder="Password" minlength="8" pattern="(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+              placeholder="Password" minlength="8" required>
             </div>
             <div id="message">
               <h6>Password harus terdiri dari: </h6>

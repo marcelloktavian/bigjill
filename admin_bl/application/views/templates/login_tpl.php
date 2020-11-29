@@ -52,23 +52,23 @@ if ($this->session->has_userdata('admin')){
 									<?php if ($this->session->flashdata('status') == 'failed'): ?>
 										<div class="alert alert-danger alert-dismissible" role="alert">
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
-											<span>Username atau password salah</span>
+											<span>Username atau Password Salah</span>
 										</div>
 									<?php endif; ?>
 
-									<?php if ($this->session->flashdata('status') == 'berhasil'): ?>
+<!-- 									<?php if ($this->session->flashdata('status') == 'berhasil'): ?>
 										<div class="alert alert-success alert-dismissible" role="alert">
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
 											<span>Berhasil masuk</span>
 										</div>
-									<?php endif; ?>
+									<?php endif; ?> -->
 
 									<form class="user" action="<?php echo site_url('/site/login'); ?>" method="post">
 										<div class="form-group">
-											<input type="text" id="username" name="username" class="form-control" placeholder="Username atau Email" value="<?php if(isset($_COOKIE["admin_loginbl"])) { echo $_COOKIE["admin_loginbl"]; } ?>" required>
+											<input type="text" id="username" name="username" class="form-control" placeholder="Username atau Email" value="<?php if(isset($_COOKIE["admin_loginbl"])) { echo $_COOKIE["admin_loginbl"]; } ?>" <?php if(!isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
 										</div>
 										<div class="form-group">
-											<input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+											<input type="password" id="password" name="password" class="form-control" placeholder="Password" <?php if(isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
 										</div>
 										<div class="form-group">
 											<div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
