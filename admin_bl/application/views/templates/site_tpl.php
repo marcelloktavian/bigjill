@@ -102,10 +102,7 @@ if (!$this->session->has_userdata('admin')){
 			}).then((result) => {
 				if (result.isConfirmed) {
 					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
-					toastr.options.closeMethod = 'fadeOut';
-					toastr.options.closeDuration = 300;
-					toastr.options.closeEasing = 'swing';
-					toastr.success('Berhasil Dihapus!');
+					toastr.success('Notifikasi','Berhasil',{"timeOut": "5000000",});
 				}
 			})
 		});
