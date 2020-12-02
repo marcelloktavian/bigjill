@@ -135,7 +135,9 @@ class Model_master extends CI_Model {
 
         return $data;
     }
+
     //
+
     public function deleteData($where, $table, $data)
     {   
         $this->db->set('deleted','1');
@@ -165,6 +167,50 @@ class Model_master extends CI_Model {
         $data = $this->db->update('tbl_ukuran');
 
         return $data;
+    }
+
+    //
+
+    public function validasiInsertWarna($data)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_warna WHERE nama='".$data['nama']."' AND deleted=0");
+        $row = $query->num_rows();
+        
+        return $row;
+    }
+
+    public function validasiInsertUkuran($data, $input)
+    {
+        if ($input=='nama') {
+            $query = $this->db->query("SELECT * FROM tbl_ukuran WHERE nama='".$data['nama']."' AND deleted=0");
+            $row = $query->num_rows();
+        } else if ($input=='singkatan') {
+            $query = $this->db->query("SELECT * FROM tbl_ukuran WHERE singkatan='".$data['singkatan']."' AND deleted=0");
+            $row = $query->num_rows();
+        }
+        
+        return $row;
+    }
+
+    public function validasiInsertKategori($data)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND deleted=0");
+        $row = $query->num_rows();
+        
+        return $row;
+    }
+
+        public function validasiInsertUser($data, $input)
+    { 
+        if ($input=='username') {
+            $query = $this->db->query("SELECT * FROM tbl_admin WHERE username='".$data['username']."' AND deleted=0");
+            $row = $query->num_rows();
+        } else if ($input=='email') {
+            $query = $this->db->query("SELECT * FROM tbl_admin WHERE email='".$data['email']."' AND deleted=0");
+            $row = $query->num_rows();
+        }
+        
+        return $row;
     }
 }
 

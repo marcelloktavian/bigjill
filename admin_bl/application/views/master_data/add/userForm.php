@@ -5,7 +5,7 @@
     color: #000;
     position: absolute;
     padding:10px 20px;
-    width:250px;
+    width:260px;
     margin:auto;
     margin-top:-10px;
     margin-bottom: 10px;
@@ -67,6 +67,27 @@
                 <span>Berhasil Memasukan Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('insertUser') != 'failed') && ($this->session->flashdata('insertUser') != 'berhasil') && $this->session->flashdata('insertUser') != NULL):
+            $error = $this->session->flashdata('insertUser');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if($error[$i]=='username'){
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Username Sudah Terpakai</span>
+                </div>
+                <?php
+              } else if($error[$i]=='email'){
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Email Sudah Terpakai</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
             <form method="POST" action="<?= site_url('Master_Data/addUser') ?>">
               <div class="form-group">

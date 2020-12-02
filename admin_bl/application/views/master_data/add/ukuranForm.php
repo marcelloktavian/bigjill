@@ -33,6 +33,27 @@
                 <span>Berhasil Memasukan Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('insertUkuran') != 'failed') && ($this->session->flashdata('insertUkuran') != 'berhasil') && $this->session->flashdata('insertUkuran') != NULL):
+            $error = $this->session->flashdata('insertUkuran');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if ($error[$i]=='nama') {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Nama Ukuran Sudah Ada</span>
+                </div>
+                <?php
+              }else if($error[$i]=='singkatan'){
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Singkatan Sudah Ada</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
             <form method="POST" action="<?= site_url('Master_Data/addUkuran') ?>">
               <div class="form-group">

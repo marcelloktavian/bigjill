@@ -20,20 +20,12 @@
           </div>
           <!-- Alert jika gagal delete -->
           <?php if ($this->session->flashdata('deleteUkuran') == 'failed'): ?>
-            <!-- <div class="alert alert-danger alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
-              <span>Gagal Menghapus Data</span>
-            </div> -->
             <script>
               toastr.error('Gagal Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000"});
             </script>
           <?php endif; ?>
 
           <?php if ($this->session->flashdata('deleteUkuran') == 'berhasil'): ?>
-           <!-- <div class="alert alert-success alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
-              <span></span>
-            </div> -->
             <script>
               toastr.success('Berhasil Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000",});
             </script>

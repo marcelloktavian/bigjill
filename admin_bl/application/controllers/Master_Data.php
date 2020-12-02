@@ -98,31 +98,57 @@ class Master_Data extends MX_Controller {
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertUkuran($data);
-
-		if($res){
-			$this->session->set_flashdata('insertUkuran', 'berhasil');
-			redirect(site_url('Master_Data/ukuranForm'));	
-		}else{
-			$this->session->set_flashdata('insertUkuran', 'failed');
-			redirect(site_url('Master_Data/ukuranForm'));	
+		$error = array();
+		$row = $this->model_master->validasiInsertUkuran($data, 'nama');
+		if ($row == '1') {
+			array_push($error, 'nama');
 		}
 
+		$row = $this->model_master->validasiInsertUkuran($data, 'singkatan');
+		if ($row == '1') {
+			array_push($error, 'singkatan');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->insertUkuran($data);
+
+			if($res){
+				$this->session->set_flashdata('insertUkuran', 'berhasil');
+				redirect(site_url('Master_Data/ukuranForm'));	
+			}else{
+				$this->session->set_flashdata('insertUkuran', 'failed');
+				redirect(site_url('Master_Data/ukuranForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertUkuran', $error);
+			redirect(site_url('Master_Data/ukuranForm'));	
+		}
 	}
 
 	public function addWarna(){
 		date_default_timezone_set('Asia/Jakarta');
-		$data['nama'] = $_POST['nama'];
+		$data['nama'] = trim($_POST['nama']);
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertWarna($data);
+		$error = array();
+		$row = $this->model_master->validasiInsertWarna($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
 
-		if($res){
-			$this->session->set_flashdata('insertWarna', 'berhasil');
-			redirect(site_url('Master_Data/warnaForm'));	
-		}else{
-			$this->session->set_flashdata('insertWarna', 'failed');
+		if (count($error)==0) {
+			$res = $this->model_master->insertWarna($data);
+
+			if($res){
+				$this->session->set_flashdata('insertWarna', 'berhasil');
+				redirect(site_url('Master_Data/warnaForm'));	
+			}else{
+				$this->session->set_flashdata('insertWarna', 'failed');
+				redirect(site_url('Master_Data/warnaForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertWarna', $error);
 			redirect(site_url('Master_Data/warnaForm'));	
 		}
 	}
@@ -134,13 +160,24 @@ class Master_Data extends MX_Controller {
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertKategori($data);
+		$error = array();
+		$row = $this->model_master->validasiInsertKategori($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
 
-		if($res){
-			$this->session->set_flashdata('insertKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategoriForm'));	
-		}else{
-			$this->session->set_flashdata('insertKategori', 'failed');
+		if (count($error)==0) {
+			$res = $this->model_master->insertKategori($data);
+
+			if($res){
+				$this->session->set_flashdata('insertKategori', 'berhasil');
+				redirect(site_url('Master_Data/kategoriForm'));	
+			}else{
+				$this->session->set_flashdata('insertKategori', 'failed');
+				redirect(site_url('Master_Data/kategoriForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertKategori', $error);
 			redirect(site_url('Master_Data/kategoriForm'));	
 		}
 	}
@@ -156,13 +193,29 @@ class Master_Data extends MX_Controller {
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertUser($data);
+		$error = array();
+		$row = $this->model_master->validasiInsertUser($data, 'username');
+		if ($row == '1') {
+			array_push($error, 'username');
+		}
 
-		if($res){
-			$this->session->set_flashdata('insertUser', 'berhasil');
-			redirect(site_url('Master_Data/userForm'));	
-		}else{
-			$this->session->set_flashdata('insertUser', 'failed');
+		$row = $this->model_master->validasiInsertUser($data, 'email');
+		if ($row == '1') {
+			array_push($error, 'email');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->insertUser($data);
+
+			if($res){
+				$this->session->set_flashdata('insertUser', 'berhasil');
+				redirect(site_url('Master_Data/userForm'));	
+			}else{
+				$this->session->set_flashdata('insertUser', 'failed');
+				redirect(site_url('Master_Data/userForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertUser', $error);
 			redirect(site_url('Master_Data/userForm'));	
 		}
 	}

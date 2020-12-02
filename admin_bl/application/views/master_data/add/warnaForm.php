@@ -33,6 +33,20 @@
                 <span>Berhasil Memasukan Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('insertWarna') != 'failed') && ($this->session->flashdata('insertWarna') != 'berhasil') && $this->session->flashdata('insertWarna') != NULL):
+            $error = $this->session->flashdata('insertWarna');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if ($error[$i]=='nama') {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Nama Warna Sudah Ada</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
             <form method="POST" action="<?= site_url('Master_Data/addWarna') ?>">
               <div class="form-group">
