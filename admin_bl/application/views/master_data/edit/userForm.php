@@ -5,7 +5,7 @@
     color: #000;
     position: absolute;
     padding:10px 20px;
-    width:250px;
+    width:260px;
     margin:auto;
     margin-top:-10px;
     margin-bottom: 10px;
@@ -54,21 +54,43 @@
           </div>
           <div class="card-body">
             <!-- Alert jika gagal insert -->
-            <?php if ($this->session->flashdata('insertUser') == 'failed'): ?>
+            <?php if ($this->session->flashdata('updateUser') == 'failed'): ?>
               <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Gagal Mengubah Data</span>
               </div>
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('insertUser') == 'berhasil'): ?>
+            <?php if ($this->session->flashdata('updateUser') == 'berhasil'): ?>
               <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Berhasil Mengubah Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('updateUser') != 'failed') && ($this->session->flashdata('updateUser') != 'berhasil') && $this->session->flashdata('updateUser') != NULL):
+            $error = $this->session->flashdata('updateUser');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if($error[$i]=='username'){
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Username Sudah Terpakai</span>
+                </div>
+                <?php
+              } else if($error[$i]=='email'){
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Email Sudah Terpakai</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
-            <form method="POST" action="<?= site_url('Master_Data/addUser') ?>">
+            <form method="POST" action="<?= site_url('Master_Data/editUser') ?>">
+              <input type="hidden" name='admin_id' id="admin_id" value="<?= $detail->admin_id ?>">
               <div class="form-group">
                 <label for="nama">Nama</label>
                 <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"
@@ -87,7 +109,7 @@
               <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
-                placeholder="Password" minlength="8" pattern="(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                placeholder="Password" minlength="8">
               </div>
               <div id="message">
                 <h6>Password harus terdiri dari: </h6>
@@ -99,7 +121,7 @@
               <div class="form-group">
                 <label for="kpass">Konfirmasi Password</label>
                 <input type="password" class="form-control" name='kpass' id="kpass" aria-describedby="konfirmasi password"
-                placeholder="Konfirmasi Password" minlength="8" required>
+                placeholder="Konfirmasi Password" minlength="8">
               </div>
               <div class="form-group">
                 <label for="Keterangan">Keterangan</label>

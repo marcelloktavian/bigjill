@@ -20,21 +20,36 @@
           </div>
           <div class="card-body">
             <!-- Alert jika gagal insert -->
-            <?php if ($this->session->flashdata('insertKategori') == 'failed'): ?>
+            <?php if ($this->session->flashdata('updateKategori') == 'failed'): ?>
               <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Gagal Mengubah Data</span>
               </div>
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('insertKategori') == 'berhasil'): ?>
+            <?php if ($this->session->flashdata('updateKategori') == 'berhasil'): ?>
               <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Berhasil Mengubah Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('updateKategori') != 'failed') && ($this->session->flashdata('updateKategori') != 'berhasil') && $this->session->flashdata('updateKategori') != NULL):
+            $error = $this->session->flashdata('updateKategori');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if ($error[$i]=='nama') {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Nama Kategori Sudah Ada</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
-            <form method="POST" action="<?= site_url('Master_Data/addKategori') ?>">
+            <form method="POST" action="<?= site_url('Master_Data/editKategori') ?>">
+              <input type="hidden" name='kategori_id' id="kategori_id" value="<?= $detail->kategori_id ?>" >
               <div class="form-group">
                 <label for="nama">Nama Kategori</label>
                 <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"

@@ -20,21 +20,36 @@
           </div>
           <div class="card-body">
             <!-- Alert jika gagal insert -->
-            <?php if ($this->session->flashdata('insertWarna') == 'failed'): ?>
+            <?php if ($this->session->flashdata('updateWarna') == 'failed'): ?>
               <div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Gagal Mengubah Data</span>
               </div>
             <?php endif; ?>
 
-            <?php if ($this->session->flashdata('insertWarna') == 'berhasil'): ?>
+            <?php if ($this->session->flashdata('updateWarna') == 'berhasil'): ?>
               <div class="alert alert-success alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
                 <span>Berhasil Mengubah Data</span>
               </div>
             <?php endif; ?>
+
+            <?php if (($this->session->flashdata('updateWarna') != 'failed') && ($this->session->flashdata('updateWarna') != 'berhasil') && $this->session->flashdata('updateWarna') != NULL):
+            $error = $this->session->flashdata('updateWarna');
+            for ($i=0; $i < count($error); $i++) { 
+
+              if ($error[$i]=='nama') {
+                ?>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                  <span>Nama Warna Sudah Ada</span>
+                </div>
+                <?php
+              } 
+            } endif;  ?>
             <!--  -->
-            <form method="POST" action="<?= site_url('Master_Data/addWarna') ?>">
+            <form method="POST" action="<?= site_url('Master_Data/editWarna') ?>">
+              <input type="hidden" name='warna_id' id="warna_id" value="<?= $detail->warna_id ?>">
               <div class="form-group">
                 <label for="nama">Nama Warna</label>
                 <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"

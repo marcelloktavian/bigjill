@@ -74,6 +74,7 @@ class Model_master extends CI_Model {
     }
 
     // 
+
     public function insertUkuran($data)
     {
         $this->db->set('nama',$data['nama']);
@@ -153,18 +154,58 @@ class Model_master extends CI_Model {
 
     // 
 
+    public function updateWarna($data)
+    {   
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',$data['now']);
+        $this->db->where('warna_id',$data['warna_id']);
+        $data = $this->db->update('tbl_warna');
+
+        return $data;
+    }
+
     public function updateUkuran($data)
-    {
+    {   
         $this->db->set('nama',$data['nama']);
         $this->db->set('singkatan',$data['singkatan']);
-        $this->db->set('deleted','0');
-        $this->db->set('create_at',$data['now']);
-        $this->db->set('create_by',$data['create_by']);
         $this->db->set('update_at',$data['now']);
         $this->db->set('update_by',$data['create_by']);
         $this->db->set('lastmodified',$data['now']);
         $this->db->where('ukuran_id',$data['ukuran_id']);
         $data = $this->db->update('tbl_ukuran');
+
+        return $data;
+    }
+
+    public function updateKategori($data)
+    {
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('ukuran',$data['opsi']);
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',$data['now']);
+        $this->db->where('kategori_id',$data['kategori_id']);
+        $data = $this->db->update('tbl_kategori');
+
+        return $data;
+    }
+
+    public function updateUser($data)
+    {
+        $this->db->set('nama',$data['nama']);
+        $this->db->set('username',$data['username']);
+        $this->db->set('email',$data['email']);
+        if ($data['password']!='') {
+            $this->db->set('password',$data['password']);
+        }
+        $this->db->set('keterangan',$data['keterangan']);
+        $this->db->set('update_at',$data['now']);
+        $this->db->set('update_by',$data['create_by']);
+        $this->db->set('lastmodified',$data['now']);
+        $this->db->where('admin_id',$data['admin_id']);
+        $data = $this->db->update('tbl_admin');
 
         return $data;
     }
@@ -200,13 +241,57 @@ class Model_master extends CI_Model {
         return $row;
     }
 
-        public function validasiInsertUser($data, $input)
+    public function validasiInsertUser($data, $input)
     { 
         if ($input=='username') {
             $query = $this->db->query("SELECT * FROM tbl_admin WHERE username='".$data['username']."' AND deleted=0");
             $row = $query->num_rows();
         } else if ($input=='email') {
             $query = $this->db->query("SELECT * FROM tbl_admin WHERE email='".$data['email']."' AND deleted=0");
+            $row = $query->num_rows();
+        }
+        
+        return $row;
+    }
+
+    //
+
+    public function validasiUpdateWarna($data)
+    {
+        $query = $this->db->query("SELECT * FROM tbl_warna WHERE nama='".$data['nama']."' AND warna_id NOT IN('".$data['warna_id']."') AND deleted=0");
+        $row = $query->num_rows();
+        
+        return $row;
+    }
+
+    public function validasiUpdateUkuran($data, $input)
+    {
+        if ($input=='nama') {
+            $query = $this->db->query("SELECT * FROM tbl_ukuran WHERE nama='".$data['nama']."' AND ukuran_id NOT IN('".$data['ukuran_id']."') AND deleted=0");
+            $row = $query->num_rows();
+        } else if ($input=='singkatan') {
+            $query = $this->db->query("SELECT * FROM tbl_ukuran WHERE singkatan='".$data['singkatan']."' AND ukuran_id NOT IN('".$data['ukuran_id']."') AND deleted=0");
+            $row = $query->num_rows();
+        }
+        
+        return $row;
+    }
+
+    public function validasiUpdateKategori($data)
+    {
+       $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND kategori_id NOT IN('".$data['kategori_id']."') AND deleted=0");
+        $row = $query->num_rows();
+        
+        return $row;
+    }
+
+    public function validasiUpdateUser($data, $input)
+    {
+        if ($input=='username') {
+            $query = $this->db->query("SELECT * FROM tbl_admin WHERE username='".$data['username']."' AND admin_id NOT IN('".$data['admin_id']."')  AND deleted=0");
+            $row = $query->num_rows();
+        } else if ($input=='email') {
+            $query = $this->db->query("SELECT * FROM tbl_admin WHERE email='".$data['email']."' AND admin_id NOT IN('".$data['admin_id']."')  AND deleted=0");
             $row = $query->num_rows();
         }
         

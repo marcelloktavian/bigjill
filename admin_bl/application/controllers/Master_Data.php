@@ -58,7 +58,9 @@ class Master_Data extends MX_Controller {
 	public function userForm(){
 		$this->page->view('master_data/add/userForm');
 	}
+
     // 
+
 	public function editUkuranForm($id)
 	{
 		$data['detail'] = $this->model_master->listUkuranById($id);
@@ -224,82 +226,164 @@ class Master_Data extends MX_Controller {
 
 	public function editUkuran(){
 		if(!isset($_POST['ukuran_id'])){
-			$this->session->set_flashdata('editUkuran', 'failed');
-			redirect(site_url('Master_Data/editUkuranForm'));
-		}
-		date_default_timezone_set('Asia/Jakarta');
-		$data['ukuran_id'] = $_POST['ukuran_id'];
-		$data['nama'] = $_POST['nama'];
-		$data['create_by'] = $this->session->admin->admin_id;
-		$data['now'] = date('Y-m-d H:m:s');
-
-		$res = $this->model_master->updateUkuran($data);
-
-		if($res){
-			$this->session->set_flashdata('updateUkuran', 'berhasil');
-			redirect(site_url('Master_Data/editUkuranForm'));		
-		}else{
 			$this->session->set_flashdata('updateUkuran', 'failed');
-			redirect(site_url('Master_Data/editUkuranForm'));	
+			redirect(site_url('Master_Data/editUkuranForm/'.$_POST['ukuran_id']));
 		}
-	}
 
-	public function editWarna(){
 		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['ukuran_id'];
+		$data['ukuran_id'] = $id;
 		$data['nama'] = $_POST['nama'];
 		$data['singkatan'] = $_POST['singkatan'];
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertWarna($data);
-
-		if($res){
-			$this->session->set_flashdata('insertWarna', 'berhasil');
-			redirect(site_url('Master_Data/warnaForm'));	
-		}else{
-			$this->session->set_flashdata('insertWarna', 'failed');
-			redirect(site_url('Master_Data/warnaForm'));	
+		$error = array();
+		$row = $this->model_master->validasiUpdateUkuran($data, 'nama');
+		if ($row == '1') {
+			array_push($error, 'nama');
 		}
 
+		$row = $this->model_master->validasiUpdateUkuran($data, 'singkatan');
+		if ($row == '1') {
+			array_push($error, 'singkatan');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->updateUkuran($data);
+
+			if($res){
+				$this->session->set_flashdata('updateUkuran', 'berhasil');
+				redirect(site_url('Master_Data/editUkuranForm/'.$id));		
+			}else{
+				$this->session->set_flashdata('updateUkuran', 'failed');
+				redirect(site_url('Master_Data/editUkuranForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateUkuran', $error);
+			redirect(site_url('Master_Data/editUkuranForm/'.$id));	
+		}
+	}
+
+	public function editWarna(){
+		if(!isset($_POST['warna_id'])){
+			$this->session->set_flashdata('updateWarna', 'failed');
+			redirect(site_url('Master_Data/editWarnaForm/'.$_POST['ukuran_id']));
+		}
+
+		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['warna_id'];
+		$data['warna_id'] = $id;
+		$data['nama'] = $_POST['nama'];
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$error = array();
+		$row = $this->model_master->validasiUpdateWarna($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->updateWarna($data);
+
+			if($res){
+				$this->session->set_flashdata('updateWarna', 'berhasil');
+				redirect(site_url('Master_Data/editWarnaForm/'.$id));	
+			}else{
+				$this->session->set_flashdata('updateWarna', 'failed');
+				redirect(site_url('Master_Data/editWarnaForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateWarna', $error);
+			redirect(site_url('Master_Data/editWarnaForm/'.$id));	
+		}
 	}
 
 	public function editKategori(){
+		if(!isset($_POST['kategori_id'])){
+			$this->session->set_flashdata('updateKategori', 'failed');
+			redirect(site_url('Master_Data/editUserForm/'.$_POST['ukuran_id']));
+		}
+
 		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['kategori_id'];
+		$data['kategori_id'] = $id;
 		$data['nama'] = $_POST['nama'];
 		$data['opsi'] = $_POST['opsiUkuran'];
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertKategori($data);
+		$error = array();
+		$row = $this->model_master->validasiUpdateKategori($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
 
-		if($res){
-			$this->session->set_flashdata('insertKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategoriForm'));	
-		}else{
-			$this->session->set_flashdata('insertKategori', 'failed');
-			redirect(site_url('Master_Data/kategoriForm'));	
+		if (count($error)==0) {
+			$res = $this->model_master->updateKategori($data);
+
+			if($res){
+				$this->session->set_flashdata('updateKategori', 'berhasil');
+				redirect(site_url('Master_Data/editKategoriForm/'.$id));	
+			}else{
+				$this->session->set_flashdata('updateKategori', 'failed');
+				redirect(site_url('Master_Data/editKategoriForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateKategori', $error);
+			redirect(site_url('Master_Data/editKategoriForm/'.$id));	
 		}
 	}
 
 	public function editUser(){
+		if(!isset($_POST['admin_id'])){
+			$this->session->set_flashdata('updateUser', 'failed');
+			redirect(site_url('Master_Data/editUserForm/'.$_POST['admin_id']));
+		}
+
 		date_default_timezone_set('Asia/Jakarta');
-		$data['nama'] = $_POST['nama'];
-		$data['username'] = $_POST['username'];
-		$data['email'] = $_POST['email'];
-		$data['password'] = md5($_POST['password']);
-		$data['kpass'] = md5($_POST['kpass']);
-		$data['keterangan'] = $_POST['keterangan'];
+		$id = $_POST['admin_id'];
+		$data['admin_id'] = $id;
+		$data['nama'] = trim($_POST['nama']);
+		$data['username'] = trim($_POST['username']);
+		$data['email'] = trim($_POST['email']);
+		$pass = trim($_POST['password']);
+		if ($pass==null || $pass=='') {
+			$data['password'] = '';
+			$data['kpass'] = '';
+		} else {
+			$data['password'] = md5($pass);
+			$data['kpass'] = md5(trim($_POST['kpass']));
+		}
+		$data['keterangan'] = trim($_POST['keterangan']);
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$res = $this->model_master->insertUser($data);
+		$error = array();
+		$row = $this->model_master->validasiUpdateUser($data, 'username');
+		if ($row == '1') {
+			array_push($error, 'username');
+		}
 
-		if($res){
-			$this->session->set_flashdata('insertUser', 'berhasil');
-			redirect(site_url('Master_Data/userForm'));	
-		}else{
-			$this->session->set_flashdata('insertUser', 'failed');
-			redirect(site_url('Master_Data/userForm'));	
+		$row = $this->model_master->validasiUpdateUser($data, 'email');
+		if ($row == '1') {
+			array_push($error, 'email');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->updateUser($data);
+
+			if($res){
+				$this->session->set_flashdata('updateUser', 'berhasil');
+				redirect(site_url('Master_Data/editUserForm/'.$id));	
+			}else{
+				$this->session->set_flashdata('updateUser', 'failed');
+				redirect(site_url('Master_Data/editUserForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateUser', $error);
+			redirect(site_url('Master_Data/editUserForm/'.$id));	
 		}
 	}
 
