@@ -52,7 +52,14 @@ class Master_Data extends MX_Controller {
 	}
 
 	public function barangForm(){
-		$this->page->view('master_data/add/kategoriForm');
+		// ukuran
+		$data['listUkuran'] = $this->model_master->listAllUkuran();
+		// warna
+		$data['listWarna'] = $this->model_master->listAllwarna();
+		// kategori
+		$data['listKategori'] = $this->model_master->listAllkategori();
+
+		$this->page->view('master_data/add/barangForm',$data);
 	}
 
 	public function userForm(){

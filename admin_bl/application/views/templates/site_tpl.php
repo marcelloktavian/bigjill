@@ -23,6 +23,7 @@ if (!$this->session->has_userdata('admin')){
 	<link href="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap-select/css/bootstrap-select.min.css'); ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
+	<link rel="stylesheet" href="<?= base_url('/assets/css/custom.css') ?>" />
 
 	<script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
@@ -162,6 +163,51 @@ if (!$this->session->has_userdata('admin')){
 				}
 			})
 		});
+
+		var ukurannya = [];
+
+		function delete_ukuran(size) {
+			const index = ukurannya.indexOf(size);
+			if (index > -1) {
+			ukurannya.splice(index, 1);
+			}
+  		}
+
+		$(".addUkuranBtn").on('click', function () {
+			var ukuran = $('#ukuranop').val()+'-'+$('#ukuranop option:selected').text();
+			var validasi = 'T';
+			//pengecekan ukuran
+			for (var i = 0; i < ukurannya.length; i++) {
+			if (ukurannya[i]==ukuran) {
+				validasi='Y';
+			}
+			}
+			if (validasi=='T') {
+			//lanjut menampilkan
+			
+			//push ukuran ke array
+			ukurannya.push(ukuran);
+
+			//bikin html untuk chipnya
+			var html = '';
+			html += '<div class="chip">';
+			html += ukuran.split('-')[1];
+			html += '<span class="closebtn" onclick = "';
+			html += "this.parentElement.style.display='none'; ";
+			html += "delete_ukuran('";
+			html += ukuran;
+			html += "')";
+			html += '"">×</span></div>';
+
+			// console.log(html);
+
+			//menampilkan chip ke daftar
+			$('.daftarUkuran').append(html);
+			} else {
+			//tampil pesan
+			alert('Size sudah ditambahkan!');
+			}
+			});
 	</script>
 </body>
 </html>

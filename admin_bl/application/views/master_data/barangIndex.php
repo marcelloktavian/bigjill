@@ -17,7 +17,7 @@
         <div class="col-12">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-default">Data Barang</h6>
-            <a href="tambah.html" type="button" class="btn btn-info"><i class="fas fa-plus"> Tambah</i></a>
+            <a href="<?= site_url('Master_Data/barangForm') ?>" type="button" class="btn btn-info"><i class="fas fa-plus"> Tambah</i></a>
           </div>
           <!-- Alert jika gagal delete -->
           <?php if ($this->session->flashdata('deleteBarang') == 'failed'): ?>
