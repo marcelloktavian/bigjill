@@ -56,7 +56,7 @@
               </div>
               <div class="form-group">
                 <label for="singkatan">Menggunakan Ukuran</label>
-                <select name="opsiUkuran" class="form-control" id="opsiUkuran" aria-describedby="Menggunakan Ukuran" required>
+                <select name="opsiUkuran" class="form-control selectpicker" id="opsiUkuran" aria-describedby="Menggunakan Ukuran" required>
                   <option value="Y">YA</option>
                   <option value="T">TIDAK</option>
                 </select>

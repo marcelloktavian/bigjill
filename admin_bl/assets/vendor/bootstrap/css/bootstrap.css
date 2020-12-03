@@ -2602,7 +2602,7 @@ textarea.form-control.is-valid {
 
 .was-validated .custom-file-input:valid~.custom-file-label,
 .custom-file-input.is-valid~.custom-file-label {
-  border-color: #66bb6a;
+  border-color: #3F51B5;
 }
 
 .was-validated .custom-file-input:valid~.valid-feedback,

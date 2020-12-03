@@ -5,7 +5,7 @@
     border-radius: 5px;
     font: medium -moz-fixed;
     font: -webkit-small-control;
-    height: 60px;
+    height: 100px;
     overflow: auto;
     padding: 2px;
     resize: both;
@@ -28,6 +28,6 @@
   }
   .addUkuranBtn{
       border-radius: 5px;
-      padding: 5px;
+      padding: 0px;
       margin-top: 5px;
   }

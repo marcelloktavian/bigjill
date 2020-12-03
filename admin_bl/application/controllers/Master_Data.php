@@ -229,6 +229,20 @@ class Master_Data extends MX_Controller {
 		}
 	}
 
+	public function addBarang()
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$data['nama'] = $_POST['nama'];
+		$data['harga'] = $_POST['harga'];
+			// $data['ukuran_id'] = $_POST['email'];
+			// $data['warna_id'] = $_POST['password'];
+		$data['link'] = $_POST['link'];
+		$data['deskripsi'] = $_POST['deskripsi'];
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+	}
+
     // 
 
 	public function editUkuran(){

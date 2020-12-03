@@ -23,7 +23,7 @@ if (!$this->session->has_userdata('admin')){
 	<link href="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.css'); ?>" rel="stylesheet">
 	<link rel="stylesheet" href="<?php echo base_url('/assets/bootstrap-select/css/bootstrap-select.min.css'); ?>">
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
-	<link rel="stylesheet" href="<?= base_url('/assets/css/custom.css') ?>" />
+	<link rel="stylesheet" href="<?= base_url('/assets/css/custom.css') ?>" >
 
 	<script src="<?php echo base_url('/assets/sweetalert/sweetalert2.all.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/jquery/jquery.min.js'); ?>"></script>
@@ -32,7 +32,9 @@ if (!$this->session->has_userdata('admin')){
 	<script src="<?php echo base_url('/assets/vendor/datatables/jquery.dataTables.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/vendor/datatables/dataTables.bootstrap4.min.js'); ?>"></script>
 	<script src="<?php echo base_url('/assets/bootstrap-select/js/bootstrap-select.min.js'); ?>"></script>
+	<script src="<?php echo base_url('/assets/dropzone/dist/min/dropzone.min.js'); ?>"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+
 </head>
 
 <body id="page-top">
@@ -105,7 +107,6 @@ if (!$this->session->has_userdata('admin')){
 			}).then((result) => {
 				if (result.isConfirmed) {
 					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
-					// toastr.success('Notifikasi','Berhasil',{"timeOut": "5000000",});
 				}
 			})
 		});
@@ -165,22 +166,23 @@ if (!$this->session->has_userdata('admin')){
 		});
 
 		var ukurannya = [];
+		var warnanya = [];
 
 		function delete_ukuran(size) {
 			const index = ukurannya.indexOf(size);
 			if (index > -1) {
-			ukurannya.splice(index, 1);
+				ukurannya.splice(index, 1);
 			}
-  		}
+		}
 
 		$(".addUkuranBtn").on('click', function () {
 			var ukuran = $('#ukuranop').val()+'-'+$('#ukuranop option:selected').text();
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < ukurannya.length; i++) {
-			if (ukurannya[i]==ukuran) {
-				validasi='Y';
-			}
+				if (ukurannya[i]==ukuran) {
+					validasi='Y';
+				}
 			}
 			if (validasi=='T') {
 			//lanjut menampilkan
@@ -202,12 +204,64 @@ if (!$this->session->has_userdata('admin')){
 			// console.log(html);
 
 			//menampilkan chip ke daftar
-			$('.daftarUkuran').append(html);
-			} else {
+			$('#daftarUkuran').append(html);
+		} else {
 			//tampil pesan
-			alert('Size sudah ditambahkan!');
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Size Sudah Ditambahkan!',
+			})
+		}
+	});
+
+		function delete_warna(warna) {
+			const index = warnanya.indexOf(warna);
+			if (index > -1) {
+				warnanya.splice(index, 1);
 			}
-			});
-	</script>
+		}
+
+		$(".addWarnaBtn").on('click', function () {
+			var warna = $('#warnaop').val()+'-'+$('#warnaop option:selected').text();
+			var validasi = 'T';
+			//pengecekan ukuran
+			for (var i = 0; i < warnanya.length; i++) {
+				if (warnanya[i]==warna) {
+					validasi='Y';
+				}
+			}
+			if (validasi=='T') {
+			//lanjut menampilkan
+			
+			//push ukuran ke array
+			warnanya.push(warna);
+
+			//bikin html untuk chipnya
+			var html = '';
+			html += '<div class="chip">';
+			html += warna.split('-')[1];
+			html += '<span class="closebtn" onclick = "';
+			html += "this.parentElement.style.display='none'; ";
+			html += "delete_ukuran('";
+			html += warna;
+			html += "')";
+			html += '"">×</span></div>';
+
+			// console.log(html);
+
+			//menampilkan chip ke daftar
+			$('#daftarWarna').append(html);
+		} else {
+			//tampil pesan
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Warna Sudah Ditambahkan!',
+			})
+		}
+	});
+
+</script>
 </body>
 </html>
