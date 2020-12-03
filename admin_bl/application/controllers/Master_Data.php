@@ -481,4 +481,22 @@ class Master_Data extends MX_Controller {
 			redirect(site_url('Master_Data/user')); 
 		}
 	}
+
+	public function hapusBarang($id)
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$data['update_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$where = array('barang_id' => $id);
+		$res = $this->model_master->deleteData($where, 'tbl_barang', $data);
+		// var_dump($res);die;
+		if($res){
+			$this->session->set_flashdata('deleteBarang', 'berhasil');
+			redirect(site_url('Master_Data/barang')); 
+		}else{
+			$this->session->set_flashdata('deleteBarang', 'failed');
+			redirect(site_url('Master_Data/barang')); 
+		}
+	}
 }

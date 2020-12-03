@@ -27,49 +27,75 @@
           <?php endif; ?>
 
           <?php if ($this->session->flashdata('deleteBarang') == 'berhasil'): ?>
-          <script>
-            toastr.success('Berhasil Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000",});
-          </script>
-        <?php endif; ?>
-        <!--  -->
-        <div class="table-responsive p-3">
-          <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-            <thead class="thead-light">
-              <tr>
-                <th width="15%">No</th>
-                <th width="45%">Nama</th>
-                <th width="25%">Harga</th>
-                <th width="25%">Ukuran</th>
-                <th width="25%">Warna</th>
-                <th width="25%">Foto</th>
-                <th width="25%">Deskripsi</th>
-                <th width="15%">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no =0;
-              foreach ($daftar as $d): ?>
+            <script>
+              toastr.success('Berhasil Menghapus Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000",});
+            </script>
+          <?php endif; ?>
+          <!--  -->
+          <div class="table-responsive p-3">
+            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+              <thead class="thead-light">
                 <tr>
-                  <td><?= $no; ?></td>
-                  <td><?= $d->nama; ?></td>
-                  <td><?= $d->singkatan; ?></td>
-                  <td>
-                    <a type="button" href="edit2.html" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
-                    <button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete Data"><i class="fas fa-trash" onclick="hapus('2','Medium')"></i></button>
-                  </td>
+                  <th width="5%">No</th>
+                  <th width="30%">Nama</th>
+                  <th width="13%">Harga</th>
+                  <th width="16%">Ukuran</th>
+                  <th width="16%">Warna</th>
+                  <th width="10%">Foto</th>
+                  <th width="10%">Aksi</th>
                 </tr>
-                <?php
-                $no++;
-              endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!--Row-->
+              </thead>
+              <tbody>
+                <?php 
+                $no = 1;
+                foreach ($daftar as $d): ?>
+                  <tr>
+                    <td><?= $no; ?></td>
+                    <td><?= $d->nama; ?></td>
+                    <td><?= "Rp." . number_format($d->harga,0,',','.'); ?></td>
+                    <td><?php 
+                    $ukuran = explode(';', $d->ukuran_id);
+                    for ($i=0; $i < count($ukuran)-1; $i++) { 
+                      if ($i==count($ukuran)-2) {
+                        echo $ukuran[$i];
+                      } else {
+                        echo $ukuran[$i].', ';
+                      }
+                    }
+                    ?></td>
+                    <td><?php 
+                    $warna = explode(';', $d->warna_id);
+                    for ($i=0; $i < count($warna)-1; $i++) { 
+                      if ($i==count($warna)-2) {
+                        echo $warna[$i];
+                      } else {
+                        echo $warna[$i].', ';
+                      }
+                    }
+                    ?></td>
+                    <td><img src="<?php 
+                    if($d->foto==null || $d->foto==''){
+                        echo base_url('assets/img/null.png');
+                     }else{
+                        echo base_url('assets/img/barang/'.$d->foto);
+                     }
+                     ?>" width="125" height="150"></td>
+                     <td>
+                       <a type="button" href="<?= site_url('Master_Data/editBarangForm/'.$d->barang_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
+                       <button type="button" class="btn btn-danger deleteBarang" data-toggle="tooltip" data-placement="bottom" title="Delete Data" data-id="<?= $d->barang_id; ?>" data-nama="<?= $d->nama; ?>"><i class="fas fa-trash"></i></button>
+                     </td>
+                   </tr>
+                   <?php
+                   $no++;
+                 endforeach; ?>
+               </tbody>
+             </table>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+   <!--Row-->
 
-</div>
+ </div>
             <!---Container Fluid-->
