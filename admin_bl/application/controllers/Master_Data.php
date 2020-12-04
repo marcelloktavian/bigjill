@@ -231,6 +231,7 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
+		var_dump($_POST['daftarUkuran']);die;
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
