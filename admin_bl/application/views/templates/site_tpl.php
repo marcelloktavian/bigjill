@@ -190,6 +190,7 @@ if (!$this->session->has_userdata('admin')){
 			const index = ukurannya.indexOf(size);
 			if (index > -1) {
 				ukurannya.splice(index, 1);
+				$("#hiddenUkuran").val(ukurannya);
 			}
 		}
 
@@ -204,9 +205,10 @@ if (!$this->session->has_userdata('admin')){
 			}
 			if (validasi=='T') {
 			//lanjut menampilkan
-			
+
 			//push ukuran ke array
-			ukurannya.push(ukuran);
+			ukurannya.push($('#ukuranop').val());
+			$("#hiddenUkuran").val(ukurannya);
 
 			//bikin html untuk chipnya
 			var html = '';
@@ -237,6 +239,7 @@ if (!$this->session->has_userdata('admin')){
 			const index = warnanya.indexOf(warna);
 			if (index > -1) {
 				warnanya.splice(index, 1);
+				$("#hiddenWarna").val(warnanya);
 			}
 		}
 
@@ -253,7 +256,8 @@ if (!$this->session->has_userdata('admin')){
 			//lanjut menampilkan
 			
 			//push ukuran ke array
-			warnanya.push(warna);
+			warnanya.push($('#warnaop').val());
+			$("#hiddenWarna").val(warnanya);
 
 			//bikin html untuk chipnya
 			var html = '';
