@@ -7,6 +7,7 @@ class Master_Data extends MX_Controller {
 		parent::__construct();
 		
 		$this->page->use_directory();
+		$this->load->helper(array('form', 'url'));
 		$this->load->model('model_master');
 	}
 
@@ -241,8 +242,42 @@ class Master_Data extends MX_Controller {
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		var_dump($data);
+		$gambar['utama'] = $this->_uploadUtama('imagesUtama');
+		$gambar['1'] = $this->_uploadUtama('images1');
+		$gambar['2'] = $this->_uploadUtama('images2');
+		$gambar['3'] = $this->_uploadUtama('images3');
+		$gambar['4'] = $this->_uploadUtama('images4');
+		var_dump($gambar);
+	}
 
+	// 
+
+	// for upload file
+
+	private function _uploadUtama($imageId)
+	{
+				$config['upload_path']          = './upload/images/';
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['overwrite']			= true;
+                $config['max_size']             = 5024;
+                // $config['max_width']            = 1024;
+                // $config['max_height']           = 768;
+
+                $this->load->library('upload', $config);
+
+                if ( ! $this->upload->do_upload($imageId))
+                {
+                        $error = array('error' => $this->upload->display_errors());
+						// $this->load->view('upload_form', $error);
+						return $error;
+                }
+                else
+                {
+                        $data = array('upload_data' => $this->upload->data());
+
+						// $this->load->view('upload_success', $data);
+						return $data;
+                }
 	}
 
     // 
