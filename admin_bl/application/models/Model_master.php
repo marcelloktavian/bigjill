@@ -168,7 +168,7 @@ public function fotoBarang($data)
     $this->db->set('foto_2',$data['foto_2']);
     $this->db->set('foto_3',$data['foto_3']);
     $this->db->set('foto_4',$data['foto_4']);
-    $data = $this->db->insert('tbl_barang');
+    $data = $this->db->insert('tbl_barang_foto');
 
     return $data;
 }
