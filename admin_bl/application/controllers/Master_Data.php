@@ -232,12 +232,14 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
+		$idwarna	= str_replace(',',';',$_POST['hiddenUkuran']);
+		$idukuran	= str_replace(',',';',$_POST['hiddenWarna']);
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
-		$data['ukuran_id'] = $_POST['hiddenUkuran'];
-		$data['warna_id'] = $_POST['hiddenWarna'];
+		$data['ukuran_id'] = $idukuran;
+		$data['warna_id'] = $idwarna;
 		$data['link'] = $_POST['link'];
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['create_by'] = $this->session->admin->admin_id;
@@ -256,10 +258,10 @@ class Master_Data extends MX_Controller {
 
 		if($result_foto){
 			$this->session->set_flashdata('insertBarang', 'berhasil');
-			redirect(site_url('Master_Data/userForm'));	
+			redirect(site_url('Master_Data/barang'));	
 		}else{
 			$this->session->set_flashdata('insertBarang', 'failed');
-			redirect(site_url('Master_Data/userForm'));	
+			redirect(site_url('Master_Data/barang'));	
 		}
 	}
 
@@ -270,7 +272,7 @@ class Master_Data extends MX_Controller {
 	private function _uploadUtama($imageId)
 	{
 				// $newName = uniqid().$imageId;
-				$config['upload_path']          = './upload/images/';
+				$config['upload_path']          = './assets/img/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['overwrite']			= true;
 				$config['max_size']             = 5024;
@@ -287,8 +289,6 @@ class Master_Data extends MX_Controller {
                 }
                 else
                 {
-                        // $data = array('upload_data' => $this->upload->data());
-						// return $data;
 						return $this->upload->data("file_name");
 				}
 				
