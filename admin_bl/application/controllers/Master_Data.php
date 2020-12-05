@@ -232,6 +232,7 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
+		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
@@ -241,13 +242,25 @@ class Master_Data extends MX_Controller {
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
-
+		$result_master = $this->model_master->insertBarang($data);
+		// insert ke table barang foto
+		$gambar['barang_id'] = $result_master;
 		$gambar['utama'] = $this->_uploadUtama('imagesUtama');
-		$gambar['1'] = $this->_uploadUtama('images1');
-		$gambar['2'] = $this->_uploadUtama('images2');
-		$gambar['3'] = $this->_uploadUtama('images3');
-		$gambar['4'] = $this->_uploadUtama('images4');
-		var_dump($gambar);
+		$gambar['foto_1'] = $this->_uploadUtama('images1');
+		$gambar['foto_2'] = $this->_uploadUtama('images2');
+		$gambar['foto_3'] = $this->_uploadUtama('images3');
+		$gambar['foto_4'] = $this->_uploadUtama('images4');
+		$result_foto = $this->model_master->fotoBarang($gambar);
+
+		// var_dump($gambar);
+
+		if($result_foto){
+			$this->session->set_flashdata('insertBarang', 'berhasil');
+			redirect(site_url('Master_Data/userForm'));	
+		}else{
+			$this->session->set_flashdata('insertBarang', 'failed');
+			redirect(site_url('Master_Data/userForm'));	
+		}
 	}
 
 	// 
@@ -256,10 +269,12 @@ class Master_Data extends MX_Controller {
 
 	private function _uploadUtama($imageId)
 	{
+				// $newName = uniqid().$imageId;
 				$config['upload_path']          = './upload/images/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['overwrite']			= true;
-                $config['max_size']             = 5024;
+				$config['max_size']             = 5024;
+				// $config['file_name']            = $newName;
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
 
@@ -268,16 +283,16 @@ class Master_Data extends MX_Controller {
                 if ( ! $this->upload->do_upload($imageId))
                 {
                         $error = array('error' => $this->upload->display_errors());
-						// $this->load->view('upload_form', $error);
 						return $error;
                 }
                 else
                 {
-                        $data = array('upload_data' => $this->upload->data());
-
-						// $this->load->view('upload_success', $data);
-						return $data;
-                }
+                        // $data = array('upload_data' => $this->upload->data());
+						// return $data;
+						return $this->upload->data("file_name");
+				}
+				
+				return $this->upload->data("file_name");;
 	}
 
     // 

@@ -139,6 +139,40 @@ public function insertUser($data)
     return $data;
 }
 
+public function insertBarang($data)
+{
+    $this->db->set('nama',$data['nama']);
+    $this->db->set('harga',$data['harga']);
+    $this->db->set('ukuran_id',$data['ukuran_id']);
+    $this->db->set('warna_id',$data['warna_id']);
+    $this->db->set('link',$data['link']);
+    $this->db->set('deskripsi',$data['deskripsi']);
+    $this->db->set('deleted','0');
+    $this->db->set('create_at',$data['now']);
+    $this->db->set('create_by',$data['create_by']);
+    $this->db->set('update_at',$data['now']);
+    $this->db->set('update_by',$data['create_by']);
+    $this->db->set('lastmodified',$data['now']);
+    $this->db->insert('tbl_barang');
+
+    $data = $this->db->insert_id();
+
+    return $data;
+}
+
+public function fotoBarang($data)
+{
+    $this->db->set('barang_id',$data['barang_id']);
+    $this->db->set('foto_utama',$data['utama']);
+    $this->db->set('foto_1',$data['foto_1']);
+    $this->db->set('foto_2',$data['foto_2']);
+    $this->db->set('foto_3',$data['foto_3']);
+    $this->db->set('foto_4',$data['foto_4']);
+    $data = $this->db->insert('tbl_barang');
+
+    return $data;
+}
+
     //
 
 public function deleteData($where, $table, $data)
