@@ -238,6 +238,7 @@ class Master_Data extends MX_Controller {
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
+		$data['kategori_id'] = $_POST['kategoriop'];
 		$data['ukuran_id'] = $idukuran;
 		$data['warna_id'] = $idwarna;
 		$data['link'] = $_POST['link'];
@@ -271,28 +272,28 @@ class Master_Data extends MX_Controller {
 
 	private function _uploadUtama($imageId)
 	{
-				// $newName = uniqid().$imageId;
-				$config['upload_path']          = './assets/img/barang/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['overwrite']			= true;
-				$config['max_size']             = 5024;
-				// $config['file_name']            = $newName;
-                // $config['max_width']            = 1024;
-                // $config['max_height']           = 768;
+		// $newName = uniqid().$imageId;
+		$config['upload_path']          = './assets/img/barang/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['overwrite']			= true;
+		$config['max_size']             = 5024;
+		// $config['file_name']            = $newName;
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
 
-                $this->load->library('upload', $config);
+		$this->load->library('upload', $config);
 
-                if ( ! $this->upload->do_upload($imageId))
-                {
-                        $error = array('error' => $this->upload->display_errors());
-						return $error;
-                }
-                else
-                {
-						return $this->upload->data("file_name");
-				}
-				
-				return $this->upload->data("file_name");;
+		if ( ! $this->upload->do_upload($imageId))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			return $error;
+		}
+		else
+		{
+			return $this->upload->data("file_name");
+		}
+
+		return $this->upload->data("file_name");;
 	}
 
     // 

@@ -22,7 +22,7 @@ class Model_master extends CI_Model {
        // $this->db->join('tbl_barang_foto d','a.barang_id = d.barang_id');
      // $this->db->where(array('a.deleted' => '0'));
      // $this->db->order_by('a.nama', 'asc');
-     $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,a.ukuran_id,a.warna_id,b.foto_utama as foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.deleted=0 ORDER BY a.nama ASC');
+     $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,c.nama AS kategori,b.foto_utama AS foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id LEFT JOIN tbl_kategori c ON c.kategori_id = a.kategori_id WHERE a.deleted=0 ORDER BY a.nama ASC');
      $data = $query->result();
      return $data;
  }
@@ -143,6 +143,7 @@ public function insertBarang($data)
 {
     $this->db->set('nama',$data['nama']);
     $this->db->set('harga',$data['harga']);
+    $this->db->set('kategori_id',$data['kategori_id']);
     $this->db->set('ukuran_id',$data['ukuran_id']);
     $this->db->set('warna_id',$data['warna_id']);
     $this->db->set('link',$data['link']);

@@ -36,13 +36,12 @@
             <table class="table align-items-center table-flush table-hover" id="dataTableHover">
               <thead class="thead-light">
                 <tr>
-                  <th width="5%">No</th>
+                  <th width="10%">No</th>
                   <th width="30%">Nama</th>
-                  <th width="13%">Harga</th>
-                  <th width="16%">Ukuran</th>
-                  <th width="16%">Warna</th>
+                  <th width="15%">Harga</th>
+                  <th width="15%">Kategori</th>
                   <th width="10%">Foto</th>
-                  <th width="10%">Aksi</th>
+                  <th width="20%">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,34 +52,16 @@
                     <td><?= $no; ?></td>
                     <td><?= $d->nama; ?></td>
                     <td><?= "Rp." . number_format($d->harga,0,',','.'); ?></td>
-                    <td><?php 
-                    $ukuran = explode(';', $d->ukuran_id);
-                    for ($i=0; $i < count($ukuran)-1; $i++) { 
-                      if ($i==count($ukuran)-2) {
-                        echo $ukuran[$i];
-                      } else {
-                        echo $ukuran[$i].', ';
-                      }
-                    }
-                    ?></td>
-                    <td><?php 
-                    $warna = explode(';', $d->warna_id);
-                    for ($i=0; $i < count($warna)-1; $i++) { 
-                      if ($i==count($warna)-2) {
-                        echo $warna[$i];
-                      } else {
-                        echo $warna[$i].', ';
-                      }
-                    }
-                    ?></td>
+                    <td><?= $d->kategori ?></td>
                     <td><img src="<?php 
                     if($d->foto==null || $d->foto==''){
-                        echo base_url('assets/img/null.png');
-                     }else{
+                      echo base_url('assets/img/null.png');
+                      }else{
                         echo base_url('assets/img/barang/'.$d->foto);
-                     }
-                     ?>" width="125" height="150"></td>
-                     <td>
+                      }
+                      ?>" width="125" height="150"></td>
+                      <td>
+                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalBarang" data-placement="bottom" title="View Data"><i class="fas fa-eye"></i></button>
                        <a type="button" href="<?= site_url('Master_Data/editBarangForm/'.$d->barang_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
                        <button type="button" class="btn btn-danger deleteBarang" data-toggle="tooltip" data-placement="bottom" title="Delete Data" data-id="<?= $d->barang_id; ?>" data-nama="<?= $d->nama; ?>"><i class="fas fa-trash"></i></button>
                      </td>
@@ -96,6 +77,64 @@
      </div>
    </div>
    <!--Row-->
-
  </div>
-            <!---Container Fluid-->
+ <!---Container Fluid-->
+
+ <!-- Modal -->
+ <div class="modal fade" id="modalBarang" tabindex="-1" role="dialog" aria-labelledby="modalBarangLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalBarangLabel">Detail Data Barang</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+       <table class="table table-hover table-bordered">
+        <tbody>
+          <tr>
+            <td scope="row">Nama Barang</td>
+            <td scope="row">Nama</td>
+          </tr>
+          <tr>
+            <td scope="row">Harga Barang</td>
+            <td scope="row"><?= "Rp." . number_format('1000000',0,',','.'); ?></td>
+          </tr>
+          <tr>
+            <td scope="row">Kategori</td>
+            <td scope="row">Bag</td>
+          </tr>
+          <tr>
+            <td scope="row">Link Shopee</td>
+            <td scope="row">https://</td>
+          </tr>
+          <tr>
+            <td scope="row">Ukuran</td>
+            <td scope="row">Ukurannya</td>
+          </tr>
+          <tr>
+            <td scope="row">Warna</td>
+            <td scope="row">Warnanya</td>
+          </tr>
+          <tr>
+            <td scope="row">Deskripsi</td>
+            <td scope="row">testing123</td>
+          </tr>
+          <tr>
+            <td scope="row">Foto Utama</td>
+            <td scope="row"><img src="<?php 
+              echo base_url('assets/img/null.png');
+              ?>" width="125" height="150"></td>
+            </tr> 
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -78,7 +78,7 @@
                 
                 <div class="form-group">
                   <label for="kategoriop">Kategori</label>
-                  <select id="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
+                  <select name="kategoriop" id="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
                     <option value="" disabled selected>-- Pilih Kategori --</option>
                     <?php foreach ($listKategori as $lkat): ?>
                       <option value="<?= $lkat->kategori_id ?>"><?= $lkat->nama ?></option>
