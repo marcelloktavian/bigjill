@@ -272,38 +272,15 @@ class Master_Data extends MX_Controller {
 
 	private function _uploadUtama($imageId)
 	{
-<<<<<<< HEAD
+
 				// $newName = uniqid().$imageId;
-				$config['upload_path']          = './assets/img/barang/';
-				$config['allowed_types']        = 'gif|jpg|png';
-				$config['overwrite']			= true;
-				$config['max_size']             = 1024;
-				// $config['file_name']            = $newName;
-                // $config['max_width']            = 1024;
-                // $config['max_height']           = 768;
-
-                $this->load->library('upload', $config);
-
-                if ( ! $this->upload->do_upload($imageId))
-                {
-                        $error = array('error' => $this->upload->display_errors());
-						return $error;
-                }
-                else
-                {
-						return $this->upload->data("file_name");
-				}
-				
-				return $this->upload->data("file_name");;
-=======
-		// $newName = uniqid().$imageId;
 		$config['upload_path']          = './assets/img/barang/';
 		$config['allowed_types']        = 'gif|jpg|png';
 		$config['overwrite']			= true;
-		$config['max_size']             = 5024;
-		// $config['file_name']            = $newName;
-        // $config['max_width']            = 1024;
-        // $config['max_height']           = 768;
+		$config['max_size']             = 1024;
+				// $config['file_name']            = $newName;
+                // $config['max_width']            = 1024;
+                // $config['max_height']           = 768;
 
 		$this->load->library('upload', $config);
 
@@ -316,9 +293,10 @@ class Master_Data extends MX_Controller {
 		{
 			return $this->upload->data("file_name");
 		}
+		
+		return $this->upload->data("file_name");
 
-		return $this->upload->data("file_name");;
->>>>>>> cbca5a42377c11b433804f361e9143e440250a41
+
 	}
 
     // 
