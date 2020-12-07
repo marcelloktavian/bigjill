@@ -232,8 +232,8 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
-		$idwarna	= str_replace(',',';',$_POST['hiddenUkuran']);
-		$idukuran	= str_replace(',',';',$_POST['hiddenWarna']);
+		$idwarna	= str_replace(',',';',$_POST['hiddenWarna']);
+		$idukuran	= str_replace(',',';',$_POST['hiddenUkuran']);
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
@@ -551,5 +551,28 @@ class Master_Data extends MX_Controller {
 			$this->session->set_flashdata('deleteBarang', 'failed');
 			redirect(site_url('Master_Data/barang')); 
 		}
+	}
+
+	//
+
+	public function ajaxbarang()
+	{
+		$id = $_POST['idbarang'];
+		$res = $this->model_master->viewDetailBarang($id);
+		echo json_encode($res);
+	}
+
+	public function ajaxukuran()
+	{
+		$ukuran = $_POST['idukuran'];
+		$res = $this->model_master->viewUkuranBarang($ukuran);
+		echo json_encode($res);
+	}
+
+	public function ajaxwarna()
+	{
+		$warna = $_POST['idwarna'];
+		$res = $this->model_master->viewWarnaBarang($warna);
+		echo json_encode($res);
 	}
 }
