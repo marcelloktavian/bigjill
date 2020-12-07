@@ -50,6 +50,13 @@
                   <?php
                 } 
               } endif;  ?>
+
+<?php if ($this->session->flashdata('insertBarang') === 'failedfoto') : ?>
+                  <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>    
+                    <span><?= $this->session->error; ?></span>
+                  </div>
+<?php endif;  ?>
               <!--  -->
               <!-- <form enctype="multipart/form-data" method="POST" action="<?php // site_url('Master_Data/addBarang') ?>"> -->
               <?= form_open_multipart('Master_Data/addBarang') ?>

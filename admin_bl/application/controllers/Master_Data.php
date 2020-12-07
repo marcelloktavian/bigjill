@@ -245,14 +245,16 @@ class Master_Data extends MX_Controller {
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['create_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
-		$result_master = $this->model_master->insertBarang($data);
+		
 		// insert ke table barang foto
-		$gambar['barang_id'] = $result_master;
 		$gambar['utama'] = $this->_uploadUtama('imagesUtama');
 		$gambar['foto_1'] = $this->_uploadUtama('images1');
 		$gambar['foto_2'] = $this->_uploadUtama('images2');
 		$gambar['foto_3'] = $this->_uploadUtama('images3');
 		$gambar['foto_4'] = $this->_uploadUtama('images4');
+		// var_dump($gambar);die;
+		$result_master = $this->model_master->insertBarang($data);
+		$gambar['barang_id'] = $result_master;
 		$result_foto = $this->model_master->fotoBarang($gambar);
 
 		// var_dump($gambar);
@@ -286,8 +288,27 @@ class Master_Data extends MX_Controller {
 
 		if ( ! $this->upload->do_upload($imageId))
 		{
-			$error = array('error' => $this->upload->display_errors());
-			return $error;
+			$pesan = '';
+			if($_FILES[$imageId]['error']== 4 && $imageId=='images1'){
+				return false;
+			}else if($_FILES[$imageId]['error']== 4 && $imageId=='images2'){
+				return false;		
+			}else if($_FILES[$imageId]['error']== 4 && $imageId=='images3'){
+				return false;
+			}else if($_FILES[$imageId]['error']== 4 && $imageId=='images4'){
+				return false;
+			}else{
+				if($_FILES[$imageId]['size'] >1024){
+					$pesan = 'Ukuran Harus Kurang Dari / = dari 1 mb';
+				}else if ($_FILES[$imageId]['error']==4 ){
+					$pesan = 'Gambar Utama Wajib Di upload';
+				}
+			$this->session->error = $pesan;
+			// return $error;
+			$this->session->set_flashdata('insertBarang', 'failedfoto');
+			redirect(site_url('Master_Data/barangForm'));
+			die;
+			}
 		}
 		else
 		{
