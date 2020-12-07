@@ -232,12 +232,13 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
-		$idwarna	= str_replace(',',';',$_POST['hiddenUkuran']);
-		$idukuran	= str_replace(',',';',$_POST['hiddenWarna']);
+		$idwarna	= str_replace(',',';',$_POST['hiddenWarna']);
+		$idukuran	= str_replace(',',';',$_POST['hiddenUkuran']);
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
+		$data['kategori_id'] = $_POST['kategoriop'];
 		$data['ukuran_id'] = $idukuran;
 		$data['warna_id'] = $idwarna;
 		$data['link'] = $_POST['link'];
@@ -271,6 +272,7 @@ class Master_Data extends MX_Controller {
 
 	private function _uploadUtama($imageId)
 	{
+<<<<<<< HEAD
 				// $newName = uniqid().$imageId;
 				$config['upload_path']          = './assets/img/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
@@ -293,6 +295,30 @@ class Master_Data extends MX_Controller {
 				}
 				
 				return $this->upload->data("file_name");;
+=======
+		// $newName = uniqid().$imageId;
+		$config['upload_path']          = './assets/img/barang/';
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['overwrite']			= true;
+		$config['max_size']             = 5024;
+		// $config['file_name']            = $newName;
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 768;
+
+		$this->load->library('upload', $config);
+
+		if ( ! $this->upload->do_upload($imageId))
+		{
+			$error = array('error' => $this->upload->display_errors());
+			return $error;
+		}
+		else
+		{
+			return $this->upload->data("file_name");
+		}
+
+		return $this->upload->data("file_name");;
+>>>>>>> cbca5a42377c11b433804f361e9143e440250a41
 	}
 
     // 
@@ -550,5 +576,28 @@ class Master_Data extends MX_Controller {
 			$this->session->set_flashdata('deleteBarang', 'failed');
 			redirect(site_url('Master_Data/barang')); 
 		}
+	}
+
+	//
+
+	public function ajaxbarang()
+	{
+		$id = $_POST['idbarang'];
+		$res = $this->model_master->viewDetailBarang($id);
+		echo json_encode($res);
+	}
+
+	public function ajaxukuran()
+	{
+		$ukuran = $_POST['idukuran'];
+		$res = $this->model_master->viewUkuranBarang($ukuran);
+		echo json_encode($res);
+	}
+
+	public function ajaxwarna()
+	{
+		$warna = $_POST['idwarna'];
+		$res = $this->model_master->viewWarnaBarang($warna);
+		echo json_encode($res);
 	}
 }

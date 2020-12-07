@@ -13,21 +13,12 @@ class Model_master extends CI_Model {
     }
 
     public function listAllbarang(){
-       // $this->db->select('a.barang_id,a.nama,a.harga,a.deskripsi,a.link,b.singkatan as ukuran,c.nama as warna,d.foto_utama');
-     // $this->db->select('a.barang_id,a.nama,a.harga,a.deskripsi,a.link');
+       $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,c.nama AS kategori,b.foto_utama AS foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id LEFT JOIN tbl_kategori c ON c.kategori_id = a.kategori_id WHERE a.deleted=0 ORDER BY a.nama ASC');
+       $data = $query->result();
+       return $data;
+   }
 
-     // $this->db->from('tbl_barang a');
-       // $this->db->join('tbl_ukuran b','a.ukuran_id=b.ukuran_id');
-       // $this->db->join('tbl_warna c','a.warna_id=c.warna_id');
-       // $this->db->join('tbl_barang_foto d','a.barang_id = d.barang_id');
-     // $this->db->where(array('a.deleted' => '0'));
-     // $this->db->order_by('a.nama', 'asc');
-     $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,a.ukuran_id,a.warna_id,b.foto_utama as foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.deleted=0 ORDER BY a.nama ASC');
-     $data = $query->result();
-     return $data;
- }
-
- public function listAllwarna(){
+   public function listAllwarna(){
     $data = $this->db->from('tbl_warna')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
     return $data;
@@ -143,6 +134,7 @@ public function insertBarang($data)
 {
     $this->db->set('nama',$data['nama']);
     $this->db->set('harga',$data['harga']);
+    $this->db->set('kategori_id',$data['kategori_id']);
     $this->db->set('ukuran_id',$data['ukuran_id']);
     $this->db->set('warna_id',$data['warna_id']);
     $this->db->set('link',$data['link']);
@@ -315,10 +307,10 @@ public function validasiUpdateUkuran($data, $input)
 
 public function validasiUpdateKategori($data)
 {
- $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND kategori_id NOT IN('".$data['kategori_id']."') AND deleted=0");
- $row = $query->num_rows();
+   $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND kategori_id NOT IN('".$data['kategori_id']."') AND deleted=0");
+   $row = $query->num_rows();
 
- return $row;
+   return $row;
 }
 
 public function validasiUpdateUser($data, $input)
@@ -332,6 +324,29 @@ public function validasiUpdateUser($data, $input)
     }
 
     return $row;
+}
+
+//
+
+public function viewDetailBarang($id)
+{
+    $query = $this->db->query("SELECT a.barang_id,a.nama,a.harga,a.link,a.deskripsi,a.ukuran_id,a.warna_id,c.nama AS kategori,b.foto_utama AS foto,b.foto_1 AS foto1,b.foto_2 AS foto2,b.foto_3 AS foto3,b.foto_4 AS foto4 FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id LEFT JOIN tbl_kategori c ON c.kategori_id = a.kategori_id WHERE a.deleted=0 AND a.barang_id='".$id."'");
+    $data = $query->result();
+    return $data;
+}
+
+public function viewUkuranBarang($id)
+{
+    $query = $this->db->query("SELECT nama FROM tbl_ukuran WHERE ukuran_id='".$id."'");
+    $data = $query->result();
+    return $data;
+}
+
+public function viewWarnaBarang($id)
+{
+    $query = $this->db->query("SELECT nama FROM tbl_warna WHERE warna_id='".$id."'");
+    $data = $query->result();
+    return $data;
 }
 }
 

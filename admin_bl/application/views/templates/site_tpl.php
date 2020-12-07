@@ -183,6 +183,7 @@ if (!$this->session->has_userdata('admin')){
 			})
 		});
 
+
 		var ukurannya = [];
 		var warnanya = [];
 
