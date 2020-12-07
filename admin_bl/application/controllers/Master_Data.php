@@ -275,7 +275,7 @@ class Master_Data extends MX_Controller {
 				$config['upload_path']          = './assets/img/barang/';
 				$config['allowed_types']        = 'gif|jpg|png';
 				$config['overwrite']			= true;
-				$config['max_size']             = 5024;
+				$config['max_size']             = 1024;
 				// $config['file_name']            = $newName;
                 // $config['max_width']            = 1024;
                 // $config['max_height']           = 768;
