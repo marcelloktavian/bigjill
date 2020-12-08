@@ -20,8 +20,9 @@ class Page {
 	private $_data			= array();						// data variables sent to View Class
 	private $_header		= 'templates/header_tpl';		// page header
 	private $_left_content	= 'templates/left_content_tpl';	// page left content
+	private $_footer		= 'templates/footer_tpl';	// page footer
 	private $_content		= '';							// page content
-	private $_template		= 'site_tpl';					// default template	
+	private $_template		= '';					// default template	
 	
 	/**
 	 * Constructor
@@ -30,7 +31,7 @@ class Page {
 	 */
 	public function __construct() {
 		$this->_CI =& get_instance();
-	     	
+
 		// define page base URL
 		$first = $this->_CI->uri->segment(1);
 		$second	= '';
@@ -140,6 +141,17 @@ class Page {
 	// --------------------------------------------------------------------
 	
 	/**
+	 * Set footer of the page
+	 *
+	 * @param	string
+	 */
+	function footer($footer) {
+		return $this->_menu = $footer;
+	}
+
+	// --------------------------------------------------------------------
+	
+	/**
 	 * Set data for template
 	 */
 	function _set_data(){
@@ -159,6 +171,7 @@ class Page {
 	function view($content = 'templates/main_content', $data = array()){
 		$this->_header;
 		$this->_left_content;
+		$this->_footer;
 		$this->_content($content);
 		$this->_data($data);
 		
@@ -167,7 +180,7 @@ class Page {
 	}
 	
 }
- 
+
 // END MFS_Page class
 
 /* End of file Page.php */

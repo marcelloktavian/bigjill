@@ -1,41 +1,26 @@
-<?php 
-if (!$this->session->has_userdata('admin')){
-	redirect('site');
-	exit;
-}
-?>
+<head>
+	<title>BigJill Official</title>
 
-<!-- TopBar -->
-<nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+	<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="BigJill Official">
+	<meta name="author" content="Aditya" />
+	<meta name="author" content="Marcellino" />
 
-	<!-- SideBar Toogle -->
-	<button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
-		<i class="fa fa-bars"></i>
-	</button>
-	<!-- End Sidebar Toogle -->
+	<link rel="icon" href="<?php echo base_url('/admin_bl/assets/img/logo/logo.png'); ?>">
 
-	<!-- Menu Profile -->
-	<ul class="navbar-nav ml-auto">
-		<div class="topbar-divider d-none d-sm-block"></div>
-		<li class="nav-item dropdown no-arrow">
-			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img class="img-profile rounded-circle" src="<?php echo base_url('/assets/img/boy.png'); ?>" style="max-width: 60px">
-				<span class="ml-2 d-none d-lg-inline text-white small"><?php echo $this->session->userdata('admin')->nama;?></span>
-			</a>
-			<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-				<a class="dropdown-item" href="<?php echo site_url('/Settings/changePass'); ?>">
-					<i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-					Change Password
-				</a>
-				<div class="dropdown-divider"></div>
-				<a class="dropdown-item" href="javascript:void(0);" onclick="logout()">
-					<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-					Logout
-				</a>
-			</div>
-		</li>
-	</ul>
-	<!-- End Menu Profile -->
+	<link rel="stylesheet" href="<?php echo base_url('/admin_bl/assets/css/bootstrap.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('/admin_bl/assets/css/style.css'); ?>" type="text/css" media="all" />
 
-</nav>
-<!-- End Topbar -->
+	<link href="<?php echo base_url('/admin_bl/assets/css/font-awesome.css'); ?>" rel="stylesheet">
+
+	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
+
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
+
+	<script src="<?php echo base_url('/admin_bl/assets/vendor/jquery/jquery.min.js'); ?>"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+</head>
