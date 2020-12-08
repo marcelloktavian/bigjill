@@ -79,7 +79,7 @@
                 <div class="form-group">
                   <label for="kategoriop">Kategori</label>
                   <select id="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
-                    <option value="<?= isset($detail->nama)? $detail->nama :'' ?>" selected><?= isset($detail->nama)? $detail->nama :'' ?></option>
+                    <!-- <option value="<?php //echo isset($detail->kategori_id)? $detail->kategori_id :'' ?>" selected><?php //echo isset($detail->kategori_id)? $detail->kategori_id :'' ?></option> -->
                     <?php foreach ($listKategori as $lkat): ?>
                       <option value="<?= $lkat->kategori_id ?>"><?= $lkat->nama ?></option>
                     <?php endforeach; ?>
@@ -99,8 +99,10 @@
                     <span class="input-group-text" style="cursor: pointer;"><a class="addUkuranBtn">Tambah</a></span>
                   </div>
                 </div>
-                <div id="daftarUkuran" class="daftarUkuran"></div>
-                <input type="hidden" name="hiddenUkuran" id="hiddenUkuran">
+                <div id="daftarUkuran" class="daftarUkuran">
+                      <!--  -->
+                </div>
+                <input type="hidden" name="hiddenUkuran" id="hiddenUkuran" value="<?= $detail->ukuran_id; ?>">
               </div>
 
               <div class="form-group">
@@ -117,12 +119,12 @@
                   </div>
                 </div>
                 <div id="daftarWarna" class="daftarUkuran"></div>
-                <input type="hidden" name="hiddenWarna" id="hiddenWarna">
+                <input type="hidden" name="hiddenWarna" id="hiddenWarna" value="<?= $detail->warna_id; ?>">
               </div>
 
               <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Barang"></textarea>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Barang"><?= isset($detail->link)? $detail->deskripsi :'' ?></textarea>
               </div>
               
               <label for="imagesUtama">Gambar Utama: </label>
@@ -178,23 +180,78 @@
 </div>
 <!--Row-->
 </div>
-<!-- <script>
-  Dropzone.autoDiscover = false;
-  $(".dropzone").dropzone({
-   addRemoveLinks: true,
-   removedfile: function(file) {
-     var name = file.name; 
+<script>
+  // console.log($('#hiddenUkuran').val());
+  $(document).ready(function () {
+    getUkuranData();
+    getWarnaData();
+  });
 
-     $.ajax({
-       type: 'POST',
-       url: 'upload.php',
-       data: {name: name,request: 2},
-       sucess: function(data){
-        console.log('success: ' + data);
-      }
-    });
-     var _ref;
-     return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
-   }
- });
-</script> -->
+  function getUkuranData(){
+    var ID = $("#hiddenUkuran").val();
+    var list = ID.split(';');
+    
+    for (let i = 0; i < list.length; i++) {
+      //  console.log(list[i]);
+      $.ajax({
+        type: "POST",
+        url: "<?= site_url('Master_Data/getListUkuran') ?>",
+        data: {id:list[i]},
+        dataType: "text",
+        success: function (response) {
+          data = JSON.parse(response);
+          // console.log(data);
+          //bikin html untuk chipnya
+          var html = '';
+          html += '<div class="chip">';
+          html += data.nama;
+          html += '<span class="closebtn" onclick = "';
+          html += "this.parentElement.style.display='none'; ";
+          html += "delete_ukuran('";
+          html += data.ukuran_id;
+          html += "')";
+          html += '"">×</span></div>';
+
+          // console.log(html);
+
+          //menampilkan chip ke daftar
+          $('#daftarUkuran').append(html);
+        }
+      });
+    }
+  }
+
+  function getWarnaData(){
+    var ID = $("#hiddenWarna").val();
+    var list = ID.split(';');
+    
+    for (let i = 0; i < list.length; i++) {
+      //  console.log(list[i]);
+      $.ajax({
+        type: "POST",
+        url: "<?= site_url('Master_Data/getListWarna') ?>",
+        data: {id:list[i]},
+        dataType: "text",
+        success: function (response) {
+          data = JSON.parse(response);
+          // console.log(data);
+          //bikin html untuk chipnya
+          var html = '';
+          html += '<div class="chip">';
+          html += data.nama;
+          html += '<span class="closebtn" onclick = "';
+          html += "this.parentElement.style.display='none'; ";
+          html += "delete_ukuran('";
+          html += data.warna_id;
+          html += "')";
+          html += '"">×</span></div>';
+
+          // console.log(html);
+
+          //menampilkan chip ke daftar
+          $('#daftarWarna').append(html);
+        }
+      });
+    }
+  }
+</script>

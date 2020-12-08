@@ -90,6 +90,12 @@ class Master_Data extends MX_Controller {
 	public function editBarangForm($id)
 	{
 		$data['detail'] = $this->model_master->listBarangById($id);
+		// ukuran
+		$data['listUkuran'] = $this->model_master->listAllUkuran();
+		// warna
+		$data['listWarna'] = $this->model_master->listAllwarna();
+		// kategori
+		$data['listKategori'] = $this->model_master->listAllKategori();
 		$this->page->view('master_data/edit/barangForm',$data);
 	}
 
@@ -598,5 +604,21 @@ class Master_Data extends MX_Controller {
 		$warna = $_POST['idwarna'];
 		$res = $this->model_master->viewWarnaBarang($warna);
 		echo json_encode($res);
+	}
+
+	public function getListUkuran()
+	{
+		$data = $this->model_master->listUkuranById($_POST['id']);
+		// var_dump($data);die;
+		// $this->page->view('master_data/edit/ukuranForm',$data);
+		echo json_encode($data);
+	}
+
+	public function getListWarna()
+	{
+		$data = $this->model_master->listWarnaById($_POST['id']);
+		// var_dump($data);die;
+		// $this->page->view('master_data/edit/ukuranForm',$data);
+		echo json_encode($data);
 	}
 }

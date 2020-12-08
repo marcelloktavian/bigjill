@@ -134,7 +134,7 @@ public function insertBarang($data)
 {
     $this->db->set('nama',$data['nama']);
     $this->db->set('harga',$data['harga']);
-    $this->db->set('kategori_id',$data['kategori_id']);
+    $this->db->set('kategori_id',$data['kategoriop']);
     $this->db->set('ukuran_id',$data['ukuran_id']);
     $this->db->set('warna_id',$data['warna_id']);
     $this->db->set('link',$data['link']);
