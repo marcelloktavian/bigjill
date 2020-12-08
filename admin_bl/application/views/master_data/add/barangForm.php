@@ -129,7 +129,7 @@
 
               <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Barang"></textarea>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Barang" wrap="hard"></textarea>
               </div>
               
               <label for="imagesUtama">Gambar Utama: </label>

@@ -163,7 +163,7 @@
                      html += '<td scope="row">'+obj[0]['deskripsi']+'</td></tr>';
                      html += '<tr><td scope="row">Foto Utama</td>';
                      html += '<td scope="row"><img src="';
-                     if (obj[0]['foto']==null||obj[0]['foto']=='null.png') {
+                     if (obj[0]['foto']==null||obj[0]['foto']=='null.png'||obj[0]['foto']=='0') {
                       html += "<?= base_url('assets/img/null.png') ?>";
                     } else {
                      html += "<?= base_url('assets/img/barang/') ?>"+obj[0]['foto'];
@@ -171,22 +171,22 @@
                    html += '" width="125" height="150"></td>';
                    html += '<tr><td scope="row">Foto Lainnya</td><td scope="row">';
 
-                   if (obj[0]['foto1']!=null && obj[0]['foto1']!='' && obj[0]['foto1']!='null.png') {
+                   if (obj[0]['foto1']!=null && obj[0]['foto1']!='' && obj[0]['foto1']!='null.png' && obj[0]['foto1']!='0') {
                      html += '<img src="';
                      html += "<?= base_url('assets/img/barang/') ?>"+obj[0]['foto1'];
                      html += '" width="125" height="150" style="padding-right:3px;padding-bottom:3px;"></img>';
                    } 
-                   if(obj[0]['foto2']!=null && obj[0]['foto2']!='' && obj[0]['foto2']!='null.png'){
+                   if(obj[0]['foto2']!=null && obj[0]['foto2']!='' && obj[0]['foto2']!='null.png' && obj[0]['foto2']!='0'){
                      html += '<img src="';
                      html += "<?= base_url('assets/img/barang/') ?>"+obj[0]['foto2'];
                      html += '" width="125" height="150" style="padding-right:3px;padding-bottom:3px;"></img>';
                    } 
-                   if (obj[0]['foto3']!=null && obj[0]['foto3']!='' && obj[0]['foto3']!='null.png') {
+                   if (obj[0]['foto3']!=null && obj[0]['foto3']!='' && obj[0]['foto3']!='null.png' && obj[0]['foto3']!='0') {
                      html += '<img src="';
                      html += "<?= base_url('assets/img/barang/') ?>"+obj[0]['foto3'];
                      html += '" width="125" height="150" style="padding-right:3px;padding-bottom:3px;"></img>';
                    }
-                   if(obj[0]['foto4']!=null && obj[0]['foto4']!='' && obj[0]['foto4']!='null.png'){
+                   if(obj[0]['foto4']!=null && obj[0]['foto4']!='' && obj[0]['foto4']!='null.png' && obj[0]['foto4']!='0'){
                      html += '<img src="';
                      html += "<?= base_url('assets/img/barang/') ?>"+obj[0]['foto4'];
                      html += '" width="125" height="150" style="padding-right:3px;padding-bottom:3px;"></img>';
