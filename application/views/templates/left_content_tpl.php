@@ -16,7 +16,7 @@
 					<label for="drop" class="toggle">Menu</label>
 					<input type="checkbox" id="drop" />
 					<ul class="menu mt-2">
-						<li class="<?php if($url == site_url('/')){echo "active";} ?>"><a href="<?php echo site_url('/'); ?>">Home</a></li>
+						<li class="<?php if($url == site_url('/') || $url == base_url('/')){echo "active";} ?>"><a href="<?php echo site_url('/'); ?>">Home</a></li>
 						<li class="<?php if($url == site_url('/about')){echo "active";} ?>"><a href="<?php echo site_url('/about'); ?>">About</a></li>
 						<li class="<?php if($url == site_url('/contact')){echo "active";} ?>"><a href="<?php echo site_url('/contact'); ?>">Contact</a></li>
 					</ul>

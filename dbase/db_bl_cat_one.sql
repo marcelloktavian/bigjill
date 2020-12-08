@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2020 at 01:39 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.3.7
+-- Host: localhost:3306
+-- Generation Time: Dec 08, 2020 at 03:19 PM
+-- Server version: 5.7.32
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_bl_cat_one`
+-- Database: `bigjill_db_bl_cat_one`
 --
 
 -- --------------------------------------------------------
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `log_login_admin` (
   `login_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL,
-  `lastlogin` datetime NOT NULL DEFAULT current_timestamp()
+  `lastlogin` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -46,13 +46,13 @@ CREATE TABLE `tbl_admin` (
   `username` varchar(8) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` text NOT NULL,
-  `keterangan` text DEFAULT NULL,
+  `keterangan` text,
   `deleted` int(11) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` int(11) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` int(11) NOT NULL,
-  `lastmodified` datetime NOT NULL DEFAULT current_timestamp()
+  `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`admin_id`, `nama`, `username`, `email`, `password`, `keterangan`, `deleted`, `create_at`, `create_by`, `update_at`, `update_by`, `lastmodified`) VALUES
-(1, 'BigJill Official', 'bj_admin', 'email', '7a63092ed0dbf1cf717a930facf99a92', 'BigJill Official Account', 0, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42'),
+(1, 'BigJill Official', 'bj_admin', 'bigjill.indonesia@gmail.com', '7a63092ed0dbf1cf717a930facf99a92', 'BigJill Official Account', 0, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42'),
 (2, 'Aditya', 'aditya', 'adit.praset.27@gmail.com', 'f446d1791024a9a1a4f4db80d35762a8', 'Programmer', 0, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42'),
 (3, 'Marcellino', 'marcell', 'marcellino2302@gmail.com', '7d4535690a318b0947cf4dde8e498748', 'Programmer', 0, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42', 1, '2020-11-23 13:42:42');
 
@@ -74,16 +74,17 @@ CREATE TABLE `tbl_barang` (
   `barang_id` int(11) NOT NULL,
   `nama` varchar(60) NOT NULL,
   `harga` double NOT NULL,
-  `ukuran_id` text DEFAULT NULL,
+  `kategori_id` int(11) NOT NULL,
+  `ukuran_id` text,
   `warna_id` text NOT NULL,
   `link` text NOT NULL,
   `deskripsi` text NOT NULL,
   `deleted` int(11) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` int(11) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` int(11) NOT NULL,
-  `lastmodified` datetime NOT NULL DEFAULT current_timestamp()
+  `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -96,10 +97,10 @@ CREATE TABLE `tbl_barang_foto` (
   `id` int(11) NOT NULL,
   `barang_id` int(11) NOT NULL,
   `foto_utama` text NOT NULL,
-  `foto_1` text DEFAULT NULL,
-  `foto_2` text DEFAULT NULL,
-  `foto_3` text DEFAULT NULL,
-  `foto_4` text DEFAULT NULL
+  `foto_1` text,
+  `foto_2` text,
+  `foto_3` text,
+  `foto_4` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -112,12 +113,12 @@ CREATE TABLE `tbl_kategori` (
   `kategori_id` int(11) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `ukuran` char(1) NOT NULL DEFAULT 'T',
-  `deleted` int(11) NOT NULL DEFAULT 0,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `deleted` int(11) NOT NULL DEFAULT '0',
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` int(11) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` int(11) NOT NULL,
-  `lastmodified` datetime NOT NULL DEFAULT current_timestamp()
+  `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -146,11 +147,11 @@ CREATE TABLE `tbl_ukuran` (
   `nama` varchar(40) NOT NULL,
   `singkatan` varchar(10) NOT NULL,
   `deleted` int(11) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` int(11) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` int(11) NOT NULL,
-  `lastmodified` datetime NOT NULL DEFAULT current_timestamp()
+  `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -176,12 +177,12 @@ INSERT INTO `tbl_ukuran` (`ukuran_id`, `nama`, `singkatan`, `deleted`, `create_a
 CREATE TABLE `tbl_warna` (
   `warna_id` int(11) NOT NULL,
   `nama` varchar(40) NOT NULL,
-  `deleted` int(11) NOT NULL DEFAULT 0,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `deleted` int(11) NOT NULL DEFAULT '0',
+  `create_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `create_by` int(11) NOT NULL,
-  `update_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `update_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` int(11) NOT NULL,
-  `lastmodified` datetime NOT NULL DEFAULT current_timestamp()
+  `lastmodified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
