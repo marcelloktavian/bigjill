@@ -263,7 +263,7 @@ if (!$this->session->has_userdata('admin')){
 			//bikin html untuk chipnya
 			var html = '';
 			html += '<div class="chip">';
-			html += warna.split('-')[1];
+			html += warna;
 			html += '<span class="closebtn" onclick = "';
 			html += "this.parentElement.style.display='none'; ";
 			html += "delete_ukuran('";
