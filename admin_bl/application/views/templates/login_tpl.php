@@ -32,7 +32,39 @@ if ($this->session->has_userdata('admin')){
 	<script src="<?php echo base_url('/assets/js/ruang-admin.min.js'); ?>"></script>
 
 </head>
+<style>
+	.btn-info {
+		color: #fff;
+		background-color: #AE8E7F;
+		border-color: #AE8E7F;
+	}
 
+	.btn-info:hover {
+		color: #fff;
+		background-color: #997361;
+		border-color: #997361;
+	}
+
+
+	.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+	.show > .btn-info.dropdown-toggle {
+		color: #fff;
+		background-color: #997361;
+		border-color: #997361;
+	}
+
+	.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+		background-color: #AE8E7F;
+	}
+
+	.form-control:focus {
+		color: #495057;
+		background-color: #fff;
+		border-color: #AE8E7F;
+		outline: 0;
+		box-shadow: 0 0 0 0.2rem rgba(226, 222, 219, 255);
+	}
+</style>
 <body class="bg-gradient-login">
 	<!-- Login Content -->
 	<div class="container-login">
@@ -61,28 +93,29 @@ if ($this->session->has_userdata('admin')){
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>		
 											<span>Berhasil masuk</span>
 										</div>
-									<?php endif; ?> -->
+										<?php endif; ?> -->
 
-									<form class="user" action="<?php echo site_url('/site/login'); ?>" method="post">
-										<div class="form-group">
-											<input type="text" id="username" name="username" class="form-control" placeholder="Username atau Email" value="<?php if(isset($_COOKIE["admin_loginbl"])) { echo $_COOKIE["admin_loginbl"]; } ?>" <?php if(!isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
-										</div>
-										<div class="form-group">
-											<input type="password" id="password" name="password" class="form-control" placeholder="Password" <?php if(isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
-										</div>
-										<div class="form-group">
-											<div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
-												<input type="checkbox" class="custom-control-input" id="remember" name="remember" <?php if(isset($_COOKIE["admin_loginbl"])) { echo "checked"; } ?>>
-												<label class="custom-control-label" for="remember">Remember
-												Me</label>
+										<form class="user" action="<?php echo site_url('/site/login'); ?>" method="post">
+											<div class="form-group">
+												<input type="text" id="username" name="username" class="form-control" placeholder="Username atau Email" value="<?php if(isset($_COOKIE["admin_loginbl"])) { echo $_COOKIE["admin_loginbl"]; } ?>" <?php if(!isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
 											</div>
-										</div>
-										<div class="form-group">
-											<input class="btn btn-primary btn-block" type="submit" value="Log In">
-										</div>
+											<div class="form-group">
+												<input type="password" id="password" name="password" class="form-control" placeholder="Password" <?php if(isset($_COOKIE["admin_loginbl"])) { echo "autofocus"; } ?> required>
+											</div>
+											<div class="form-group">
+												<div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
+													<input type="checkbox" class="custom-control-input" id="remember" name="remember" <?php if(isset($_COOKIE["admin_loginbl"])) { echo "checked"; } ?>>
+													<label class="custom-control-label" for="remember">Remember
+													Me</label>
+												</div>
+											</div>
+											<div class="form-group">
+												<input class="btn btn-info btn-block" type="submit" value="Log In" style="">
+											</div>
 
-									</form>
-									<hr>
+										</form>
+										<hr>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -90,6 +123,5 @@ if ($this->session->has_userdata('admin')){
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
-</html>
+	</body>
+	</html>

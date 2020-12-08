@@ -4,7 +4,16 @@ if (!$this->session->has_userdata('admin')){
 	exit;
 }
 ?>
-
+<style>
+	.bg-navbar {
+		background-color: #896F58;
+	}
+	.dropdown-item:hover, .dropdown-item:focus {
+		color: #fff;
+		text-decoration: none;
+		background-color: #A38871;
+	}
+</style>
 <!-- TopBar -->
 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
 

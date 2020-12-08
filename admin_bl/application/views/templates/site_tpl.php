@@ -36,7 +36,111 @@ if (!$this->session->has_userdata('admin')){
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 
 </head>
+<style>
+	.btn-info {
+		color: #fff;
+		background-color: #AE8E7F;
+		border-color: #AE8E7F;
+	}
 
+	.btn-info:hover,.btn-info:focus {
+		color: #fff;
+		background-color: #997361;
+		border-color: #997361;
+	}
+
+	.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
+	.show > .btn-info.dropdown-toggle {
+		color: #fff;
+		background-color: #997361;
+		border-color: #997361;
+	}
+
+	.btn-danger {
+		color: #fff;
+		background-color: #AE594D;
+		border-color: #AE594D;
+	}
+
+	.btn-danger:hover {
+		color: #fff;
+		background-color: #BF796F;
+		border-color: #BF796F;
+	}
+
+	.btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active,
+	.show > .btn-danger.dropdown-toggle {
+		color: #fff;
+		background-color: #BF796F;
+		border-color: #BF796F;
+	}
+
+	.btn-warning {
+		color: #fff;
+		background-color: #D69D69;
+		border-color: #D69D69;
+	}
+
+	.btn-warning:hover {
+		color: #fff;
+		background-color: #CB8341;
+		border-color: #CB8341;
+	}
+
+	.btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
+	.show > .btn-warning.dropdown-toggle {
+		color: #fff;
+		background-color: #CB8341;
+		border-color: #CB8341;
+	}
+
+	.btn-success {
+		color: #fff;
+		background-color: #175760;
+		border-color: #175760;
+	}
+
+	.btn-success:hover {
+		color: #fff;
+		background-color: #217C89;
+		border-color: #217C89;
+	}
+
+	.btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
+	.show > .btn-success.dropdown-toggle {
+		color: #fff;
+		background-color: #217C89;
+		border-color:#217C89;
+	}
+	
+	.page-item.active .page-link {
+		z-index: 1;
+		color: #fff;
+		background-color: #A38871;
+		border-color: #A38871;
+	}
+
+	.page-item .page-link {
+		z-index: 1;
+		color: #896F58;
+		background-color: #fff;
+		border-color: #fff;
+	}
+
+	.form-control:focus {
+		color: #495057;
+		background-color: #fff;
+		border-color: #AE8E7F;
+		outline: 0;
+		box-shadow: 0 0 0 0.2rem rgba(226, 222, 219, 255);
+	}
+
+	.sidebar.toggled .nav-item .collapse .collapse-inner .collapse-item.active,
+	.sidebar.toggled .nav-item .collapsing .collapse-inner .collapse-item.active {
+		color: #A38871;
+		font-weight: 800;
+	}
+</style>
 <body id="page-top">
 	<div id="wrapper">
 		
