@@ -83,9 +83,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //ab -->
     <!--/ab -->
 
-    <section class="ab-info-main py-md-3 py-3">
+    <a name="catalog"><section class="ab-info-main py-md-3 py-3"></a>
     	<div class="container py-md-3">
-    		<a name="catalog"><h3 class="tittle text-center">PRODUCTS</h3></a>
+    		<h3 class="tittle text-center">PRODUCTS</h3>
     		<!-- top Products -->
     		<div class="row">
     			<!-- product left -->
