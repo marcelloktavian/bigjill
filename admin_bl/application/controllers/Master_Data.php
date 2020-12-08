@@ -90,6 +90,7 @@ class Master_Data extends MX_Controller {
 	public function editBarangForm($id)
 	{
 		$data['detail'] = $this->model_master->listBarangById($id);
+		// var_dump($data);die;
 		// ukuran
 		$data['listUkuran'] = $this->model_master->listAllUkuran();
 		// warna

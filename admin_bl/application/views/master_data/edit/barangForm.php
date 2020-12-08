@@ -79,7 +79,7 @@
                 <div class="form-group">
                   <label for="kategoriop">Kategori</label>
                   <select id="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
-                    <!-- <option value="<?php //echo isset($detail->kategori_id)? $detail->kategori_id :'' ?>" selected><?php //echo isset($detail->kategori_id)? $detail->kategori_id :'' ?></option> -->
+                    <option value="<?php echo isset($detail->kategori_id)? $detail->kategori_id :'' ?>" selected><?php echo isset($detail->kategori_id)? $detail->KategoriName :'' ?></option>
                     <?php foreach ($listKategori as $lkat): ?>
                       <option value="<?= $lkat->kategori_id ?>"><?= $lkat->nama ?></option>
                     <?php endforeach; ?>

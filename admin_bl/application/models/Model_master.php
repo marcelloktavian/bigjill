@@ -56,7 +56,13 @@ public function listKategoriById($id)
 
 public function listBarangById($id)
 {
-    $data = $this->db->get_where('tbl_barang',array('barang_id'=>$id))->row();
+    $this->db->select('a.*,b.nama as KategoriName,c.*');
+    $this->db->from('tbl_barang a');
+    $this->db->join('tbl_kategori b','a.kategori_id=b.kategori_id','left');
+    $this->db->join('tbl_barang_foto c','a.barang_id=c.barang_id','left');
+    $this->db->where('a.barang_id',$id);
+    $data = $this->db->get()->row();
+    // $data = $this->db->get_where('tbl_barang',array('barang_id'=>$id))->row();
     return $data;
 }
 
@@ -134,7 +140,7 @@ public function insertBarang($data)
 {
     $this->db->set('nama',$data['nama']);
     $this->db->set('harga',$data['harga']);
-    $this->db->set('kategori_id',$data['kategoriop']);
+    $this->db->set('kategori_id',$data['kategori_id']);
     $this->db->set('ukuran_id',$data['ukuran_id']);
     $this->db->set('warna_id',$data['warna_id']);
     $this->db->set('link',$data['link']);
