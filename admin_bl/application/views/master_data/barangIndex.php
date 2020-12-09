@@ -19,6 +19,19 @@
             <h6 class="m-0 font-weight-bold text-default">Data Barang</h6>
             <a href="<?= site_url('Master_Data/barangForm') ?>" type="button" class="btn btn-info"><i class="fas fa-plus"> Tambah</i></a>
           </div>
+          <!-- Alert jika gagal update -->
+          <?php if ($this->session->flashdata('updateBarang') == 'failed'): ?>
+            <script>
+              toastr.error('Gagal Update Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000"});
+            </script>
+          <?php endif; ?>
+
+          <?php if ($this->session->flashdata('updateBarang') == 'berhasil'): ?>
+            <script>
+              toastr.success('Berhasil Update Data','Berhasil',{"showDuration": "2000","closeButton": true,"timeOut": "5000",});
+            </script>
+          <?php endif; ?>
+          <!--  -->
           <!-- Alert jika gagal delete -->
           <?php if ($this->session->flashdata('deleteBarang') == 'failed'): ?>
             <script>

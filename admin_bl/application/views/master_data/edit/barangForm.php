@@ -52,8 +52,9 @@
               } endif;  ?>
               <!--  -->
               <!-- <form enctype="multipart/form-data" method="POST" action="<?php // site_url('Master_Data/addBarang') ?>"> -->
-              <?= form_open_multipart('Master_Data/addBarang') ?>
+              <?= form_open_multipart('Master_Data/editBarang') ?>
                 <div class="form-group">
+                  <input type="hidden" name="idbarang" value="<?= $detail->barang_id ?>">
                   <label for="nama">Nama Barang</label>
                   <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"
                   placeholder="Nama Barang" maxlength="60" value="<?= isset($detail->nama)? $detail->nama :'' ?>" required autofocus>
@@ -78,7 +79,7 @@
                 
                 <div class="form-group">
                   <label for="kategoriop">Kategori</label>
-                  <select id="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
+                  <select id="kategoriop" name="kategoriop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
                     <option value="<?php echo isset($detail->kategori_id)? $detail->kategori_id :'' ?>" selected><?php echo isset($detail->kategori_id)? $detail->KategoriName :'' ?></option>
                     <?php foreach ($listKategori as $lkat): ?>
                       <option value="<?= $lkat->kategori_id ?>"><?= $lkat->nama ?></option>
@@ -89,7 +90,7 @@
                 <div class="form-group ukuranListbox">
                   <label for="ukuranop">Ukuran</label>
                   <div class="input-group">
-                   <select id="ukuranop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
+                   <select id="ukuranop" class="form-control selectpicker" data-live-search="true" data-size="4" >
                     <option value="" disabled selected>-- Pilih Ukuran --</option>
                     <?php foreach ($listUkuran as $lk): ?>
                       <option value="<?= $lk->ukuran_id ?>"><?= $lk->nama.' ('.$lk->singkatan.')' ?></option>
@@ -102,13 +103,13 @@
                 <div id="daftarUkuran" class="daftarUkuran">
                       <!--  -->
                 </div>
-                <input type="text" name="hiddenUkuran" id="hiddenUkuran" value="<?= $detail->ukuran_id; ?>">
+                <input type="hidden" name="hiddenUkuran" id="hiddenUkuran" value="<?= $detail->ukuran_id; ?>">
               </div>
 
               <div class="form-group">
                 <label for="warnaop">Warna</label>
                 <div class="input-group">
-                  <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4" required>
+                  <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4" >
                     <option value="" disabled selected>-- Pilih Warna --</option>
                     <?php foreach ($listWarna as $lw): ?>
                       <option value="<?= $lw->warna_id ?>"><?= $lw->nama ?></option>
@@ -130,6 +131,7 @@
               <label for="imagesUtama">Gambar Utama: </label>
               <img src="<?php echo base_url('assets/img/barang/').$detail->foto_utama?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
             <div class="box">
+                    <input type="hidden" name="hidden_utama" value="<?= $detail->foto_utama?>">
               <input type="file" name="imagesUtama" id="imagesUtama" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
@@ -137,6 +139,7 @@
             <label for="images1">Gambar 1 (opsional): </label>
             <img src="<?php echo base_url('assets/img/barang/').$detail->foto_1?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
             <div class="box">
+              <input type="hidden" name="hidden_foto1" value="<?= $detail->foto_1?>">
               <input type="file" name="images1" id="images1" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
@@ -144,6 +147,7 @@
             <label for="images2">Gambar 2 (opsional): </label>
             <img src="<?php echo base_url('assets/img/barang/').$detail->foto_2?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
             <div class="box">
+              <input type="hidden" name="hidden_foto2" value="<?= $detail->foto_2?>">
               <input type="file" name="images2" id="images2" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
@@ -151,6 +155,7 @@
             <label for="images3">Gambar 3 (opsional): </label>
             <img src="<?php echo base_url('assets/img/barang/').$detail->foto_3?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
             <div class="box">
+              <input type="hidden" name="hidden_foto3" value="<?= $detail->foto_3?>">
               <input type="file" name="images3" id="images3" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
@@ -158,6 +163,7 @@
             <label for="images4">Gambar 4 (opsional): </label>
             <img src="<?php echo base_url('assets/img/barang/').$detail->foto_4?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
             <div class="box">
+              <input type="hidden" name="hidden_foto4" value="<?= $detail->foto_4?>">
               <input type="file" name="images4" id="images4" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
@@ -186,11 +192,29 @@
 <!--Row-->
 </div>
 <script>
-  // console.log($('#hiddenUkuran').val());
   $(document).ready(function () {
     getUkuranData();
     getWarnaData();
   });
+
+  var ukurannya = [];
+  var warnanya = [];
+
+  function delete_ukuran_edit(size){
+      const index = ukurannya.indexOf(size);
+			if (index > -1) {
+				ukurannya.splice(index, 1);
+				$("#hiddenUkuran").val(ukurannya);
+			}
+  }
+
+  function delete_warna_edit(warna){
+      const index = warnanya.indexOf(warna);
+			if (index > -1) {
+        warnanya.splice(index, 1);
+				$("#hiddenWarna").val(warnanya);
+			}
+  }
 
   function getUkuranData(){
     var ID = $("#hiddenUkuran").val();
@@ -217,10 +241,10 @@
           html += "')";
           html += '"">×</span></div>';
 
-          // console.log(html);
-
           //menampilkan chip ke daftar
           $('#daftarUkuran').append(html);
+          var arrayukurannya = data.ukuran_id;
+          ukurannya.push(arrayukurannya);
         }
       });
     }
@@ -246,7 +270,7 @@
           html += data.nama;
           html += '<span class="closebtn" onclick = "';
           html += "this.parentElement.style.display='none'; ";
-          html += "delete_ukuran('";
+          html += "delete_warna_edit('";
           html += data.warna_id;
           html += "')";
           html += '"">×</span></div>';
@@ -255,6 +279,8 @@
 
           //menampilkan chip ke daftar
           $('#daftarWarna').append(html);
+          var arrayWarnanya = data.warna_id;
+          warnanya.push(arrayWarnanya);
         }
       });
     }

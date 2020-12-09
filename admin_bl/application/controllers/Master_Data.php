@@ -275,6 +275,66 @@ class Master_Data extends MX_Controller {
 		}
 	}
 
+	function editBarang(){
+		$idwarna	= str_replace(',',';',$_POST['hiddenWarna']);
+		$idukuran	= str_replace(',',';',$_POST['hiddenUkuran']);
+		// insert ke table barang
+		date_default_timezone_set('Asia/Jakarta');
+		$data['barang_id']=$_POST['idbarang'];
+		$data['nama'] = $_POST['nama'];
+		$data['harga'] = $_POST['harga'];
+		$data['kategori_id'] = $_POST['kategoriop'];
+		$data['ukuran_id'] = $idukuran;
+		$data['warna_id'] = $idwarna;
+		$data['link'] = $_POST['link'];
+		$data['deskripsi'] = $_POST['deskripsi'];
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+		// var_dump($_POST['hidden_utama'],$_FILES['imagesUtama']['name']);die;
+		if($_FILES['imagesUtama']['name']!==""){
+			$gambar['utama'] = $this->_uploadUtama('imagesUtama');
+		}else{
+			$gambar['utama'] = $_POST['hidden_utama'];
+		}
+		if( $_FILES['images1']['name']!==""){
+			$gambar['foto_1'] = $this->_uploadUtama('images1');
+		}else{
+			$gambar['foto_1']= $_POST['hidden_foto1'];
+		}
+		if( $_FILES['images2']['name']!==""){
+			$gambar['foto_2'] = $this->_uploadUtama('images2');
+		}else{
+			$gambar['foto_2']= $_POST['hidden_foto2'];
+		}
+		if( $_FILES['images3']['name']!==""){
+			$gambar['foto_3'] = $this->_uploadUtama('images3');
+		}else{
+			$gambar['foto_3']= $_POST['hidden_foto3'];
+		}
+		if( $_FILES['images4']['name']!==""){
+			$gambar['foto_4'] = $this->_uploadUtama('images4');
+		}else{
+			$gambar['foto_4']= $_POST['hidden_foto4'];
+		}
+		$gambar['barang_id'] = $_POST['idbarang'];
+		// // var_dump($gambar);die;
+		// var_dump($data);
+		// var_dump($gambar);die;
+
+		$result_master = $this->model_master->UpdateBarang($data);
+		// var_dump($result_master);die;
+		
+		$result_foto = $this->model_master->UpdatefotoBarang($gambar);
+
+		if($result_foto){
+			$this->session->set_flashdata('updateBarang', 'berhasil');
+			redirect(site_url('Master_Data/barang'));	
+		}else{
+			$this->session->set_flashdata('updateBarang', 'failed');
+			redirect(site_url('Master_Data/barang	'));	
+		}
+	}
+
 	// 
 
 	// for upload file

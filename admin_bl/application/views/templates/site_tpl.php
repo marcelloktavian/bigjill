@@ -296,18 +296,6 @@ if (!$this->session->has_userdata('admin')){
 			const index = ukurannya.indexOf(fixsize[0]);
 			if (index > -1) {
 				ukurannya.splice(index, 1);
-				console.log(ukurannya);
-				$("#hiddenUkuran").val(ukurannya);
-			}
-		}
-
-		function delete_ukuran_edit(size) {
-			console.log(size);
-			console.log(ukuranya);
-			const index = ukurannya.indexOf(size);
-			if (index > -1) {
-				ukurannya.splice(index, 1);
-				console.log(ukurannya);
 				$("#hiddenUkuran").val(ukurannya);
 			}
 		}
@@ -321,11 +309,13 @@ if (!$this->session->has_userdata('admin')){
 					validasi='Y';
 				}
 			}
+			// console.log(ukuranya);
 			if (validasi=='T') {
 			//lanjut menampilkan
 
 			//push ukuran ke array
 			ukurannya.push($('#ukuranop').val());
+			console.log(ukurannya);
 			$("#hiddenUkuran").val(ukurannya);
 				// console.log(ukuran);
 			//bikin html untuk chipnya
@@ -376,7 +366,9 @@ if (!$this->session->has_userdata('admin')){
 			
 			//push ukuran ke array
 			warnanya.push($('#warnaop').val());
+			// console.log(warnanya);
 			$("#hiddenWarna").val(warnanya);
+
 
 			//bikin html untuk chipnya
 			var html = '';
