@@ -21,6 +21,5 @@
 
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 
-	<script src="<?php echo base_url('/admin_bl/assets/vendor/jquery/jquery.min.js'); ?>"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
 </head>

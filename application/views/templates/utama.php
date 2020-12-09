@@ -134,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     						<div class="col-md-4">
     							<div class="product-shoe-info shoe text-center">
     								<div class="men-thumb-item">
-    									<a href="<?php echo site_url('/search/barang/');echo $b->barang_id; ?>"><img src="
+    									<a href="<?php echo site_url('/search/detail/');echo $b->barang_id; ?>"><img src="
     										<?php
     										if($b->foto_utama==null || $b->foto_utama=='null.png'){
     											echo base_url('/admin_bl/assets/img/null.png');
