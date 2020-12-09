@@ -19,6 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="<?php echo base_url('/admin_bl/assets/vendor/jquery/jquery.min.js'); ?>"></script>
 </head>
 <style>
+
     .btn-warning {
         color: #fff;
         background-color: #CB8341;
@@ -56,6 +57,38 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         background-color: #4ABDAC;
         border-color: #4ABDAC;
     }
+    pre {
+        white-space: pre-wrap; 
+        word-wrap: break-word;
+        font-size: 17px;
+        font-family: unset;
+        color: #62676B;
+
+    }
+    textarea {
+        /*background-color: #fff;*/
+        width: 100%;
+        height: 100%;
+        border-color: #fff;
+        resize:none;
+    }
+    .chip {
+      display: inline-block;
+      padding: 0 25px;
+      height: 30px;
+      font-size: 14px;
+      line-height: 30px;
+      border-radius: 25px;
+      background-color: #f1f1f1;
+      margin-right: 5px;
+  }
+  .closebtn {
+      padding-left: 10px;
+      color: #888;
+      font-weight: bold;
+      float: right;
+      font-size: 15px;
+  }
 </style>
 <body>
 
@@ -86,134 +119,150 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="left-ads-display col-lg-12">
                     <div class="row">
                         <div class="col-md-4">
-
                             <div id="displayImage" class="carousel slide" data-ride="carousel">
-                              <ol class="carousel-indicators">
-                                <li data-target="#displayImage" data-slide-to="0" class="active"></li>
-                                <li data-target="#displayImage" data-slide-to="1"></li>
-                                <li data-target="#displayImage" data-slide-to="2"></li>
-                                <li data-target="#displayImage" data-slide-to="3"></li>
-                                <li data-target="#displayImage" data-slide-to="4"></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" src="<?php echo base_url('/admin_bl/assets/img/barang/');  ?>s1.jpg" alt="First slide">
+
+                                <div id="pagination"></div>
+                                <div id="carousel"></div>
+
+                                <a class="carousel-control-prev" href="#displayImage" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#displayImage" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="desc1-right col-md-6 pl-lg-4">
+                            <div id="namabrg"></div><br>
+                            <div id="hargabrg"></div>
+                            <br>
+                            <div class="share-desc">
+                                <div class="share">
+
+                                    <div id="ukuran"></div>
+
                                 </div>
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="<?php echo base_url('/admin_bl/assets/img/barang/');  ?>s2.jpg" alt="Second slide">
-                              </div>
-                              <div class="carousel-item">
-                                  <img class="d-block w-100" src="<?php echo base_url('/admin_bl/assets/img/barang/');  ?>s3.jpg" alt="Third slide">
-                              </div>
-                              <div class="carousel-item">
-                                  <img class="d-block w-100" src="<?php echo base_url('/admin_bl/assets/img/barang/');  ?>s4.jpg" alt="Fourth slide">
-                              </div>
-                              <div class="carousel-item">
-                                  <img class="d-block w-100" src="<?php echo base_url('/admin_bl/assets/img/barang/');  ?>s5.jpg" alt="Five slide">
-                              </div>
-                          </div>
-                          <a class="carousel-control-prev" href="#displayImage" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#displayImage" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                                <div class="clearfix"></div>
+                            </div>
+                            <br>
+                            <div class="share-desc">
+                                <div class="share">
+
+                                    <div id="warna"></div>
+
+                                </div>
+                                <br>
+                                <div class="share-desc">
+                                    <div class="share">
+                                        <ul class="w3layouts_social_list list-unstyled">
+                                            <h4>Pesan Lewat :</h4>
+                                            <div id="btnpesan"></div>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="desc1-right col-md-6 pl-lg-4">
-                    <div id="namabrg"></div><br>
-                    <div id="hargabrg"></div>
-                    <br>
-                    <div class="share-desc">
-                        <div class="share">
-                            <h4>Ukuran :</h4>
-
-                            <ul class="w3layouts_social_list list-unstyled">
-                                <li>
-                                    S
-                                </li>
-                                <li class="mx-2">
-                                   M
-                               </li>
-                               <li>
-                                L
-                            </li>
-                            <li class="ml-2">
-                               XL
-                           </li>
-                       </ul>
-                   </div>
-                   <div class="clearfix"></div>
-               </div>
-               <br>
-               <div class="share-desc">
-                <div class="share">
-                    <h4>Warna :</h4>
-
-                    <ul class="w3layouts_social_list list-unstyled">
-                        <li>
-                            Biru
-                        </li>
-                        <li class="mx-2">
-                           Merah
-                       </li>
-                       <li>
-                        Kuning
-                    </li>
-                    <li class="ml-2">
-                       Hijau
-                   </li>
-
-               </ul>
-           </div>
-           <br>
-           <div class="share-desc">
-            <div class="share">
-                <ul class="w3layouts_social_list list-unstyled">
-                    <h4>Pesan Lewat :</h4>
-                    <div id="btnpesan"></div>
-                </ul>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
-</div>
-<div class="row sub-para-w3layouts mt-5">
-
-    <h3 class="shop-sing">Deskripsi Barang</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
-    <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore magna aliqua.</p>
-</div>
+                    <div class="row sub-para-w3layouts mt-5">
 
 
-</section>
-<!-- //contact -->
+                        <div id="deskripsi"></div>
 
-<?php echo $this->load->view($footer); ?>
+                    </div>
 
-<script>
-    $(document).ready(function(){
-        $.ajax({
-            url: 'ajaxbarang',
-            type: "POST",
-            data: {
-                idbarang: '3',
-            },
-            success: function (res) { 
-                var obj = JSON.parse(res);
 
-                var nama = obj[0]['nama'];
-                var angka = obj[0]['harga'];
-                var reverse = angka.toString().split('').reverse().join(''),
-                ribuan = reverse.match(/\d{1,3}/g);
-                ribuan = ribuan.join('.').split('').reverse().join('');
-                var link = obj[0]['link'];
-                var jumlahukuran = obj[0]['ukuran_id'].split(';');
-                var jumlahwarna = obj[0]['warna_id'].split(';');
+                </section>
+                <!-- //contact -->
+
+                <?php echo $this->load->view($footer); ?>
+
+                <script>
+                    $(document).ready(function(){
+                        $.ajax({
+                            url: 'ajaxbarang',
+                            type: "POST",
+                            data: {
+                                idbarang: '3',
+                            },
+                            success: function (res) { 
+                                var obj = JSON.parse(res);
+
+                                var nama = obj[0]['nama'];
+                                var angka = obj[0]['harga'];
+                                var reverse = angka.toString().split('').reverse().join(''),
+                                ribuan = reverse.match(/\d{1,3}/g);
+                                ribuan = ribuan.join('.').split('').reverse().join('');
+                                var link = obj[0]['link'];
+                                var deskripsi = obj[0]['deskripsi'];
+                                var jumlahukuran = obj[0]['ukuran_id'].split(';');
+                                var jumlahwarna = obj[0]['warna_id'].split(';');
+
+            //foto 
+            var fotoutama = obj[0]['foto'];
+            var foto1 = obj[0]['foto1'];
+            var foto2 = obj[0]['foto2'];
+            var foto3 = obj[0]['foto3'];
+            var foto4 = obj[0]['foto4'];
+
+            var baris = 0;
+
+            var carousel = '';
+            carousel += '<div class="carousel-inner">';
+
+            if (fotoutama!='' && fotoutama!=null && fotoutama!='null.png' && fotoutama!='0') {
+                baris += 1;
+                carousel += '<div class="carousel-item active"><img class="d-block w-100" src="';
+                carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + fotoutama;
+                carousel += '" alt="First slide"></div>';
+            }
+            if (foto1!='' && foto1!=null && foto1!='null.png' && foto1!='0') {
+                baris += 1;
+                carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
+                carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto1;
+                carousel += '" alt="Second slide"></div>';
+            }
+            if (foto2!='' && foto2!=null && foto2!='null.png' && foto2!='0') {
+                baris += 1;
+                carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
+                carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto2;
+                carousel += '" alt="Third slide"></div>';
+            }
+            if (foto3!='' && foto3!=null && foto3!='null.png' && foto3!='0') {
+                baris += 1;
+                carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
+                carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto3;
+                carousel += '" alt="Fourth slide"></div>';
+            }
+            if (foto4!='' && foto4!=null && foto4!='null.png' && foto4!='0') {
+                baris += 1;
+                carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
+                carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto4;
+                carousel += '" alt="Five slide"></div>';
+            }
+            carousel += '</div>';
+
+            var nomor = '';
+            nomor += '<ol class="carousel-indicators">';
+            for (var i = 0; i < baris; i++) {
+                if (i==0) {
+                    console.log(i);
+                    nomor += '<li data-target="#displayImage" data-slide-to="'+i+'" class="active"></li>';
+                }else{
+                    console.log(i);
+                    nomor += '<li data-target="#displayImage" data-slide-to="'+i+'"></li>';
+                }                                  
+
+            }
+            nomor += '</ol>';
+            
+            $('#carousel').html(carousel);
+            $('#pagination').html(nomor);
+
+
 
             //title nama barang
             var title = '';
@@ -227,7 +276,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             
             $('#titlenama').html(title);
             $('#namabrg').html('<h2>'+nama+'</h2>');
-            $('#hargabrg').html('<h5>Rp. '+ribuan+',-</h5>');
+            $('#hargabrg').html('<h2>Rp. '+ribuan+',-</h2>');
+
 
             var btnpesan = '';
             btnpesan += '<li><button type="button" class="btn btn-success" onclick="directwa(';
@@ -244,21 +294,89 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             $('#btnpesan').html(btnpesan);
 
-            //detail barang
+
+            var isidesc = '';
+            isidesc += '<h2 class="shop-sing">Deskripsi Barang</h2><br>';
+            isidesc += '<pre>'+deskripsi+'</pre>';
+
+            $('#deskripsi').html(isidesc);
+
+
+            var htmlwarna = '<h4>Warna :</h4>';
+            htmlwarna += '<ul class="w3layouts_social_list list-unstyled">';
+            for (var j = 0; j < jumlahwarna.length; j++) {
+                // console.log(j);
+                var warna = 0;
+                $.ajax({
+                  url: 'ajaxwarna',
+                  type: "POST",
+                  data: {
+                    idwarna: jumlahwarna[j],
+                },
+                success: function (res3) {
+                    var obj3 = JSON.parse(res3);
+                    if (j==0 || j % 3 == 0) {
+                        htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
+                    } else if (j==1 || j % 4 == 0) {
+                        htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
+                    } else {
+                        htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
+                    }
+                    
+                    warna += 1;
+
+                    if (warna==jumlahwarna.length) {
+                        $('#warna').html(htmlwarna+'</ul>');
+                    }
+                }
+            });
+            }
+
+
+            var htmlukuran = '<h4>Ukuran :</h4>';
+            htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
+            for (var j = 0; j < jumlahukuran.length; j++) {
+                // console.log(j);
+                var ukuran = 0;
+                $.ajax({
+                  url: 'ajaxukuran',
+                  type: "POST",
+                  data: {
+                    idukuran: jumlahukuran[j],
+                },
+                success: function (res2) {
+                    var obj2 = JSON.parse(res2);
+                    if (j==0 || j % 3 == 0) {
+                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                    } else if (j==1 || j % 4 == 0) {
+                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                    } else {
+                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                    }
+                    
+                    ukuran += 1;
+
+                    if (ukuran==jumlahukuran.length) {
+                        $('#ukuran').html(htmlukuran+'</ul>');
+                    }
+                }
+            });
+            }
+
 
 
         }
     }); 
-    });
+});
 
-    function directwa(brg, harga) {
-        var brgakhir = brg.replace(" ", "%20");
-        var hargakhir = harga.toLocaleString('IND', {style: 'currency', currency: 'IDR'}).replace(" ", "%20");
+function directwa(brg, harga) {
+    var brgakhir = brg.replace(" ", "%20");
+    var hargakhir = harga.toLocaleString('IND', {style: 'currency', currency: 'IDR'}).replace(" ", "%20");
 
-        var wa = 'https://api.whatsapp.com/send?phone=6281222334054&text=Saya%20tertarik%20dengan%20'+brgakhir+'%20-%20'+hargakhir;
-        window.open(wa,'_blank');
-    }
-    
+    var wa = 'https://api.whatsapp.com/send?phone=6281222334054&text=Saya%20tertarik%20dengan%20'+brgakhir+'%20-%20'+hargakhir;
+    window.open(wa,'_blank');
+}
+
 </script>
 
 </body>
