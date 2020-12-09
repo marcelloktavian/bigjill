@@ -160,7 +160,7 @@
                      html += '</ul></td></tr>';
 
                      html += '<tr><td scope="row">Deskripsi</td>';
-                     html += '<td scope="row">'+obj[0]['deskripsi']+'</td></tr>';
+                     html += '<td scope="row"><textarea class="form-control" rows="3" readonly>'+obj[0]['deskripsi']+'</textarea></td></tr>';
                      html += '<tr><td scope="row">Foto Utama</td>';
                      html += '<td scope="row"><img src="';
                      if (obj[0]['foto']==null||obj[0]['foto']=='null.png'||obj[0]['foto']=='0') {

@@ -292,15 +292,28 @@ if (!$this->session->has_userdata('admin')){
 		var warnanya = [];
 
 		function delete_ukuran(size) {
+			var fixsize = size.split(';');
+			const index = ukurannya.indexOf(fixsize[0]);
+			if (index > -1) {
+				ukurannya.splice(index, 1);
+				console.log(ukurannya);
+				$("#hiddenUkuran").val(ukurannya);
+			}
+		}
+
+		function delete_ukuran_edit(size) {
+			console.log(size);
+			console.log(ukuranya);
 			const index = ukurannya.indexOf(size);
 			if (index > -1) {
 				ukurannya.splice(index, 1);
+				console.log(ukurannya);
 				$("#hiddenUkuran").val(ukurannya);
 			}
 		}
 
 		$(".addUkuranBtn").on('click', function () {
-			var ukuran = $('#ukuranop').val()+'-'+$('#ukuranop option:selected').text();
+			var ukuran = $('#ukuranop').val()+';'+$('#ukuranop option:selected').text();
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < ukurannya.length; i++) {
@@ -314,11 +327,11 @@ if (!$this->session->has_userdata('admin')){
 			//push ukuran ke array
 			ukurannya.push($('#ukuranop').val());
 			$("#hiddenUkuran").val(ukurannya);
-
+				// console.log(ukuran);
 			//bikin html untuk chipnya
 			var html = '';
 			html += '<div class="chip">';
-			html += ukuran.split('-')[1];
+			html += ukuran.split(';')[1];
 			html += '<span class="closebtn" onclick = "';
 			html += "this.parentElement.style.display='none'; ";
 			html += "delete_ukuran('";
@@ -341,7 +354,8 @@ if (!$this->session->has_userdata('admin')){
 	});
 
 		function delete_warna(warna) {
-			const index = warnanya.indexOf(warna);
+			var fixwarna = warna.split(';');
+			const index = warnanya.indexOf(fixwarna[0]);
 			if (index > -1) {
 				warnanya.splice(index, 1);
 				$("#hiddenWarna").val(warnanya);
@@ -349,7 +363,7 @@ if (!$this->session->has_userdata('admin')){
 		}
 
 		$(".addWarnaBtn").on('click', function () {
-			var warna = $('#warnaop').val()+'-'+$('#warnaop option:selected').text();
+			var warna = $('#warnaop').val()+';'+$('#warnaop option:selected').text();
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < warnanya.length; i++) {
@@ -367,10 +381,10 @@ if (!$this->session->has_userdata('admin')){
 			//bikin html untuk chipnya
 			var html = '';
 			html += '<div class="chip">';
-			html += warna;
+			html += warna.split(';')[1];
 			html += '<span class="closebtn" onclick = "';
 			html += "this.parentElement.style.display='none'; ";
-			html += "delete_ukuran('";
+			html += "delete_warna('";
 			html += warna;
 			html += "')";
 			html += '"">×</span></div>';
