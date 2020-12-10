@@ -66,7 +66,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     }
     textarea {
-        /*background-color: #fff;*/
         width: 100%;
         height: 100%;
         border-color: #fff;
@@ -138,6 +137,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div id="namabrg"></div><br>
                             <div id="hargabrg"></div>
                             <br>
+                            <div class="share-desc">
+                                <div class="share">
+
+                                    <div id="kategori"></div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
                             <div class="share-desc">
                                 <div class="share">
 
@@ -249,10 +256,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             nomor += '<ol class="carousel-indicators">';
             for (var i = 0; i < baris; i++) {
                 if (i==0) {
-                    console.log(i);
+                    // console.log(i);
                     nomor += '<li data-target="#displayImage" data-slide-to="'+i+'" class="active"></li>';
                 }else{
-                    console.log(i);
+                    // console.log(i);
                     nomor += '<li data-target="#displayImage" data-slide-to="'+i+'"></li>';
                 }                                  
 
@@ -302,6 +309,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $('#deskripsi').html(isidesc);
 
 
+            var kategori = '<h4>Kategori : <b>'+obj[0]['kategori']+'</b></h4>';
+
+            $('#kategori').html(kategori);
+
+
             var htmlwarna = '<h4>Warna :</h4>';
             htmlwarna += '<ul class="w3layouts_social_list list-unstyled">';
             for (var j = 0; j < jumlahwarna.length; j++) {
@@ -332,10 +344,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
             }
 
-
-            var htmlukuran = '<h4>Ukuran :</h4>';
-            htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
-            for (var j = 0; j < jumlahukuran.length; j++) {
+            if (obj[0]['ukuran']=='Y') {
+               var htmlukuran = '<br><h4>Ukuran :</h4>';
+               htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
+               for (var j = 0; j < jumlahukuran.length; j++) {
                 // console.log(j);
                 var ukuran = 0;
                 $.ajax({
@@ -362,11 +374,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 }
             });
             }
-
-
-
         }
-    }); 
+
+    }
+}); 
 });
 
 function directwa(brg, harga) {
