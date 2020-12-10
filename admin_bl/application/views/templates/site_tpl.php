@@ -140,6 +140,23 @@ if (!$this->session->has_userdata('admin')){
 		color: #A38871;
 		font-weight: 800;
 	}
+
+	.input-group-append span {
+		color: #fff;
+		background-color: #AE8E7F;
+		border-color: #AE8E7F;
+	}
+
+	.input-group-prepend span {
+		color: #fff;
+		background-color: #AE8E7F;
+		border-color: #AE8E7F;
+	}
+
+	.dropdown-item.active, .dropdown-item:active {
+		color: #fff;
+		background-color: #AE8E7F;
+	}
 </style>
 <body id="page-top">
 	<div id="wrapper">
@@ -305,11 +322,11 @@ if (!$this->session->has_userdata('admin')){
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < ukurannya.length; i++) {
-				if (ukurannya[i]==ukuran) {
+				if (ukurannya[i]==ukuran.split(';')[0]) {
 					validasi='Y';
 				}
 			}
-			// console.log(ukuranya);
+			// console.log(ukuran);
 			if (validasi=='T') {
 			//lanjut menampilkan
 
@@ -357,7 +374,7 @@ if (!$this->session->has_userdata('admin')){
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < warnanya.length; i++) {
-				if (warnanya[i]==warna) {
+				if (warnanya[i]==warna.split(';')[0]) {
 					validasi='Y';
 				}
 			}

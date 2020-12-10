@@ -370,11 +370,11 @@ class Master_Data extends MX_Controller {
 				}else if ($_FILES[$imageId]['error']==4 ){
 					$pesan = 'Gambar Utama Wajib Di upload';
 				}
-			$this->session->error = $pesan;
+				$this->session->error = $pesan;
 			// return $error;
-			$this->session->set_flashdata('insertBarang', 'failedfoto');
-			redirect(site_url('Master_Data/barangForm'));
-			die;
+				$this->session->set_flashdata('insertBarang', 'failedfoto');
+				redirect(site_url('Master_Data/barangForm'));
+				die;
 			}
 		}
 		else
@@ -664,6 +664,13 @@ class Master_Data extends MX_Controller {
 	{
 		$warna = $_POST['idwarna'];
 		$res = $this->model_master->viewWarnaBarang($warna);
+		echo json_encode($res);
+	}
+
+	public function ajaxgetukuran()
+	{
+		$kategori = $_POST['validasiukuran'];
+		$res = $this->model_master->viewKategoriBarang($kategori);
 		echo json_encode($res);
 	}
 

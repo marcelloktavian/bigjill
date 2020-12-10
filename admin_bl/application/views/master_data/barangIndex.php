@@ -1,3 +1,15 @@
+<style>
+  pre {
+    white-space: pre-wrap; 
+    word-wrap: break-word;
+    font-size: 17px;
+    font-family: unset;
+    color: #62676B;
+
+  }
+</style>
+
+
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -132,13 +144,18 @@
          html += '<td scope="row">'+obj[0]['kategori']+'</td></tr>';
          html += '<tr><td scope="row">Link Shopee</td>';
          html += '<td scope="row"><a href="'+obj[0]['link']+'" target="_blank">'+obj[0]['link']+'</a></td></tr>';
-         html += '<tr><td scope="row">Ukuran</td>';
-         html += '<td scope="row"><ul>';
 
-         var jumlahukuran = obj[0]['ukuran_id'].split(';');
-         var jumlahwarna = obj[0]['warna_id'].split(';');
+         var validasi = obj[0]['ukuran'];
 
-         for (var i = 0; i < jumlahukuran.length; i++) {
+         if (validasi=='Y') {
+          html += '<tr><td scope="row">Ukuran</td>';
+          html += '<td scope="row"><ul>';
+        }
+
+        var jumlahukuran = obj[0]['ukuran_id'].split(';');
+        var jumlahwarna = obj[0]['warna_id'].split(';');
+
+        for (var i = 0; i < jumlahukuran.length; i++) {
           var ukuran = 0;
           $.ajax({
             url: 'ajaxukuran',
@@ -148,11 +165,15 @@
             },
             success: function (res2) {
               var obj2 = JSON.parse(res2);
-              html += '<li>'+obj2[0]['nama']+'</li>';
+              if (validasi=='Y') {
+                html += '<li>'+obj2[0]['nama']+'</li>';
+              }
               ukuran += 1;
 
               if (ukuran==jumlahukuran.length) {
-               html += '</ul></td></tr>';
+                if (validasi=='Y') {
+                 html += '</ul></td></tr>';
+               }
                html += '<tr><td scope="row">Warna</td>';
                html += '<td scope="row"><ul>'; 
 
@@ -173,7 +194,7 @@
                      html += '</ul></td></tr>';
 
                      html += '<tr><td scope="row">Deskripsi</td>';
-                     html += '<td scope="row"><textarea class="form-control" rows="3" readonly>'+obj[0]['deskripsi']+'</textarea></td></tr>';
+                     html += '<td scope="row"><pre>'+obj[0]['deskripsi']+'</pre></td></tr>';
                      html += '<tr><td scope="row">Foto Utama</td>';
                      html += '<td scope="row"><img src="';
                      if (obj[0]['foto']==null||obj[0]['foto']=='null.png'||obj[0]['foto']=='0') {

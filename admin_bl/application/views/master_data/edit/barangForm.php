@@ -8,7 +8,7 @@
         <li class="breadcrumb-item"><a href="<?= site_url('dashboard') ?>">Home</a></li>
         <li class="breadcrumb-item">Data Master</li>
         <li class="breadcrumb-item"><a href="<?= site_url('Master_Data/barang') ?>">Barang</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Tambah Data</li>
+        <li class="breadcrumb-item active" aria-current="page">Edit Data</li>
       </ol>
     </div>
 
@@ -18,7 +18,7 @@
         <div class="card mb-4">
           <div class="col-12">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-              <h6 class="m-0 font-weight-bold text-default">Tambah Data Barang</h6>
+              <h6 class="m-0 font-weight-bold text-default">Edit Data Barang</h6>
               <a href="<?= site_url('Master_Data/barang') ?>" type="button" class="btn btn-info"><i class="fas fa-arrow-left"> Back</i></a>
             </div>
             <div class="card-body">
@@ -85,13 +85,14 @@
                       <option value="<?= $lkat->kategori_id ?>"><?= $lkat->nama ?></option>
                     <?php endforeach; ?>
                   </select>
+                  <input type="hidden" id="kategorihidden" value="<?= $detail->kategori_id ?>" >
                 </div>
 
                 <div class="form-group ukuranListbox">
                   <label for="ukuranop">Ukuran</label>
                   <div class="input-group">
                    <select id="ukuranop" class="form-control selectpicker" data-live-search="true" data-size="4" >
-                    <option value="" disabled selected>-- Pilih Ukuran --</option>
+                    <option value="" disabled>-- Pilih Ukuran --</option>
                     <?php foreach ($listUkuran as $lk): ?>
                       <option value="<?= $lk->ukuran_id ?>"><?= $lk->nama.' ('.$lk->singkatan.')' ?></option>
                     <?php endforeach; ?>
@@ -109,7 +110,7 @@
               <div class="form-group">
                 <label for="warnaop">Warna</label>
                 <div class="input-group">
-                  <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4" >
+                  <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4">
                     <option value="" disabled selected>-- Pilih Warna --</option>
                     <?php foreach ($listWarna as $lw): ?>
                       <option value="<?= $lw->warna_id ?>"><?= $lw->nama ?></option>
@@ -125,7 +126,7 @@
 
               <div class="form-group">
                 <label for="deskripsi">Deskripsi</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Deskripsi Barang"><?= isset($detail->link)? $detail->deskripsi :'' ?></textarea>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="5" placeholder="Deskripsi Barang"><?= isset($detail->link)? $detail->deskripsi :'' ?></textarea>
               </div>
 
               <label for="imagesUtama">Gambar Utama: </label>
@@ -193,7 +194,36 @@
 </div>
 <script>
   $(document).ready(function () {
-    getUkuranData();
+    var  urlaj = '/bigjill/admin_bl/index.php/Master_Data/ajaxgetukuran';
+    var hasil = $( "#kategorihidden").val();
+        // console.log(hasil);
+
+    $.ajax({
+      url: urlaj,
+      type: "POST",
+      data: {
+        validasiukuran: hasil,
+      },
+      success: function (res) {
+        // console.log(res);
+        var obj = JSON.parse(res);
+        if (obj[0]['ukuran']=='Y') {
+          $('#daftarUkuran').show();
+          $('.ukuranListbox').show();
+          getUkuranData();
+        }else{
+          $('#daftarUkuran').hide();
+          $('.ukuranListbox').hide();
+
+          ukurannya = [];
+          $('#hiddenUkuran').val('');
+          $('#daftarUkuran').html('');
+          $("#ukuranop").val('');
+        }
+      }
+    });
+
+    
     getWarnaData();
   });
 
@@ -285,4 +315,33 @@
       });
     }
   }
+</script>
+<script>
+  $('#kategoriop').on('change', function() {
+    var hasil = this.value;
+    // console.log(hasil);
+    $.ajax({
+      url: urlaj,
+      type: "POST",
+      data: {
+        validasiukuran: hasil,
+      },
+      success: function (res) {
+        var obj = JSON.parse(res);
+        if (obj[0]['ukuran']=='Y') {
+          $('#daftarUkuran').show();
+          $('.ukuranListbox').show();
+        }else{
+          $('#daftarUkuran').hide();
+          $('.ukuranListbox').hide();
+
+          ukurannya = [];
+          $('#hiddenUkuran').val('');
+          $('#daftarUkuran').html('');
+          $("#ukuranop").val('');
+        }
+      }
+    });
+
+  });
 </script>
