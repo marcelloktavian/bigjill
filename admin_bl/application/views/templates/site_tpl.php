@@ -271,10 +271,10 @@ if (!$this->session->has_userdata('admin')){
                                 dataType: 'json'
                             })
                             .done(function(response) {
-                                Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+								Swal.fire('Deleted!', response.message, response.status);
                             })
                             .fail(function() {
-                                Swal.fire('Oops...', 'Something went wrong with Item !', 'error')
+                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
                             });
                     });
                 },
