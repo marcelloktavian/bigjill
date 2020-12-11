@@ -248,7 +248,7 @@
 
   function getUkuranData(){
     var ID = $("#hiddenUkuran").val();
-    var list = ID.split(';');
+    var list = ID.split(',');
     
     for (let i = 0; i < list.length; i++) {
       //  console.log(list[i]);
@@ -282,7 +282,7 @@
 
   function getWarnaData(){
     var ID = $("#hiddenWarna").val();
-    var list = ID.split(';');
+    var list = ID.split(',');
     
     for (let i = 0; i < list.length; i++) {
       //  console.log(list[i]);

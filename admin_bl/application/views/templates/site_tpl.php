@@ -224,12 +224,30 @@ if (!$this->session->has_userdata('admin')){
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete!'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					window.location.href = ("<?= site_url('Master_Data/hapusUkuran/') ?>" + id);
-				}
+				confirmButtonText: 'Yes, delete!',
+				showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                url: '<?= site_url('Master_Data/UkuranValidasi_delete') ?>',
+                                type: 'POST',
+                                data: 'id=' + id,
+                                dataType: 'json'
+                            })
+                            .done(function(response) {
+								Swal.fire('Deleted!', response.message, response.status);
+                            })
+                            .fail(function() {
+                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
+                            });
+                    });
+                },
 			})
+			// .then((result) => {
+			// 	if (result.isConfirmed) {
+			// 		window.location.href = ("<?php // site_url('Master_Data/hapusUkuran/') ?>" + id);
+			// 	}
+			// })
 		});
 
 		$('.deleteWarna').on('click', function() {
@@ -242,12 +260,30 @@ if (!$this->session->has_userdata('admin')){
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete!'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					window.location.href = ("<?= site_url('Master_Data/hapusWarna/') ?>" + id);
-				}
+				confirmButtonText: 'Yes, delete!',
+				showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                url: '<?= site_url('Master_Data/WarnaValidasi_delete') ?>',
+                                type: 'POST',
+                                data: 'id=' + id,
+                                dataType: 'json'
+                            })
+                            .done(function(response) {
+								Swal.fire('Deleted!', response.message, response.status);
+                            })
+                            .fail(function() {
+                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
+                            });
+                    });
+                },
 			})
+			// .then((result) => {
+			// 	if (result.isConfirmed) {
+			// 		window.location.href = ("<?= site_url('Master_Data/hapusWarna/') ?>" + id);
+			// 	}
+			// })
 		});
 
 		$('.deleteKategori').on('click', function() {
@@ -327,7 +363,7 @@ if (!$this->session->has_userdata('admin')){
 		var warnanya = [];
 
 		function delete_ukuran(size) {
-			var fixsize = size.split(';');
+			var fixsize = size.split(',');
 			const index = ukurannya.indexOf(fixsize[0]);
 			if (index > -1) {
 				ukurannya.splice(index, 1);
@@ -336,11 +372,11 @@ if (!$this->session->has_userdata('admin')){
 		}
 
 		$(".addUkuranBtn").on('click', function () {
-			var ukuran = $('#ukuranop').val()+';'+$('#ukuranop option:selected').text();
+			var ukuran = $('#ukuranop').val()+','+$('#ukuranop option:selected').text();
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < ukurannya.length; i++) {
-				if (ukurannya[i]==ukuran.split(';')[0]) {
+				if (ukurannya[i]==ukuran.split(',')[0]) {
 					validasi='Y';
 				}
 			}
@@ -356,7 +392,7 @@ if (!$this->session->has_userdata('admin')){
 			//bikin html untuk chipnya
 			var html = '';
 			html += '<div class="chip">';
-			html += ukuran.split(';')[1];
+			html += ukuran.split(',')[1];
 			html += '<span class="closebtn" onclick = "';
 			html += "this.parentElement.style.display='none'; ";
 			html += "delete_ukuran('";
@@ -379,7 +415,7 @@ if (!$this->session->has_userdata('admin')){
 	});
 
 		function delete_warna(warna) {
-			var fixwarna = warna.split(';');
+			var fixwarna = warna.split(',');
 			const index = warnanya.indexOf(fixwarna[0]);
 			if (index > -1) {
 				warnanya.splice(index, 1);
@@ -388,11 +424,11 @@ if (!$this->session->has_userdata('admin')){
 		}
 
 		$(".addWarnaBtn").on('click', function () {
-			var warna = $('#warnaop').val()+';'+$('#warnaop option:selected').text();
+			var warna = $('#warnaop').val()+','+$('#warnaop option:selected').text();
 			var validasi = 'T';
 			//pengecekan ukuran
 			for (var i = 0; i < warnanya.length; i++) {
-				if (warnanya[i]==warna.split(';')[0]) {
+				if (warnanya[i]==warna.split(',')[0]) {
 					validasi='Y';
 				}
 			}
@@ -408,7 +444,7 @@ if (!$this->session->has_userdata('admin')){
 			//bikin html untuk chipnya
 			var html = '';
 			html += '<div class="chip">';
-			html += warna.split(';')[1];
+			html += warna.split(',')[1];
 			html += '<span class="closebtn" onclick = "';
 			html += "this.parentElement.style.display='none'; ";
 			html += "delete_warna('";

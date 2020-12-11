@@ -239,15 +239,13 @@ class Master_Data extends MX_Controller {
 
 	public function addBarang()
 	{
-		$idwarna	= str_replace(',',';',$_POST['hiddenWarna']);
-		$idukuran	= str_replace(',',';',$_POST['hiddenUkuran']);
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
 		$data['kategori_id'] = $_POST['kategoriop'];
-		$data['ukuran_id'] = $idukuran;
-		$data['warna_id'] = $idwarna;
+		$data['ukuran_id'] = $_POST['hiddenUkuran'];
+		$data['warna_id'] = $_POST['hiddenWarna'];
 		$data['link'] = $_POST['link'];
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['create_by'] = $this->session->admin->admin_id;
@@ -276,16 +274,14 @@ class Master_Data extends MX_Controller {
 	}
 
 	function editBarang(){
-		$idwarna	= str_replace(',',';',$_POST['hiddenWarna']);
-		$idukuran	= str_replace(',',';',$_POST['hiddenUkuran']);
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
 		$data['barang_id']=$_POST['idbarang'];
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
 		$data['kategori_id'] = $_POST['kategoriop'];
-		$data['ukuran_id'] = $idukuran;
-		$data['warna_id'] = $idwarna;
+		$data['ukuran_id'] = $_POST['hiddenUkuran'];
+		$data['warna_id'] = $_POST['hiddenWarna'];
 		$data['link'] = $_POST['link'];
 		$data['deskripsi'] = $_POST['deskripsi'];
 		$data['create_by'] = $this->session->admin->admin_id;
@@ -704,6 +700,44 @@ class Master_Data extends MX_Controller {
 		if ($checked == 0) {
 			// boleh didelete
 			$this->model_master->deleteKategoriById($id);
+            $response['status']  = 'success';
+            $response['message'] = 'Product Deleted Successfully ...';
+        } else if ($checked > 0) {
+			// jangan didelete
+            $response['status']  = 'error';
+            $response['message'] = 'Item Already Exist On Catalog ...';
+        }
+        echo json_encode($response);
+	}
+
+	public function UkuranValidasi_delete(){
+		// get data yang ada di tblbarang dulunih
+		$id = $_POST['id'];
+		$checked = $this->model_master->validasiDeleteUkuran($id);
+
+		// kondisi kalau ada atau enggganya
+		if ($checked == 0) {
+			// boleh didelete
+			$this->model_master->deleteUkuranById($id);
+            $response['status']  = 'success';
+            $response['message'] = 'Product Deleted Successfully ...';
+        } else if ($checked > 0) {
+			// jangan didelete
+            $response['status']  = 'error';
+            $response['message'] = 'Item Already Exist On Catalog ...';
+        }
+        echo json_encode($response);
+	}
+
+	public function WarnaValidasi_delete(){
+		// get data yang ada di tblbarang dulunih
+		$id = $_POST['id'];
+		$checked = $this->model_master->validasiDeleteWarna($id);
+
+		// kondisi kalau ada atau enggganya
+		if ($checked == 0) {
+			// boleh didelete
+			$this->model_master->deleteWarnaById($id);
             $response['status']  = 'success';
             $response['message'] = 'Product Deleted Successfully ...';
         } else if ($checked > 0) {

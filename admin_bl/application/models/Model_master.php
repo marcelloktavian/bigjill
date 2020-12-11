@@ -411,6 +411,30 @@ public function deleteKategoriById($id){
     return $data;
 }
 
+public function validasiDeleteUkuran($id){
+    $query = $this->db->query(" SELECT * FROM tbl_barang WHERE FIND_IN_SET('$id',ukuran_id) ");
+    $row = $query->num_rows();
+
+    return $row;
+}
+
+public function deleteUkuranById($id){
+    $data = $this->db->delete('tbl_ukuran',array('ukuran_id'=>$id));
+    return $data;
+}
+
+public function validasiDeleteWarna($id){
+    $query = $this->db->query(" SELECT * FROM tbl_barang WHERE FIND_IN_SET('$id',warna_id) ");
+    $row = $query->num_rows();
+
+    return $row;
+}
+
+public function deleteWarnaById($id){
+    $data = $this->db->delete('tbl_warna',array('warna_id'=>$id));
+    return $data;
+}
+
 }
 
 /* End of file Model_dashboard.php */
