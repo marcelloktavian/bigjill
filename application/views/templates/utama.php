@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     				<div class="search-bar w3layouts-newsletter">
     					<h3 class="sear-head">Cari Barang</h3>
-    					<form action="<?php echo site_url('/search/barang/');?>" method="post" class="d-flex">
+    					<form action="<?php echo site_url('/cari');?>" method="post" class="d-flex">
     						<input type="search" placeholder="Nama Barang" name="search" class="form-control" required>
     						<button class="btn1"><span class="fa fa-search" aria-hidden="true"></span></button>
     					</form>
@@ -106,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     						<?php 
     						foreach ($daftar as $d): ?>
     							<li>
-    								<a href="<?php echo site_url('/search/kategori/');echo $d->kategori_id; ?>">
+    								<a href="<?php echo site_url('/kategori/');echo $d->kategori_id; ?>">
     									<input type="checkbox" class="checked" checked disabled>
     									<span class="span"><?= $d->nama; ?></span></a>
     								</li>
@@ -134,7 +134,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     						<div class="col-md-4">
     							<div class="product-shoe-info shoe text-center">
     								<div class="men-thumb-item">
-    									<a href="<?php echo site_url('/search/detail/');echo $b->barang_id; ?>"><img src="
+    									<a href="<?php echo site_url('/detail/');echo $b->barang_id; ?>"><img src="
     										<?php
     										if($b->foto_utama==null || $b->foto_utama=='null.png'){
     											echo base_url('/admin_bl/assets/img/null.png');
@@ -145,7 +145,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     										</div>
     										<div class="item-info-product">
     											<h4>
-    												<a href="<?php echo site_url('/search/barang/');echo $b->barang_id; ?>"><?= $b->nama ?></a>
+    												<a href="<?php echo site_url('/cari');echo $b->barang_id; ?>"><?= $b->nama ?></a>
     											</h4>
 
     											<div class="product_price">

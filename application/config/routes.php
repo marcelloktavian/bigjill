@@ -52,3 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'site';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// new route
+$route['kategori/(:num)'] = '/search/kategori/$1';
+$route['cari']            = '/search/barang/'  ;
+$route['detail/(:num)']   = '/search/detail/$1';
