@@ -596,15 +596,24 @@ class Master_Data extends MX_Controller {
 		$data['update_by'] = $this->session->admin->admin_id;
 		$data['now'] = date('Y-m-d H:m:s');
 
-		$where = array('kategori_id' => $id);
-		$res = $this->model_master->deleteData($where, 'tbl_kategori', $data);
-		// var_dump($res);die;
-		if($res){
-			$this->session->set_flashdata('deleteKategori', 'berhasil');
-			redirect(site_url('Master_Data/kategori')); 
-		}else{
+		$valid = $this->model_master->checkKategori($id);
+
+		if($valid > 0){
 			$this->session->set_flashdata('deleteKategori', 'failed');
-			redirect(site_url('Master_Data/kategori')); 
+				redirect(site_url('Master_Data/kategori')); 
+		}else{
+
+			$where = array('kategori_id' => $id);
+			$res = $this->model_master->deleteData($where, 'tbl_kategori', $data);
+			// var_dump($res);die;
+			if($res){
+				$this->session->set_flashdata('deleteKategori', 'berhasil');
+				redirect(site_url('Master_Data/kategori')); 
+			}else{
+				$this->session->set_flashdata('deleteKategori', 'failed');
+				redirect(site_url('Master_Data/kategori')); 
+			}
+
 		}
 	}
 
@@ -677,16 +686,31 @@ class Master_Data extends MX_Controller {
 	public function getListUkuran()
 	{
 		$data = $this->model_master->listUkuranById($_POST['id']);
-		// var_dump($data);die;
-		// $this->page->view('master_data/edit/ukuranForm',$data);
 		echo json_encode($data);
 	}
 
 	public function getListWarna()
 	{
 		$data = $this->model_master->listWarnaById($_POST['id']);
-		// var_dump($data);die;
-		// $this->page->view('master_data/edit/ukuranForm',$data);
 		echo json_encode($data);
+	}
+
+	public function KategoriValidasi_delete(){
+		// get data yang ada di tblbarang dulunih
+		$id = $_POST['id'];
+		$checked = $this->model_master->validasiDeleteKategori($id);
+
+		// kondisi kalau ada atau enggganya
+		if ($checked == 0) {
+			// boleh didelete
+			$this->model_master->deleteKategoriById($id);
+            $response['status']  = 'success';
+            $response['message'] = 'Product Deleted Successfully ...';
+        } else if ($checked > 0) {
+			// jangan didelete
+            $response['status']  = 'error';
+            $response['message'] = 'Item Already Exist On Catalog ...';
+        }
+        echo json_encode($response);
 	}
 }

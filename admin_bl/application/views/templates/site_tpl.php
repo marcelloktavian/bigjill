@@ -260,12 +260,30 @@ if (!$this->session->has_userdata('admin')){
 				showCancelButton: true,
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
-				confirmButtonText: 'Yes, delete!'
-			}).then((result) => {
-				if (result.isConfirmed) {
-					window.location.href = ("<?= site_url('Master_Data/hapusKategori/') ?>" + id);
-				}
+				confirmButtonText: 'Yes, delete!',
+				showLoaderOnConfirm: true,
+                preConfirm: function() {
+                    return new Promise(function(resolve) {
+                        $.ajax({
+                                url: '<?= site_url('Master_Data/KategoriValidasi_delete') ?>',
+                                type: 'POST',
+                                data: 'id=' + id,
+                                dataType: 'json'
+                            })
+                            .done(function(response) {
+                                Swal.fire('Deleted!', 'Your file has been deleted.', 'success')
+                            })
+                            .fail(function() {
+                                Swal.fire('Oops...', 'Something went wrong with Item !', 'error')
+                            });
+                    });
+                },
 			})
+			// .then((result) => {
+			// 	if (result.isConfirmed) {
+			// 		window.location.href = ("<?php //echo site_url('Master_Data/hapusKategori/') ?>" + id);
+			// 	}
+			// })
 		});
 
 		$('.deleteUser').on('click', function() {

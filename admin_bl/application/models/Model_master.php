@@ -398,6 +398,19 @@ public function viewKategoriBarang($id)
     $data = $query->result();
     return $data;
 }
+
+public function validasiDeleteKategori($id){
+    $query = $this->db->query("SELECT * FROM tbl_barang WHERE kategori_id='".$id."' ");
+    $row = $query->num_rows();
+
+    return $row;
+}
+
+public function deleteKategoriById($id){
+    $data = $this->db->delete('tbl_kategori',array('kategori_id'=>$id));
+    return $data;
+}
+
 }
 
 /* End of file Model_dashboard.php */
