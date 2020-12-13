@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     				<div class="search-bar w3layouts-newsletter">
     					<h3 class="sear-head">Cari Barang</h3>
-    					<form action="<?php echo site_url('/cari#catalog');?>" method="post" class="d-flex">
+    					<form action="<?php echo site_url('/cari/').$barang?>" method="GET" class="d-flex">
     						<input type="search" placeholder="Nama Barang" name="search" class="form-control" value="<?= $barang ?>" required>
     						<button class="btn1"><span class="fa fa-search" aria-hidden="true"></span></button>
     					</form>

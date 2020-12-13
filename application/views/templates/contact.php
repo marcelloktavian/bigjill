@@ -40,6 +40,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			<h3 class="tittle text-center"><span class="sub-tittle">Find Us</span> Contact Us</h3>
 			<div class="row contact-main-info mt-5">
 				<div class="col-md-6 contact-right-content">
+				<?= $this->session->flashdata('msg') ?>
 					<form action="<?php echo site_url('/contact/kirimEmail'); ?>" method="post">
 						<input type="text" name="nama" id="nama" placeholder="Nama Pengirim" required>
 						<input type="email" class="email" name="email" id="email" placeholder="Email" required>

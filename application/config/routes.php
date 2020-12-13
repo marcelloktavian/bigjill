@@ -55,5 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 
 // new route
 $route['kategori/(:num)'] = '/search/kategori/$1';
-$route['cari']            = '/search/barang/'  ;
+$route['cari/(:any)']            = '/search/barang/$1'  ;
 $route['detail/(:num)']   = '/search/detail/$1';

@@ -65,9 +65,9 @@ class Search extends MX_Controller {
 
 	}
 	
-	public function Barang()
+	public function Barang($barang)
 	{
-		$barang = $_POST['search'];
+		// $barang = $_POST['search'];
 
 		//konfigurasi pagination
 		$config['base_url'] = site_url('cari/'); //site url
@@ -103,6 +103,7 @@ class Search extends MX_Controller {
 
         $this->pagination->initialize($config);
 		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+		// var_dump($data);die;
 
         $data['pagination'] = $this->pagination->create_links();
 
