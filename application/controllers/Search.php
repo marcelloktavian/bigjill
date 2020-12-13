@@ -70,7 +70,7 @@ class Search extends MX_Controller {
 		// $barang = $_POST['search'];
 
 		//konfigurasi pagination
-		$config['base_url'] = site_url('cari/'); //site url
+		$config['base_url'] = site_url('cari/'.$barang.'/'); //site url
 		// itung count
 		$this->db->like('nama',$barang);
 		$this->db->from('tbl_barang');
