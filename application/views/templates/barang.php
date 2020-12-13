@@ -85,7 +85,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     <a name="catalog"><section class="ab-info-main py-md-3 py-3"></a>
     	<div class="container py-md-3">
-    		<h3 class="tittle text-center">PRODUCTS (<?php foreach($daftar as $title): echo $title->nama; endforeach;?>)</h3>
+    		<h3 class="tittle text-center">PRODUCTS (<?= $barang ?>)</h3>
     		<!-- top Products -->
     		<div class="row">
     			<!-- product left -->
@@ -93,8 +93,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     				<div class="search-bar w3layouts-newsletter">
     					<h3 class="sear-head">Cari Barang</h3>
-    					<form action="<?php echo site_url('/cari');?>" method="post" class="d-flex">
-    						<input type="search" placeholder="Nama Barang" name="search" class="form-control" required>
+    					<form action="<?php echo site_url('/cari#catalog');?>" method="post" class="d-flex">
+    						<input type="search" placeholder="Nama Barang" name="search" class="form-control" value="<?= $barang ?>" required>
     						<button class="btn1"><span class="fa fa-search" aria-hidden="true"></span></button>
     					</form>
     				</div>
@@ -125,7 +125,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     					<?php
     					$no = 0;
-    					foreach ($barang as $b) {
+    					foreach ($daftar as $b) {
     						if ($no==0 || $no % 3 == 0) {
     							echo "<div class='row m-0'>";
     						}

@@ -22,4 +22,14 @@
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
 
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+
+	<style>
+		.form-control:focus {
+		color: #495057;
+		background-color: #fff;
+		border-color: #AE8E7F;
+		outline: 0;
+		box-shadow: 0 0 0 0.2rem rgba(226, 222, 219, 255);
+	}
+	</style>
 </head>

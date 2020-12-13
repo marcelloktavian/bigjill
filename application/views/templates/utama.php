@@ -26,11 +26,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		<!--/banner-->
 		<div class="banner-info">
-			<h3 class="mb-4">BigJill Official</h3>
-			<div class="ban-buttons">
-				<a href="#catalog" class="btn">Catalog</a>
-			</div>
-		</div>
+            <h3 class="mb-4">BigJill Official</h3>
+            <div class="ban-buttons">
+                <a href="#catalog" class="btn">Catalog</a>
+            </div>
+        </div>
 		<!--// banner-inner -->
 	</div>
 	<!--//main-content-->
@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     				<div class="search-bar w3layouts-newsletter">
     					<h3 class="sear-head">Cari Barang</h3>
-    					<form action="<?php echo site_url('/cari');?>" method="post" class="d-flex">
+    					<form action="<?php echo site_url('/cari#catalog');?>" method="post" class="d-flex">
     						<input type="search" placeholder="Nama Barang" name="search" class="form-control" required>
     						<button class="btn1"><span class="fa fa-search" aria-hidden="true"></span></button>
     					</form>
@@ -106,7 +106,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     						<?php 
     						foreach ($daftar as $d): ?>
     							<li>
-    								<a href="<?php echo site_url('/kategori/');echo $d->kategori_id; ?>">
+    								<a href="<?php echo site_url('/kategori/');echo $d->kategori_id.'#catalog'; ?>">
     									<input type="checkbox" class="checked" checked disabled>
     									<span class="span"><?= $d->nama; ?></span></a>
     								</li>
