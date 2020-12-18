@@ -152,8 +152,8 @@
           html += '<td scope="row"><ul>';
         }
 
-        var jumlahukuran = obj[0]['ukuran_id'].split(';');
-        var jumlahwarna = obj[0]['warna_id'].split(';');
+        var jumlahukuran = obj[0]['ukuran_id'].split(',');
+        var jumlahwarna = obj[0]['warna_id'].split(',');
 
         for (var i = 0; i < jumlahukuran.length; i++) {
           var ukuran = 0;

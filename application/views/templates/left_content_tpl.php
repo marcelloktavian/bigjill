@@ -10,7 +10,7 @@
 				<!-- nav -->
 				<nav class="py-4">
 					<div id="logo">
-						<h1> <a href="<?php echo site_url('/'); ?>"><span class="fa fa-bold" aria-hidden="true"></span>igJill</a></h1>
+						<h1> <a href="<?php echo site_url('/'); ?>"><img src="<?= base_url('/admin_bl/assets/img/logo/logo2.png') ?>" width="120px"></a></h1>
 					</div>
 
 					<label for="drop" class="toggle">Menu</label>

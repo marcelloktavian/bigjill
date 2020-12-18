@@ -164,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="share-desc">
                                     <div class="share">
                                         <ul class="w3layouts_social_list list-unstyled">
-                                            <h4>Pesan Lewat :</h4>
+                                            
                                             <div id="btnpesan"></div>
                                         </ul>
                                     </div>
@@ -189,11 +189,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <script>
                     $(document).ready(function(){
+                        var id = window.location.pathname.split("/").pop();
+                        var url = '/index.php/Search/Detail/';
                         $.ajax({
-                            url: 'ajaxbarang',
+                            url: url+'ajaxbarang',
                             type: "POST",
                             data: {
-                                idbarang: '3',
+                                idbarang: id,
                             },
                             success: function (res) { 
                                 var obj = JSON.parse(res);
@@ -205,8 +207,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 ribuan = ribuan.join('.').split('').reverse().join('');
                                 var link = obj[0]['link'];
                                 var deskripsi = obj[0]['deskripsi'];
-                                var jumlahukuran = obj[0]['ukuran_id'].split(';');
-                                var jumlahwarna = obj[0]['warna_id'].split(';');
+                                var jumlahukuran = obj[0]['ukuran_id'].split(',');
+                                var jumlahwarna = obj[0]['warna_id'].split(',');
 
             //foto 
             var fotoutama = obj[0]['foto'];
@@ -286,7 +288,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $('#hargabrg').html('<h2>Rp. '+ribuan+',-</h2>');
 
 
-            var btnpesan = '';
+            var btnpesan = '<h4>Pesan Lewat :</h4>';
             btnpesan += '<li><button type="button" class="btn btn-success" onclick="directwa(';
             btnpesan += "'"+nama+"','";
             btnpesan += "Rp. "+ribuan+"')";
@@ -320,7 +322,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 // console.log(j);
                 var warna = 0;
                 $.ajax({
-                  url: 'ajaxwarna',
+                  url: url+'ajaxwarna',
                   type: "POST",
                   data: {
                     idwarna: jumlahwarna[j],
@@ -351,7 +353,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 // console.log(j);
                 var ukuran = 0;
                 $.ajax({
-                  url: 'ajaxukuran',
+                  url: url+'ajaxukuran',
                   type: "POST",
                   data: {
                     idukuran: jumlahukuran[j],

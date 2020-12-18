@@ -18,18 +18,69 @@
 
 	<link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900" rel="stylesheet">
-
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/simplePagination.css'/>
 	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css'/>
-
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js'></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js'></script>
+	<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js'></script> -->
+
 
 	<style>
 		.form-control:focus {
-		color: #495057;
-		background-color: #fff;
-		border-color: #AE8E7F;
-		outline: 0;
-		box-shadow: 0 0 0 0.2rem rgba(226, 222, 219, 255);
-	}
+			color: #AE8E7F;
+			background-color: #fff;
+			border-color: #AE8E7F;
+			outline: 0;
+			box-shadow: 0 0 0 0.2rem rgba(226, 222, 219, 255);
+		}
+		.ban-buttons a {  
+			background: #AE8E7F;
+			padding: 11px 31px;
+			font-size: 13px;
+			letter-spacing: 1px;
+			color: #fff;
+			border-radius: 0px;
+			display: inline-block;
+			box-shadow: 0 12px 60px rgba(0, 0, 0, .2);
+			-webkit-box-shadow: 0 12px 60px rgba(0, 0, 0, .2);
+			-o-box-shadow: 0 12px 60px rgba(0, 0, 0, .2);
+			-moz-box-shadow: 0 12px 60px rgba(0, 0, 0, .2);
+			-ms-box-shadow: 0 12px 60px rgba(0, 0, 0, .2);
+			border: #AE8E7F;
+			transition: 0.5s all;
+			-webkit-transition: 0.5s all;
+			-moz-transition: 0.5s all;
+			-o-transition: 0.5s all;
+			-ms-transition: 0.5s all;
+			font-weight: 600;
+			text-transform: uppercase;
+		}
+
+		.ban-buttons a.active,
+		.ban-buttons a:hover {
+			opacity: 0.8;
+		}
+
+		a.btn.active {
+			background: #495057;
+			color: #fff;
+			border: #495057;
+		}
+		.w3layouts-newsletter button.btn1 {
+			color: #fff;
+			font-size: 17px;
+			letter-spacing: 1px;
+			padding: 14px 0;
+			border: transparent;
+			text-transform: uppercase;
+			-webkit-transition: 0.5s all;
+			-moz-transition: 0.5s all;
+			transition: 0.5s all;
+			background: #AE8E7F;
+			font-weight: 600;
+			cursor: pointer;
+			border-radius: 0;
+			padding: 0.7em 2em;
+		}
 	</style>
 </head>
