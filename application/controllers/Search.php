@@ -18,47 +18,47 @@ class Search extends MX_Controller {
 
 	public function Kategori($id)
 	{
-		// // var_dump($id);die;
-		// // $data = $this->model_search->getKategoriById($id);
-		// //konfigurasi pagination
-		// $config['base_url'] = site_url('Kategori/'); //site url
-		// // itung count
-		// $this->db->where('kategori_id',$id);
-		// $this->db->from('tbl_barang');
-		// $config['total_rows'] = $this->db->count_all_results(); //total row
-        // $config['per_page'] = 9;  //show record per halaman
-        // $config["uri_segment"] = 2;  // uri parameter
-        // $choice = $config["total_rows"] / $config["per_page"];
-        // $config["num_links"] = floor($choice);
+		// var_dump($id);die;
+		// $data = $this->model_search->getKategoriById($id);
+		//konfigurasi pagination
+		$config['base_url'] = site_url('Kategori/'); //site url
+		// itung count
+		$this->db->where('kategori_id',$id);
+		$this->db->from('tbl_barang');
+		$config['total_rows'] = $this->db->count_all_results(); //total row
+        $config['per_page'] = 9;  //show record per halaman
+        $config["uri_segment"] = 2;  // uri parameter
+        $choice = $config["total_rows"] / $config["per_page"];
+        $config["num_links"] = floor($choice);
 
-        // // Membuat Style pagination 
-        // $config['first_link']       = 'First';
-        // $config['last_link']        = 'Last';
-        // $config['next_link']        = 'Next';
-        // $config['prev_link']        = 'Prev';
-        // $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
-        // $config['full_tag_close']   = '</ul></nav></div>';
-        // $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
-        // $config['num_tag_close']    = '</span></li>';
-        // $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
-        // $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-        // $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
-        // $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-        // $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
-        // $config['prev_tagl_close']  = '</span>Next</li>';
-        // $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
-        // $config['first_tagl_close'] = '</span></li>';
-        // $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
-        // $config['last_tagl_close']  = '</span></li>';
+        // Membuat Style pagination 
+        $config['first_link']       = 'First';
+        $config['last_link']        = 'Last';
+        $config['next_link']        = 'Next';
+        $config['prev_link']        = 'Prev';
+        $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
+        $config['full_tag_close']   = '</ul></nav></div>';
+        $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
+        $config['num_tag_close']    = '</span></li>';
+        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
+        $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
+        $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
+        $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['prev_tagl_close']  = '</span>Next</li>';
+        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
+        $config['first_tagl_close'] = '</span></li>';
+        $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
+        $config['last_tagl_close']  = '</span></li>';
 
-        // $this->pagination->initialize($config);
-		// $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $this->pagination->initialize($config);
+		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
-        // $data['pagination'] = $this->pagination->create_links();
+        $data['pagination'] = $this->pagination->create_links();
 
 		$data['daftar'] = $this->model_search->listKategoriById($id);
 		$data['kategori'] = $this->model_dashboard->listAllkategori();
-		$data['barang'] = $this->model_search->listAllKategori($id);
+		$data['barang'] = $this->model_search->listAllKategori($id,$config["per_page"], $data['page']);
 		$this->page->template('kategori');
 		$this->page->view('templates/kategori',$data);
 		
@@ -67,6 +67,7 @@ class Search extends MX_Controller {
 	
 	public function Barang($barang)
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		// // $barang = $_POST['search'];
 
@@ -114,6 +115,12 @@ class Search extends MX_Controller {
 
 		//konfigurasi pagination
 		$config['base_url'] = site_url('cari/'); //site url
+=======
+		// $barang = $_POST['search'];
+
+		//konfigurasi pagination
+		$config['base_url'] = site_url('cari/'.$barang.'/'); //site url
+>>>>>>> parent of e970511... contact
 		// itung count
 		$this->db->like('nama',$barang);
 		$this->db->from('tbl_barang');
@@ -151,7 +158,10 @@ class Search extends MX_Controller {
         $data['pagination'] = $this->pagination->create_links();
 
 		$data['daftar'] = $this->model_search->listBarangByNama($barang,$config["per_page"], $data['page']);
+<<<<<<< HEAD
 >>>>>>> parent of 1ea4f3f... update barang
+=======
+>>>>>>> parent of e970511... contact
 		$data['barang'] = $barang;
 		$data['kategori'] = $this->model_dashboard->listAllkategori();
 		$this->page->template('barang');

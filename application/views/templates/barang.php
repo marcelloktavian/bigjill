@@ -35,7 +35,53 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--//main-content-->
 
-	
+	<!--/ab -->
+    <!-- <section class="about py-md-5 py-5">
+        <div class="container-fluid">
+            <div class="feature-grids row px-3">
+                <div class="col-lg-3 gd-bottom">
+                    <div class="bottom-gd row">
+                        <div class="icon-gd col-md-3 text-center"><span class="fa fa-truck" aria-hidden="true"></span></div>
+                        <div class="icon-gd-info col-md-9">
+                            <h3 class="mb-2">Cumque autem ullam.</h3>
+                            <p>On all order over $2000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 gd-bottom">
+                    <div class="bottom-gd row bottom-gd2-active">
+                        <div class="icon-gd col-md-3 text-center"><span class="fa fa-bullhorn" aria-hidden="true"></span></div>
+                        <div class="icon-gd-info col-md-9">
+                            <h3 class="mb-2">doloribus-esse-alias</h3>
+                            <p>On 1st exchange in 30 days</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 gd-bottom">
+                    <div class="bottom-gd row">
+                        <div class="icon-gd col-md-3 text-center"> <span class="fa fa-gift" aria-hidden="true"></span></div>
+
+                        <div class="icon-gd-info col-md-9">
+                            <h3 class="mb-2">sunt reiciendis ad</h3>
+                            <p>Register & save up to $29%</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-3 gd-bottom">
+                    <div class="bottom-gd row">
+                        <div class="icon-gd col-md-3 text-center"> <span class="fa fa-usd" aria-hidden="true"></span></div>
+                        <div class="icon-gd-info col-md-9">
+                            <h3 class="mb-2">PREMIUM SUPPORT</h3>
+                            <p>Support 24 hours per day</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- //ab -->
+    <!--/ab -->
 
     <a name="catalog"><section class="ab-info-main py-md-3 py-3"></a>
     	<div class="container py-md-3">
@@ -75,7 +121,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     				</div>
     				<!-- //product left -->
     				<!-- product right -->
-    				<div class="left-ads-display col-lg-9 " >
+    				<div class="left-ads-display col-lg-9">
 
     					<?php
     					$no = 0;
@@ -85,7 +131,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     						}
     						?>
 
-    						<div class="col-md-4" >
+    						<div class="col-md-4">
     							<div class="product-shoe-info shoe text-center">
     								<div class="men-thumb-item">
     									<a href="<?php echo site_url('/detail/');echo $b->barang_id; ?>"><img src="
@@ -137,7 +183,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                <div class="row">
                   <div class="col">
                      <!--Tampilkan pagination-->
-                     <?php //echo $pagination; ?>
+                     <?php echo $pagination; ?>
                  </div>
              </div>
          </section>
@@ -145,7 +191,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
          <?php echo $this->load->view($footer); ?>
 
          <script>
-		 	
             function cari() {
                 var brg = document.getElementById("search").value;
                 var url = "<?php echo site_url('/cari/') ?>";

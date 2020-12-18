@@ -30,15 +30,15 @@ class Model_search extends CI_Model {
 		return $data;
 	}
 
-	public function listAllKategori($id){
-		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.kategori_id=$id AND a.deleted=0 ORDER BY a.nama ASC ");
+	public function listAllKategori($id,$limit,$start){
+		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.kategori_id=$id AND a.deleted=0 ORDER BY a.nama ASC LIMIT $start,$limit ");
 		$data = $query->result();
 		return $data;
 	}
 
-	public function listBarangByNama($nama)
+	public function listBarangByNama($nama,$limit,$start)
 	{
-		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.nama LIKE '%$nama%' AND a.deleted=0 ORDER BY a.nama ASC ");
+		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.nama LIKE '%$nama%' AND a.deleted=0 ORDER BY a.nama ASC LIMIT $start,$limit ");
 		$data = $query->result();
 		return $data;
 	}
