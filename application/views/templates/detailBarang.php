@@ -164,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="share-desc">
                                     <div class="share">
                                         <ul class="w3layouts_social_list list-unstyled">
-                                            
+                                            <h4>Pesan Lewat :</h4>
                                             <div id="btnpesan"></div>
                                         </ul>
                                     </div>
@@ -189,13 +189,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                 <script>
                     $(document).ready(function(){
-                        var id = window.location.pathname.split("/").pop();
-                        var url = '/bigjill/index.php/Search/Detail/';
                         $.ajax({
-                            url: url+'ajaxbarang',
+                            url: 'ajaxbarang',
                             type: "POST",
                             data: {
-                                idbarang: id,
+                                idbarang: '3',
                             },
                             success: function (res) { 
                                 var obj = JSON.parse(res);
@@ -288,7 +286,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             $('#hargabrg').html('<h2>Rp. '+ribuan+',-</h2>');
 
 
-            var btnpesan = '<h4>Pesan Lewat :</h4>';
+            var btnpesan = '';
             btnpesan += '<li><button type="button" class="btn btn-success" onclick="directwa(';
             btnpesan += "'"+nama+"','";
             btnpesan += "Rp. "+ribuan+"')";
@@ -322,7 +320,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 // console.log(j);
                 var warna = 0;
                 $.ajax({
-                  url: url+'ajaxwarna',
+                  url: 'ajaxwarna',
                   type: "POST",
                   data: {
                     idwarna: jumlahwarna[j],
@@ -353,7 +351,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 // console.log(j);
                 var ukuran = 0;
                 $.ajax({
-                  url: url+'ajaxukuran',
+                  url: 'ajaxukuran',
                   type: "POST",
                   data: {
                     idukuran: jumlahukuran[j],

@@ -93,9 +93,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
     				<div class="search-bar w3layouts-newsletter">
     					<h3 class="sear-head">Cari Barang</h3>
-    					<span  class="d-flex">
-    						<input type="search" placeholder="Nama Barang" name="search" id="search" class="form-control" required>
-    						<button class="button btn1"  onclick="cari()"><span class="fa fa-search" aria-hidden="true"></span></button>
+    					<form action="<?php echo site_url('/cari');?>" method="post" class="d-flex">
+    						<input type="search" placeholder="Nama Barang" name="search" class="form-control" required>
+    						<button class="btn1"><span class="fa fa-search" aria-hidden="true"></span></button>
     					</form>
     				</div>
     				<!--preference -->
@@ -169,7 +169,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     							<br><br>
     						</div>
     					</div>
-                   </div>
+					</div>
 					<!-- <nav aria-label="...">
 					<ul class="pagination pagination-lg">
 						<li class="page-item disabled">
@@ -178,6 +178,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						<li class="page-item"><a class="page-link" href="#">2</a></li>
 						<li class="page-item"><a class="page-link" href="#">3</a></li>
 					</ul>
+<<<<<<< HEAD
                </nav> -->
                <div class="row">
                   <div class="col">
@@ -198,3 +199,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         </script>
     </body>
     </html>
+=======
+					</nav> -->
+					<div class="row">
+						<div class="col">
+							<!--Tampilkan pagination-->
+							<?php echo $pagination; ?>
+						</div>
+					</div>
+    			</section>
+
+    			<?php echo $this->load->view($footer); ?>
+
+    		</body>
+    		</html>
+>>>>>>> parent of 1ea4f3f... update barang
