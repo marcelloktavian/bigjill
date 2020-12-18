@@ -4,7 +4,7 @@
    <div class="row footer-top">
     <div class="col-lg-4 footer-grid_section_w3layouts">
      <h2 class="logo-2 mb-lg-4 mb-3">
-      <a href="index.html"><span class="fa fa-bold" aria-hidden="true"></span>igJill</a>
+      <a href="<?php echo site_url('/'); ?>"><img src="<?= base_url('/admin_bl/assets/img/logo/logo3.png') ?>" width="150px"></a>
   </h2>
   <p>BigJill collections can help you to always be cool! Colorful basic shirts, tops, pants, and bags, are all made from good quality materials.</p>
   <h4 class="sub-con-fo ad-info my-4">Catch on Social</h4>

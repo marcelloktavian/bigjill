@@ -45,7 +45,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="container">
 					<div class="inner-sec py-md-5 px-lg-5">
 						<h3 class="tittle text-center"><span class="sub-tittle">About.</span> Welcome To BigJill Website</h3>
-						<p class="mb-4 text-center px-lg-4"> Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla mollis dapibus nunc, ut rhoncus turpis sodales quis. Integer sit amet mattis quam, sit amet ultricies velit. Praesent ullamcorper dui turpis.Integer sit amet mattis quam, sit amet ultricies velit. Praesent ullamcorper dui turpis.</p>
+						<p class="mb-4 text-center px-lg-4"> BigJill collections can help you to always be cool! Colorful basic shirts, tops, pants, and bags, are all made from good quality materials.</p>
 					</div>
 				</div>
 			</section>
