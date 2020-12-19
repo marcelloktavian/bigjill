@@ -167,7 +167,7 @@ nav ul li {
 
 
 .menu li ul li:hover {
-    background: #f8f9fa;
+    background: #7B4D2B;
 }
 
 /* Background color change on Hover */
@@ -266,7 +266,7 @@ li > a:only-child:after {
         text-decoration: none;
         border: none;
         float: right;
-        background-color: #ffffff;
+        background-color: #7B4D2B;
         color: #333;
         cursor: pointer;
         text-transform: uppercase;
@@ -284,8 +284,8 @@ li > a:only-child:after {
     }
 
     .toggle:hover {
-        color: #333;
-        background-color: #fff;
+        color: #7B4D2B;
+        background-color: #7B4D2B;
     }
 
     /* Display Dropdown when clicked on Parent Lable */

@@ -340,11 +340,11 @@ class Master_Data extends MX_Controller {
 
 				// $newName = uniqid().$imageId;
 		$config['upload_path']          = './assets/img/barang/';
-		$config['allowed_types']        = 'gif|jpg|png';
+		$config['allowed_types']        = 'gif|jpg|png|jpeg';
 		$config['overwrite']			= true;
-		$config['max_size']             = 1024;
+		//$config['max_size']             = 10240;
 				// $config['file_name']            = $newName;
-                // $config['max_width']            = 1024;
+                // $config['max_width']            = 10240;
                 // $config['max_height']           = 768;
 
 		$this->load->library('upload', $config);

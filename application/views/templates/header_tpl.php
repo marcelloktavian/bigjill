@@ -82,5 +82,12 @@
 			border-radius: 0;
 			padding: 0.7em 2em;
 		}
+		.toggle{
+		    background-color:#AE8E7F;
+		    color:white;
+		}
+		.menu ul{
+		    background-color:#AE8E7F;
+		}
 	</style>
 </head>
