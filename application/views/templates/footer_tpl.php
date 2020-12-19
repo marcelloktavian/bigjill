@@ -43,22 +43,21 @@
                 <a href="<?php echo site_url('/about'); ?>">About Us</a>
             </li>
         </ul>
+        <br> <br>
+        <div class="agileinfo_social_icons">
+        <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">Customer Service</h3>
+        <ul class="list-unstyled w3layouts-icons">
+
+         <li>
+          <a href="<?php echo site_url('/contact'); ?>">Contact Us</a>
+        </li>
+
+      </ul>
+    </div>
+
     </div>
     <div class="col-md-4 footer-grid_section_w3layouts">
        <!-- social icons -->
-       <div class="agileinfo_social_icons">
-          <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">Customer Service</h3>
-          <ul class="list-unstyled w3layouts-icons">
-
-             <li>
-                <a href="<?php echo site_url('/contact'); ?>">Contact Us</a>
-            </li>
-
-        </ul>
-    </div>
-    <!-- social icons -->
-</div>
-<div class="col-md-4 footer-grid_section_w3layouts my-md-0 my-5">
    <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">Contact Info</h3>
    <div class="contact-info">
       <div class="footer-address-inf">
@@ -69,8 +68,13 @@
          <h4 class="ad-info mb-2">Email </h4>
          <p><a href="mailto:bigjill.indonesia@gmail.com" target="_blank">bigjill.indonesia@gmail.com</a></p>
      </div>
+ </div>
+    <!-- social icons -->
+</div>
+<div class="col-md-4 footer-grid_section_w3layouts my-md-0 my-5">
+   <h3 class="footer-title text-uppercase text-wh mb-lg-4 mb-3">Location</h3>
+   <div class="contact-info">
      <div class="footer-address-inf">
-         <h4 class="ad-info mb-2">Location</h4>
          <p><a href="https://www.google.com/maps/place/Jl.+Ciguriang+No.21,+Balonggede,+Kec.+Regol,+Kota+Bandung,+Jawa+Barat+40251/@-6.92439,107.6046988,17z/data=!4m5!3m4!1s0x2e68e626b88dcd51:0xe819c67d05a7af80!8m2!3d-6.9244833!4d107.6047357" target="_blank">Jl. Ciguriang No.21, Balonggede, Kec. Regol, Kota Bandung, Jawa Barat 40251</a></p>
      </div>
  </div>
