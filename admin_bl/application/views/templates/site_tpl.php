@@ -226,22 +226,22 @@ if (!$this->session->has_userdata('admin')){
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Yes, delete!',
 				showLoaderOnConfirm: true,
-                preConfirm: function() {
-                    return new Promise(function(resolve) {
-                        $.ajax({
-                                url: '<?= site_url('Master_Data/UkuranValidasi_delete') ?>',
-                                type: 'POST',
-                                data: 'id=' + id,
-                                dataType: 'json'
-                            })
-                            .done(function(response) {
-								Swal.fire('Deleted!', response.message, response.status);
-                            })
-                            .fail(function() {
-                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
-                            });
-                    });
-                },
+				preConfirm: function() {
+					return new Promise(function(resolve) {
+						$.ajax({
+							url: '<?= site_url('Master_Data/UkuranValidasi_delete') ?>',
+							type: 'POST',
+							data: 'id=' + id,
+							dataType: 'json'
+						})
+						.done(function(response) {
+							Swal.fire('Deleted!', response.message, response.status);
+						})
+						.fail(function() {
+							Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
+						});
+					});
+				},
 			})
 			// .then((result) => {
 			// 	if (result.isConfirmed) {
@@ -262,22 +262,22 @@ if (!$this->session->has_userdata('admin')){
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Yes, delete!',
 				showLoaderOnConfirm: true,
-                preConfirm: function() {
-                    return new Promise(function(resolve) {
-                        $.ajax({
-                                url: '<?= site_url('Master_Data/WarnaValidasi_delete') ?>',
-                                type: 'POST',
-                                data: 'id=' + id,
-                                dataType: 'json'
-                            })
-                            .done(function(response) {
-								Swal.fire('Deleted!', response.message, response.status);
-                            })
-                            .fail(function() {
-                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
-                            });
-                    });
-                },
+				preConfirm: function() {
+					return new Promise(function(resolve) {
+						$.ajax({
+							url: '<?= site_url('Master_Data/WarnaValidasi_delete') ?>',
+							type: 'POST',
+							data: 'id=' + id,
+							dataType: 'json'
+						})
+						.done(function(response) {
+							Swal.fire('Deleted!', response.message, response.status);
+						})
+						.fail(function() {
+							Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
+						});
+					});
+				},
 			})
 			// .then((result) => {
 			// 	if (result.isConfirmed) {
@@ -298,28 +298,46 @@ if (!$this->session->has_userdata('admin')){
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'Yes, delete!',
 				showLoaderOnConfirm: true,
-                preConfirm: function() {
-                    return new Promise(function(resolve) {
-                        $.ajax({
-                                url: '<?= site_url('Master_Data/KategoriValidasi_delete') ?>',
-                                type: 'POST',
-                                data: 'id=' + id,
-                                dataType: 'json'
-                            })
-                            .done(function(response) {
-								Swal.fire('Deleted!', response.message, response.status);
-                            })
-                            .fail(function() {
-                                Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
-                            });
-                    });
-                },
+				preConfirm: function() {
+					return new Promise(function(resolve) {
+						$.ajax({
+							url: '<?= site_url('Master_Data/KategoriValidasi_delete') ?>',
+							type: 'POST',
+							data: 'id=' + id,
+							dataType: 'json'
+						})
+						.done(function(response) {
+							Swal.fire('Deleted!', response.message, response.status);
+						})
+						.fail(function() {
+							Swal.fire('Oops...', 'Something went wrong with Deleted Item !', 'error')
+						});
+					});
+				},
 			})
 			// .then((result) => {
 			// 	if (result.isConfirmed) {
 			// 		window.location.href = ("<?php //echo site_url('Master_Data/hapusKategori/') ?>" + id);
 			// 	}
 			// })
+		});
+
+		$('.deleteLokasi').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusLokasi/') ?>" + id);
+				}
+			})
 		});
 
 		$('.deleteUser').on('click', function() {

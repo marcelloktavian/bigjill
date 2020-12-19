@@ -13,12 +13,12 @@ class Model_master extends CI_Model {
     }
 
     public function listAllbarang(){
-       $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,c.nama AS kategori,b.foto_utama AS foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id LEFT JOIN tbl_kategori c ON c.kategori_id = a.kategori_id WHERE a.deleted=0 ORDER BY a.nama ASC');
-       $data = $query->result();
-       return $data;
-   }
+     $query = $this->db->query('SELECT a.barang_id,a.nama,a.harga,c.nama AS kategori,b.foto_utama AS foto FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id LEFT JOIN tbl_kategori c ON c.kategori_id = a.kategori_id WHERE a.deleted=0 ORDER BY a.nama ASC');
+     $data = $query->result();
+     return $data;
+ }
 
-   public function listAllwarna(){
+ public function listAllwarna(){
     $data = $this->db->from('tbl_warna')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
     return $data;
@@ -32,6 +32,18 @@ public function listAlluser(){
 
 public function listAllkategori(){
     $data = $this->db->from('tbl_kategori')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
+
+    return $data;
+}
+
+public function listAllwa(){
+    $data = $this->db->from('tbl_wa')->where(array('deleted' => '0'))->order_by('nomor', 'asc')->get()->result();
+
+    return $data;
+}
+
+public function listAlllokasi(){
+    $data = $this->db->from('tbl_lokasi')->where(array('deleted' => '0'))->order_by('nama', 'asc')->get()->result();
 
     return $data;
 }
@@ -72,6 +84,17 @@ public function listUserById($id)
     return $data;
 }
 
+public function listLokasiById($id)
+{
+    $data = $this->db->get_where('tbl_lokasi',array('lokasi_id'=>$id))->row();
+    return $data;
+}
+
+public function listWAById($id)
+{
+    $data = $this->db->get_where('tbl_wa',array('wa_id'=>$id))->row();
+    return $data;
+}
     // 
 
 public function insertUkuran($data)
@@ -123,6 +146,7 @@ public function insertUser($data)
     $this->db->set('nama',$data['nama']);
     $this->db->set('username',$data['username']);
     $this->db->set('email',$data['email']);
+    $this->db->set('display_email',$data['display_email']);
     $this->db->set('password',$data['password']);
     $this->db->set('keterangan',$data['keterangan']);
     $this->db->set('deleted','0');
@@ -207,7 +231,20 @@ public function UpdatefotoBarang($data)
     return $data;
 }
 
+public function insertLokasi($data)
+{
+    $this->db->set('nama',$data['nama']);
+    $this->db->set('url',$data['url']);
+    $this->db->set('deleted','0');
+    $this->db->set('create_at',$data['now']);
+    $this->db->set('create_by',$data['create_by']);
+    $this->db->set('update_at',$data['now']);
+    $this->db->set('update_by',$data['create_by']);
+    $this->db->set('lastmodified',$data['now']);
+    $data = $this->db->insert('tbl_lokasi');
 
+    return $data;
+}
     //
 
 public function deleteData($where, $table, $data)
@@ -268,6 +305,7 @@ public function updateUser($data)
     $this->db->set('nama',$data['nama']);
     $this->db->set('username',$data['username']);
     $this->db->set('email',$data['email']);
+    $this->db->set('display_email',$data['display_email']);
     if ($data['password']!='') {
         $this->db->set('password',$data['password']);
     }
@@ -280,6 +318,20 @@ public function updateUser($data)
 
     return $data;
 }
+
+public function updateLokasi($data)
+{   
+    $this->db->set('nama',$data['nama']);
+    $this->db->set('url',$data['url']);
+    $this->db->set('update_at',$data['now']);
+    $this->db->set('update_by',$data['create_by']);
+    $this->db->set('lastmodified',$data['now']);
+    $this->db->where('lokasi_id',$data['lokasi_id']);
+    $data = $this->db->update('tbl_lokasi');
+
+    return $data;
+}
+
 
     //
 
@@ -325,6 +377,13 @@ public function validasiInsertUser($data, $input)
     return $row;
 }
 
+public function validasiInsertLokasi($data)
+{ 
+    $query = $this->db->query("SELECT * FROM tbl_lokasi WHERE nama='".$data['nama']."' AND deleted=0");
+    $row = $query->num_rows();
+
+    return $row;
+}
     //
 
 public function validasiUpdateWarna($data)
@@ -350,10 +409,10 @@ public function validasiUpdateUkuran($data, $input)
 
 public function validasiUpdateKategori($data)
 {
-   $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND kategori_id NOT IN('".$data['kategori_id']."') AND deleted=0");
-   $row = $query->num_rows();
+ $query = $this->db->query("SELECT * FROM tbl_kategori WHERE nama='".$data['nama']."' AND kategori_id NOT IN('".$data['kategori_id']."') AND deleted=0");
+ $row = $query->num_rows();
 
-   return $row;
+ return $row;
 }
 
 public function validasiUpdateUser($data, $input)
@@ -365,6 +424,14 @@ public function validasiUpdateUser($data, $input)
         $query = $this->db->query("SELECT * FROM tbl_admin WHERE email='".$data['email']."' AND admin_id NOT IN('".$data['admin_id']."')  AND deleted=0");
         $row = $query->num_rows();
     }
+
+    return $row;
+}
+
+public function validasiUpdateLokasi($data)
+{
+    $query = $this->db->query("SELECT * FROM tbl_lokasi WHERE nama='".$data['nama']."' AND lokasi_id NOT IN('".$data['lokasi_id']."') AND deleted=0");
+    $row = $query->num_rows();
 
     return $row;
 }

@@ -46,8 +46,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="inner-sec py-md-5 px-lg-5">
 						<h3 class="tittle text-center"><span class="sub-tittle">About.</span> Welcome To BigJill Website</h3>
 						<p class="mb-4 text-center px-lg-4"> Everyone wants to look beautiful, attractive, and cool all the time. Clothes and bags are an important factor in appearance. 
-						No need to wear expensive clothes, the important things are convenient and simple. BigJill collections can help you to always be cool. 
-					Colorful basic shirts, tops, pants, and bags, all made from good quality materials. We promise, when you use our collection, you will feel comfortable, and certainly cool</p>
+							No need to wear expensive clothes, the important things are convenient and simple. BigJill collections can help you to always be cool. 
+						Colorful basic shirts, tops, pants, and bags, all made from good quality materials. We promise, when you use our collection, you will feel comfortable, and certainly cool</p>
 					</div>
 				</div>
 			</section>

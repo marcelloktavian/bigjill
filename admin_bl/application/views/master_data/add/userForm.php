@@ -106,6 +106,13 @@
                 placeholder="Email" maxlength="50" required>
               </div>
               <div class="form-group">
+                <label for="singkatan">Menggunakan Email</label>
+                <select name="opsiEmail" class="form-control selectpicker" id="opsiEmail" aria-describedby="Menggunakan Email">
+                  <option value="Y">YA</option>
+                  <option value="T">TIDAK</option>
+                </select>
+              </div>
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" name='password' id="password" aria-describedby="password"
                 placeholder="Password" minlength="8" required>

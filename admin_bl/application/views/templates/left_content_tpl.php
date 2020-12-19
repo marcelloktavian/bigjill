@@ -39,14 +39,14 @@ $edit = $this->uri->segment($url_count-1);
 			Features
 		</div>
 		<!-- Menu Data Master -->
-		<li class="nav-item <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna')|| $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm'){echo 'active';} ?>">
+		<li class="nav-item <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna')|| $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm' || $url == site_url('/Master_Data/lokasi') || $url == site_url('/Master_Data/lokasiForm')  || $edit=='editLokasiForm' || $url == site_url('/Master_Data/wa') || $url == site_url('/Master_Data/waForm')  || $edit=='editWAForm'){echo 'active';} ?>">
 
-			<a class="nav-link <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna')|| $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm'){echo 'collapsed';} ?>" href="#" data-toggle="collapse" data-target="#dataMaster" aria-expanded="true"
+			<a class="nav-link <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna')|| $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm' ||$url == site_url('/Master_Data/lokasi') || $url == site_url('/Master_Data/lokasiForm')  || $edit=='editLokasiForm' || $url == site_url('/Master_Data/wa') || $url == site_url('/Master_Data/waForm')  || $edit=='editWAForm'){echo 'collapsed';} ?>" href="#" data-toggle="collapse" data-target="#dataMaster" aria-expanded="true"
 				aria-controls="dataMaster">
 				<i class="fab fa-fw fa-wpforms"></i>
 				<span>Data Master</span>
 			</a>
-			<div id="dataMaster" class="collapse <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna') || $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm'){echo 'show';} ?>" aria-labelledby="headingForm" data-parent="#accordionSidebar">
+			<div id="dataMaster" class="collapse <?php if($url == site_url('/Master_Data/ukuran') || $url == site_url('/Master_Data/ukuranForm') || $url == site_url('/Master_Data/warna') || $url == site_url('/Master_Data/warnaForm') || $url == site_url('/Master_Data/kategori') || $url == site_url('/Master_Data/kategoriForm') || $url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm') || $url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm') || $edit=='editUkuranForm' || $edit=='editWarnaForm' || $edit=='editKategoriForm' || $edit=='editBarangForm' || $edit=='editUserForm' || $url == site_url('/Master_Data/lokasi') || $url == site_url('/Master_Data/lokasiForm')  || $edit=='editLokasiForm' || $url == site_url('/Master_Data/wa') || $url == site_url('/Master_Data/waForm')  || $edit=='editWAForm'){echo 'show';} ?>" aria-labelledby="headingForm" data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<h6 class="collapse-header">Data Master</h6>
 
@@ -59,6 +59,10 @@ $edit = $this->uri->segment($url_count-1);
 					<a class="collapse-item <?php if($url == site_url('/Master_Data/barang') || $url == site_url('/Master_Data/barangForm')  || $edit=='editBarangForm'){echo "active";} ?>" href="<?php echo site_url('/Master_Data/barang'); ?>">Barang</a>
 
 					<a class="collapse-item <?php if($url == site_url('/Master_Data/user') || $url == site_url('/Master_Data/userForm')  || $edit=='editUserForm'){echo "active";} ?>" href="<?php echo site_url('/Master_Data/user'); ?>">User</a>
+
+					<a class="collapse-item <?php if($url == site_url('/Master_Data/lokasi') || $url == site_url('/Master_Data/lokasiForm')  || $edit=='editLokasiForm'){echo "active";} ?>" href="<?php echo site_url('/Master_Data/lokasi'); ?>">Lokasi</a>
+
+					<a class="collapse-item <?php if($url == site_url('/Master_Data/wa') || $url == site_url('/Master_Data/waForm')  || $edit=='editWAForm'){echo "active";} ?>" href="<?php echo site_url('/Master_Data/wa'); ?>">Nomor WA</a>
 				</div>
 			</div>
 		</li>
@@ -79,5 +83,5 @@ $edit = $this->uri->segment($url_count-1);
 		</li>
 
 		<hr class="sidebar-divider">
-		<div class="version" id="version-bigjill"></div>
+		<div class="version">Version 1.1</div>
 	</ul>

@@ -40,6 +40,15 @@ class Master_Data extends MX_Controller {
 		$this->page->view('master_data/userIndex',$data);
 	}
 
+	public function wa(){
+		$data['daftar'] = $this->model_master->listAllwa();
+		$this->page->view('master_data/waIndex',$data);
+	}
+
+	public function lokasi(){
+		$data['daftar'] = $this->model_master->listAlllokasi();
+		$this->page->view('master_data/lokasiIndex',$data);
+	}
     // 
 
 	public function ukuranForm(){
@@ -65,6 +74,14 @@ class Master_Data extends MX_Controller {
 
 	public function userForm(){
 		$this->page->view('master_data/add/userForm');
+	}
+
+	public function lokasiForm(){
+		$this->page->view('master_data/add/lokasiForm');
+	}
+
+	public function waForm(){
+		$this->page->view('master_data/add/waForm');
 	}
 
     // 
@@ -104,6 +121,18 @@ class Master_Data extends MX_Controller {
 	{
 		$data['detail'] = $this->model_master->listUserById($id);
 		$this->page->view('master_data/edit/userForm',$data);
+	}
+
+	public function editLokasiForm($id)
+	{
+		$data['detail'] = $this->model_master->listLokasiById($id);
+		$this->page->view('master_data/edit/lokasiForm',$data);
+	}
+
+	public function editWAForm($id)
+	{
+		$data['detail'] = $this->model_master->listWAById($id);
+		$this->page->view('master_data/edit/waForm',$data);
 	}
 
     // 
@@ -204,6 +233,7 @@ class Master_Data extends MX_Controller {
 		$data['nama'] = $_POST['nama'];
 		$data['username'] = $_POST['username'];
 		$data['email'] = $_POST['email'];
+		$data['display_email'] = $_POST['opsiEmail'];
 		$data['password'] = md5($_POST['password']);
 		$data['kpass'] = md5($_POST['kpass']);
 		$data['keterangan'] = $_POST['keterangan'];
@@ -379,8 +409,35 @@ class Master_Data extends MX_Controller {
 		}
 		
 		return $this->upload->data("file_name");
+	}
 
+	public function addLokasi(){
+		date_default_timezone_set('Asia/Jakarta');
+		$data['nama'] = trim($_POST['nama']);
+		$data['url'] = trim($_POST['url']);
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
 
+		$error = array();
+		$row = $this->model_master->validasiInsertLokasi($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->insertLokasi($data);
+
+			if($res){
+				$this->session->set_flashdata('insertLokasi', 'berhasil');
+				redirect(site_url('Master_Data/lokasiForm'));	
+			}else{
+				$this->session->set_flashdata('insertLokasi', 'failed');
+				redirect(site_url('Master_Data/lokasiForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertLokasi', $error);
+			redirect(site_url('Master_Data/lokasiForm'));	
+		}
 	}
 
     // 
@@ -509,6 +566,7 @@ class Master_Data extends MX_Controller {
 		$data['nama'] = trim($_POST['nama']);
 		$data['username'] = trim($_POST['username']);
 		$data['email'] = trim($_POST['email']);
+		$data['display_email'] = trim($_POST['opsiEmail']);
 		$pass = trim($_POST['password']);
 		if ($pass==null || $pass=='') {
 			$data['password'] = '';
@@ -545,6 +603,42 @@ class Master_Data extends MX_Controller {
 		} else {
 			$this->session->set_flashdata('updateUser', $error);
 			redirect(site_url('Master_Data/editUserForm/'.$id));	
+		}
+	}
+
+	public function editLokasi(){
+		if(!isset($_POST['lokasi_id'])){
+			$this->session->set_flashdata('updateLokasi', 'failed');
+			redirect(site_url('Master_Data/editLokasiForm/'.$_POST['lokasi_id']));
+		}
+
+		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['lokasi_id'];
+		$data['lokasi_id'] = $id;
+		$data['nama'] = trim($_POST['nama']);
+		$data['url'] = trim($_POST['url']);
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$error = array();
+		$row = $this->model_master->validasiUpdateLokasi($data);
+		if ($row == '1') {
+			array_push($error, 'nama');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->updateLokasi($data);
+
+			if($res){
+				$this->session->set_flashdata('updateLokasi', 'berhasil');
+				redirect(site_url('Master_Data/editLokasiForm/'.$id));	
+			}else{
+				$this->session->set_flashdata('updateLokasi', 'failed');
+				redirect(site_url('Master_Data/editLokasiForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateLokasi', $error);
+			redirect(site_url('Master_Data/editLokasiForm/'.$id));	
 		}
 	}
 
@@ -596,7 +690,7 @@ class Master_Data extends MX_Controller {
 
 		if($valid > 0){
 			$this->session->set_flashdata('deleteKategori', 'failed');
-				redirect(site_url('Master_Data/kategori')); 
+			redirect(site_url('Master_Data/kategori')); 
 		}else{
 
 			$where = array('kategori_id' => $id);
@@ -646,6 +740,24 @@ class Master_Data extends MX_Controller {
 		}else{
 			$this->session->set_flashdata('deleteBarang', 'failed');
 			redirect(site_url('Master_Data/barang')); 
+		}
+	}
+
+	public function hapusLokasi($id)
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$data['update_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$where = array('lokasi_id' => $id);
+		$res = $this->model_master->deleteData($where, 'tbl_lokasi', $data);
+
+		if($res){
+			$this->session->set_flashdata('deleteLokasi', 'berhasil');
+			redirect(site_url('Master_Data/lokasi')); 
+		}else{
+			$this->session->set_flashdata('deleteLokasi', 'failed');
+			redirect(site_url('Master_Data/lokasi')); 
 		}
 	}
 
@@ -700,14 +812,14 @@ class Master_Data extends MX_Controller {
 		if ($checked == 0) {
 			// boleh didelete
 			$this->model_master->deleteKategoriById($id);
-            $response['status']  = 'success';
-            $response['message'] = 'Product Deleted Successfully ...';
-        } else if ($checked > 0) {
+			$response['status']  = 'success';
+			$response['message'] = 'Product Deleted Successfully ...';
+		} else if ($checked > 0) {
 			// jangan didelete
-            $response['status']  = 'error';
-            $response['message'] = 'Item Already Exist On Catalog ...';
-        }
-        echo json_encode($response);
+			$response['status']  = 'error';
+			$response['message'] = 'Item Already Exist On Catalog ...';
+		}
+		echo json_encode($response);
 	}
 
 	public function UkuranValidasi_delete(){
@@ -719,14 +831,14 @@ class Master_Data extends MX_Controller {
 		if ($checked == 0) {
 			// boleh didelete
 			$this->model_master->deleteUkuranById($id);
-            $response['status']  = 'success';
-            $response['message'] = 'Product Deleted Successfully ...';
-        } else if ($checked > 0) {
+			$response['status']  = 'success';
+			$response['message'] = 'Product Deleted Successfully ...';
+		} else if ($checked > 0) {
 			// jangan didelete
-            $response['status']  = 'error';
-            $response['message'] = 'Item Already Exist On Catalog ...';
-        }
-        echo json_encode($response);
+			$response['status']  = 'error';
+			$response['message'] = 'Item Already Exist On Catalog ...';
+		}
+		echo json_encode($response);
 	}
 
 	public function WarnaValidasi_delete(){
@@ -738,13 +850,13 @@ class Master_Data extends MX_Controller {
 		if ($checked == 0) {
 			// boleh didelete
 			$this->model_master->deleteWarnaById($id);
-            $response['status']  = 'success';
-            $response['message'] = 'Product Deleted Successfully ...';
-        } else if ($checked > 0) {
+			$response['status']  = 'success';
+			$response['message'] = 'Product Deleted Successfully ...';
+		} else if ($checked > 0) {
 			// jangan didelete
-            $response['status']  = 'error';
-            $response['message'] = 'Item Already Exist On Catalog ...';
-        }
-        echo json_encode($response);
+			$response['status']  = 'error';
+			$response['message'] = 'Item Already Exist On Catalog ...';
+		}
+		echo json_encode($response);
 	}
 }
