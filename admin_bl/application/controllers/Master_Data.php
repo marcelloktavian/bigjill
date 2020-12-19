@@ -296,10 +296,10 @@ class Master_Data extends MX_Controller {
 
 		if($result_foto){
 			$this->session->set_flashdata('insertBarang', 'berhasil');
-			redirect(site_url('Master_Data/barang'));	
+			redirect(site_url('Master_Data/barangForm'));	
 		}else{
 			$this->session->set_flashdata('insertBarang', 'failed');
-			redirect(site_url('Master_Data/barang'));	
+			redirect(site_url('Master_Data/barangForm'));	
 		}
 	}
 
@@ -354,10 +354,10 @@ class Master_Data extends MX_Controller {
 
 		if($result_foto){
 			$this->session->set_flashdata('updateBarang', 'berhasil');
-			redirect(site_url('Master_Data/barang'));	
+			redirect(site_url('Master_Data/barangForm'));	
 		}else{
 			$this->session->set_flashdata('updateBarang', 'failed');
-			redirect(site_url('Master_Data/barang	'));	
+			redirect(site_url('Master_Data/barangForm	'));	
 		}
 	}
 

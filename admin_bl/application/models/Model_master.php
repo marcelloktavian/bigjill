@@ -436,6 +436,14 @@ public function validasiUpdateLokasi($data)
     return $row;
 }
 
+public function validasiUpdateWA($data)
+{
+    $query = $this->db->query("SELECT * FROM tbl_wa WHERE nomor='".$data['nomor']."' AND wa_id NOT IN('".$data['wa_id']."') AND deleted=0");
+    $row = $query->num_rows();
+
+    return $row;
+}
+
 //
 
 public function viewDetailBarang($id)

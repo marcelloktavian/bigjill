@@ -51,9 +51,14 @@
             <form method="POST" action="<?= site_url('Master_Data/editWarna') ?>">
               <input type="hidden" name='warna_id' id="warna_id" value="<?= $detail->warna_id ?>">
               <div class="form-group">
-                <label for="nama">Nama Warna</label>
-                <input type="text" class="form-control" name='nama' id="nama" aria-describedby="nama"
-                placeholder="Nama Warna" maxlength="40" value="<?= $detail->nama ?>" required autofocus>
+                <label for="nomor">Nomor WA</label>
+                <input type="text" class="form-control" name='nomor' id="nomor" aria-describedby="nomor"
+                placeholder="Nomor WA" maxlength="15" onkeypress="return event.charCode >= 48 && event.charCode <=57" required autofocus>
+              </div>
+              <div class="form-group">
+                <label for="nomor">Pesan</label>
+                <textarea class="form-control" id="pesan" name="pesan" rows="5" placeholder="Pesan WA" wrap="hard" required></textarea>
+                <font color="red"><b>*</b></font> (<b>#nama</b> = nama barang, <b>#harga</b> = harga barang, <b>#kategori</b> = kategori barang)
               </div>
 
               <button type="submit" class="btn btn-success">Simpan</button>
