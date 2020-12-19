@@ -183,8 +183,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <!--  -->
                     <h3 class="shop-sing">Recommended Products</h3>
                     <!--  -->
-                    <?php foreach($random as $rand): ?>
                     <div class="row m-0">
+                    <?php foreach($random as $rand): ?>
                         <div class="col-md-4 product-men">
                             <div class="product-shoe-info shoe text-center">
                                 <div class="men-thumb-item">
