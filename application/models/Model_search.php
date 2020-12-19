@@ -43,5 +43,12 @@ class Model_search extends CI_Model {
 		return $data;
 	}
 
+	public function recommendedItem($data) {
+		$search = $this->db->query("SELECT kategori_id FROM tbl_barang WHERE barang_id='$data' ")->row();
+
+		$result = $this->db->query("SELECT a.*,b.foto_utama,b.foto_1,b.foto_2,b.foto_3,b.foto_4 FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON (a.barang_id=b.barang_id) WHERE a.kategori_id = '$search->kategori_id'  ORDER BY RAND() ASC LIMIT 3")->result();
+
+		return $result;
+	}
 	
 }

@@ -180,7 +180,35 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <div id="deskripsi"></div>
 
                     </div>
+                    <!--  -->
+                    <h3 class="shop-sing">Recommended Products</h3>
+                    <!--  -->
+                    <?php foreach($random as $rand): ?>
+                    <div class="row m-0">
+                        <div class="col-md-4 product-men">
+                            <div class="product-shoe-info shoe text-center">
+                                <div class="men-thumb-item">
+                                    <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="">
+                                    <span class="product-new-top">Recommended</span>
+                                </div>
+                                <div class="item-info-product">
+                                    <h4>
+                                        <a href="<?php echo site_url('/detail/');echo $rand->barang_id; ?>"><?= $rand->nama ?> </a>
+                                    </h4>
 
+                                    <div class="product_price">
+                                        <div class="grid-price">
+                                            <span class="money"><?= $rand->harga ?></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                    <!--  -->
+                    </div>
+                </div>
+                <!--  -->
 
                 </section>
                 <!-- //contact -->

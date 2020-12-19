@@ -129,8 +129,9 @@ class Search extends MX_Controller {
 			$res = $this->model_search->viewWarnaBarang($warna);
 			echo json_encode($res);
 		} else {
+			$data['random'] = $this->model_search->recommendedItem($id);
 			$this->page->template('detailBarang');
-			$this->page->view('templates/detailBarang');
+			$this->page->view('templates/detailBarang',$data);
 		}
 		
 		
