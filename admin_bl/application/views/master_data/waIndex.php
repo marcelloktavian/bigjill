@@ -51,7 +51,7 @@
                   <td><?= $d->nomor; ?></td>
                   <td><?= $d->pesan; ?></td>
                   <td>
-                    <a type="button" href="<?= site_url('Master_Data/waForm/'.$d->wa_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
+                    <a type="button" href="<?= site_url('Master_Data/editWAForm/'.$d->wa_id) ?>" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit Data"><i class="fas fa-edit"></i></a>
                     <button type="button" class="btn btn-danger deleteWA" data-toggle="tooltip" data-placement="bottom" title="Delete Data" data-id="<?= $d->wa_id; ?>" data-nama="<?= $d->nomor; ?>"><i class="fas fa-trash"></i></button>
                   </td>
                 </tr>

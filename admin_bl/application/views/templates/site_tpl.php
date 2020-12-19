@@ -340,6 +340,24 @@ if (!$this->session->has_userdata('admin')){
 			})
 		});
 
+		$('.deleteWA').on('click', function() {
+			var id =  $(this).data('id');
+			var nama =  $(this).data('nama');
+			Swal.fire({
+				title: 'Confirmation',
+				text: 'Are you sure you want to delete '+nama+'?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Yes, delete!'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = ("<?= site_url('Master_Data/hapusWA/') ?>" + id);
+				}
+			})
+		});
+
 		$('.deleteUser').on('click', function() {
 			var id =  $(this).data('id');
 			var nama =  $(this).data('nama');

@@ -245,6 +245,22 @@ public function insertLokasi($data)
 
     return $data;
 }
+
+public function insertWA($data)
+{
+    $this->db->set('nomor',$data['nomor']);
+    $this->db->set('pesan',$data['pesan']);
+    $this->db->set('deleted','0');
+    $this->db->set('create_at',$data['now']);
+    $this->db->set('create_by',$data['create_by']);
+    $this->db->set('update_at',$data['now']);
+    $this->db->set('update_by',$data['create_by']);
+    $this->db->set('lastmodified',$data['now']);
+    $data = $this->db->insert('tbl_wa');
+
+    return $data;
+}
+
     //
 
 public function deleteData($where, $table, $data)
@@ -332,7 +348,18 @@ public function updateLokasi($data)
     return $data;
 }
 
+public function updateWA($data)
+{   
+    $this->db->set('nomor',$data['nomor']);
+    $this->db->set('pesan',$data['pesan']);
+    $this->db->set('update_at',$data['now']);
+    $this->db->set('update_by',$data['create_by']);
+    $this->db->set('lastmodified',$data['now']);
+    $this->db->where('wa_id',$data['wa_id']);
+    $data = $this->db->update('tbl_wa');
 
+    return $data;
+}
     //
 
 public function validasiInsertWarna($data)
@@ -380,6 +407,14 @@ public function validasiInsertUser($data, $input)
 public function validasiInsertLokasi($data)
 { 
     $query = $this->db->query("SELECT * FROM tbl_lokasi WHERE nama='".$data['nama']."' AND deleted=0");
+    $row = $query->num_rows();
+
+    return $row;
+}
+
+public function validasiInsertWA($data)
+{ 
+    $query = $this->db->query("SELECT * FROM tbl_wa WHERE nomor='".$data['nomor']."' AND deleted=0");
     $row = $query->num_rows();
 
     return $row;

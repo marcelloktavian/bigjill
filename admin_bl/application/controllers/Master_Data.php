@@ -440,6 +440,35 @@ class Master_Data extends MX_Controller {
 		}
 	}
 
+	public function addWA(){
+		date_default_timezone_set('Asia/Jakarta');
+		$data['nomor'] = trim($_POST['nomor']);
+		$data['pesan'] = trim($_POST['pesan']);
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$error = array();
+		$row = $this->model_master->validasiInsertWA($data);
+		if ($row == '1') {
+			array_push($error, 'nomor');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->insertWA($data);
+
+			if($res){
+				$this->session->set_flashdata('insertWA', 'berhasil');
+				redirect(site_url('Master_Data/waForm'));	
+			}else{
+				$this->session->set_flashdata('insertWA', 'failed');
+				redirect(site_url('Master_Data/waForm'));	
+			}
+		} else {
+			$this->session->set_flashdata('insertWA', $error);
+			redirect(site_url('Master_Data/waForm'));	
+		}
+	}
+
     // 
 
 	public function editUkuran(){
@@ -642,6 +671,42 @@ class Master_Data extends MX_Controller {
 		}
 	}
 
+	public function editWA(){
+		if(!isset($_POST['wa_id'])){
+			$this->session->set_flashdata('updateWA', 'failed');
+			redirect(site_url('Master_Data/editWAForm/'.$_POST['wa_id']));
+		}
+
+		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['wa_id'];
+		$data['wa_id'] = $id;
+		$data['nomor'] = trim($_POST['nomor']);
+		$data['pesan'] = trim($_POST['pesan']);
+		$data['create_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$error = array();
+		$row = $this->model_master->validasiUpdateWA($data);
+		if ($row == '1') {
+			array_push($error, 'nomor');
+		}
+
+		if (count($error)==0) {
+			$res = $this->model_master->updateWA($data);
+
+			if($res){
+				$this->session->set_flashdata('updateWA', 'berhasil');
+				redirect(site_url('Master_Data/editWAForm/'.$id));	
+			}else{
+				$this->session->set_flashdata('updateWA', 'failed');
+				redirect(site_url('Master_Data/editWAForm/'.$id));	
+			}
+		} else {
+			$this->session->set_flashdata('updateWA', $error);
+			redirect(site_url('Master_Data/editWAForm/'.$id));	
+		}
+	}
+
     //
 
 	public function hapusUkuran($id)
@@ -758,6 +823,24 @@ class Master_Data extends MX_Controller {
 		}else{
 			$this->session->set_flashdata('deleteLokasi', 'failed');
 			redirect(site_url('Master_Data/lokasi')); 
+		}
+	}
+
+	public function hapusWA($id)
+	{
+		date_default_timezone_set('Asia/Jakarta');
+		$data['update_by'] = $this->session->admin->admin_id;
+		$data['now'] = date('Y-m-d H:m:s');
+
+		$where = array('wa_id' => $id);
+		$res = $this->model_master->deleteData($where, 'tbl_wa', $data);
+
+		if($res){
+			$this->session->set_flashdata('deleteWA', 'berhasil');
+			redirect(site_url('Master_Data/wa')); 
+		}else{
+			$this->session->set_flashdata('deleteWA', 'failed');
+			redirect(site_url('Master_Data/wa')); 
 		}
 	}
 
