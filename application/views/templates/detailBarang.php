@@ -10,13 +10,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <head>
     <?php echo $this->load->view($header); ?>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     <script src="<?php echo base_url('/admin_bl/assets/vendor/jquery/jquery.min.js'); ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    
 </head>
 <style>
 
@@ -212,9 +212,40 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
             </section>
             <!-- //contact -->
-
-            <?php echo $this->load->view($footer); ?>
-
+            <!-- Modal -->
+            <div class="modal fade" id="option_wa" role="dialog">
+                <div class="modal-dialog">
+                
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title">Pilih Nomer Whatsapp</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                    <input type="hidden" id="tmpdat">
+                    <table class="table table-responsive-md">
+                            <tr>
+                                <th><div class="">Nomer Admin</div></th>
+                                <th><div class="">Kirim</div></th>
+                            </tr>
+                            <tr>
+                            <?php foreach ($wa as $wa): ?>
+                                <td><?= $wa->nomor; ?></td>
+                                <td><button class="btn btn-primary" onclick="pesanWa('<?= $wa->nomor ?>','<?= $wa->message ?>')">Kirim Pesan</button></td>
+                            <?php endforeach; ?>
+                            </tr>
+                    </table>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+            <!--  -->
+            
             <script>
                 $(document).ready(function(){
                     var id = window.location.pathname.split("/").pop();
@@ -322,7 +353,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             var btnpesan = '<h4>Pesan Lewat :</h4>';
             btnpesan += '<li><button type="button" class="btn btn-success" onclick="directwa(';
             btnpesan += "'"+nama+"','";
-            btnpesan += "Rp. "+ribuan+"')";
+            btnpesan += "Rp. "+ribuan+"','"+obj[0]['kategori']+"')";
             btnpesan += '"><img src="';
             btnpesan += "<?php echo base_url('/admin_bl/assets/img/wa.png');  ?>";
             btnpesan += '" height="25px" width="25px">    Whatsapp</button>';
@@ -418,16 +449,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 }); 
 });
 
-function directwa(brg, harga) {
-    var brgakhir = brg.replace(" ", "%20");
-    var hargakhir = harga.toLocaleString('IND', {style: 'currency', currency: 'IDR'}).replace(" ", "%20");
+function directwa(brg, harga,kategori) {
+    // var brgakhir = brg.replace(" ", "%20");
+    // var hargakhir = harga.toLocaleString('IND', {style: 'currency', currency: 'IDR'}).replace(" ", "%20");
 
-    var wa = 'https://api.whatsapp.com/send?phone=6281222334054&text=Saya%20tertarik%20dengan%20'+brgakhir+'%20-%20'+hargakhir;
-    window.open(wa,'_blank');
+    // var wa = 'https://api.whatsapp.com/send?phone=6281222334054&text=Saya%20tertarik%20dengan%20'+brgakhir+'%20-%20'+hargakhir;
+    // window.open(wa,'_blank');
+    $("#tmpdat").val(brg+';'+harga+';'+kategori);
+    $("#option_wa").modal('show');
 }
 
-</script>
+function pesanWa(nomer,message){
+    var detail = $("#tmpdat").val().split(';');
+    var message_name = message.replace("#nama", detail[0]);
+    var harga = detail[1].toLocaleString('IND', {style: 'currency', currency: 'IDR'});
+    var message_harga = message_name.replace("#harga", harga);
+    var message_kat = message_harga.replace("#kategori", detail[2]);
 
+    var fixpesan = encodeURI(message_kat);
+    // console.log(fixpesan);
+
+    var wa = 'https://api.whatsapp.com/send?phone='+detail[0]+'&text='+fixpesan;
+    window.open(wa,'_blank');
+}
+</script>
+<?php echo $this->load->view($footer); ?>
 </body>
 
 </html>

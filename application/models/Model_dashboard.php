@@ -10,7 +10,7 @@ class Model_dashboard extends CI_Model {
 	}
 
 	public function listAllWA(){
-		$query = $this->db->query("SELECT CONCAT(REPLACE(SUBSTRING(nomor,1,1),'0','62'), SUBSTRING(nomor,2)) AS nomor, nomor AS display FROM tbl_wa WHERE deleted=0 ORDER BY nomor ASC");
+		$query = $this->db->query("SELECT CONCAT(REPLACE(SUBSTRING(nomor,1,1),'0','62'), SUBSTRING(nomor,2)) AS nomor, nomor AS display,pesan as message FROM tbl_wa WHERE deleted=0 ORDER BY nomor ASC");
 		$data = $query->result();
 		return $data;
 	}
