@@ -306,6 +306,7 @@ class Master_Data extends MX_Controller {
 	function editBarang(){
 		// insert ke table barang
 		date_default_timezone_set('Asia/Jakarta');
+		$id = $_POST['idbarang'];
 		$data['barang_id']=$_POST['idbarang'];
 		$data['nama'] = $_POST['nama'];
 		$data['harga'] = $_POST['harga'];
@@ -354,10 +355,10 @@ class Master_Data extends MX_Controller {
 
 		if($result_foto){
 			$this->session->set_flashdata('updateBarang', 'berhasil');
-			redirect(site_url('Master_Data/barangForm'));	
+			redirect(site_url('Master_Data/editBarangForm/'.$id));	
 		}else{
 			$this->session->set_flashdata('updateBarang', 'failed');
-			redirect(site_url('Master_Data/barangForm	'));	
+			redirect(site_url('Master_Data/editBarangForm/'.$id));	
 		}
 	}
 

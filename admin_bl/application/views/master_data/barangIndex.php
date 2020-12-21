@@ -147,12 +147,15 @@
 
          var validasi = obj[0]['ukuran'];
 
-         if (validasi=='Y') {
+         if (validasi=='Y' && (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "")) {
           html += '<tr><td scope="row">Ukuran</td>';
           html += '<td scope="row"><ul>';
         }
 
-        var jumlahukuran = obj[0]['ukuran_id'].split(',');
+        var jumlahukuran = [""];
+        if (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "") {
+          var jumlahukuran = obj[0]['ukuran_id'].split(',');
+        }
         var jumlahwarna = obj[0]['warna_id'].split(',');
 
         for (var i = 0; i < jumlahukuran.length; i++) {
@@ -165,13 +168,14 @@
             },
             success: function (res2) {
               var obj2 = JSON.parse(res2);
-              if (validasi=='Y') {
+
+              if (validasi=='Y' && (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "")) {
                 html += '<li>'+obj2[0]['nama']+'</li>';
               }
               ukuran += 1;
 
               if (ukuran==jumlahukuran.length) {
-                if (validasi=='Y') {
+                if (validasi=='Y' &&  (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "")) {
                  html += '</ul></td></tr>';
                }
                html += '<tr><td scope="row">Warna</td>';
@@ -187,6 +191,7 @@
                   },
                   success: function (res3) {
                     var obj3 = JSON.parse(res3);
+
                     html += '<li>'+obj3[0]['nama']+'</li>';
                     warna += 1;
 
