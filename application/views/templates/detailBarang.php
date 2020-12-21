@@ -360,8 +360,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 },
                 success: function (res3) {
                     var obj3 = JSON.parse(res3);
-
-                    if (j==0 || j % 3 == 0) {
+                    // console.log(obj3.length);
+                    if (obj3.length > 0) {
+                       if (j==0 || j % 3 == 0) {
                         htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
                     } else if (j==1 || j % 4 == 0) {
                         htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
@@ -369,19 +370,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
                     }
                     
-                    warna += 1;
+                } 
+                warna += 1;
 
-                    if (warna==jumlahwarna.length) {
-                        $('#warna').html(htmlwarna+'</ul>');
-                    }
+                if (warna==jumlahwarna.length) {
+                    $('#warna').html(htmlwarna+'</ul>');
                 }
-            });
+
+            }
+        });
             }
 
             if (obj[0]['ukuran']=='Y'  &&  (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "")) {
-             var htmlukuran = '<br><h4>Ukuran :</h4>';
-             htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
-             for (var j = 0; j < jumlahukuran.length; j++) {
+               var htmlukuran = '<br><h4>Ukuran :</h4>';
+               htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
+               for (var j = 0; j < jumlahukuran.length; j++) {
                 // console.log(j);
                 var ukuran = 0;
                 $.ajax({
@@ -392,14 +395,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 },
                 success: function (res2) {
                     var obj2 = JSON.parse(res2);
-                    if (j==0 || j % 3 == 0) {
-                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
-                    } else if (j==1 || j % 4 == 0) {
-                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
-                    } else {
-                        htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                    if (obj2.length > 0) {
+                        if (j==0 || j % 3 == 0) {
+                            htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                        } else if (j==1 || j % 4 == 0) {
+                            htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                        } else {
+                            htmlukuran += '<div class="chip"><span class="closebtn">'+obj2[0]['nama']+'</span></div></li>';
+                        }
                     }
-                    
                     ukuran += 1;
 
                     if (ukuran==jumlahukuran.length) {
