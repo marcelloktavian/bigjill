@@ -164,7 +164,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="share-desc">
                                     <div class="share">
                                         <ul class="w3layouts_social_list list-unstyled">
-                                            
+
                                             <div id="btnpesan"></div>
                                         </ul>
                                     </div>
@@ -184,59 +184,62 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     <h3 class="shop-sing">Recommended Products</h3>
                     <!--  -->
                     <div class="row m-0">
-                    <?php foreach($random as $rand): ?>
-                        <div class="col-md-4 product-men">
-                            <div class="product-shoe-info shoe text-center">
-                                <div class="men-thumb-item">
-                                    <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="">
-                                    <span class="product-new-top">Recommended</span>
-                                </div>
-                                <div class="item-info-product">
-                                    <h4>
-                                        <a href="<?php echo site_url('/detail/');echo $rand->barang_id; ?>"><?= $rand->nama ?> </a>
-                                    </h4>
+                        <?php foreach($random as $rand): ?>
+                            <div class="col-md-4 product-men">
+                                <div class="product-shoe-info shoe text-center">
+                                    <div class="men-thumb-item">
+                                        <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="">
+                                        <span class="product-new-top">Recommended</span>
+                                    </div>
+                                    <div class="item-info-product">
+                                        <h4>
+                                            <a href="<?php echo site_url('/detail/');echo $rand->barang_id; ?>"><?= $rand->nama ?> </a>
+                                        </h4>
 
-                                    <div class="product_price">
-                                        <div class="grid-price">
-                                            <span class="money"><?= $rand->harga ?></span>
+                                        <div class="product_price">
+                                            <div class="grid-price">
+                                                <span class="money"><?= $rand->harga ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                    <!--  -->
+                        <?php endforeach; ?>
+                        <!--  -->
                     </div>
                 </div>
                 <!--  -->
 
-                </section>
-                <!-- //contact -->
+            </section>
+            <!-- //contact -->
 
-                <?php echo $this->load->view($footer); ?>
+            <?php echo $this->load->view($footer); ?>
 
-                <script>
-                    $(document).ready(function(){
-                        var id = window.location.pathname.split("/").pop();
-                        var url = '/bigjill/index.php/Search/Detail/';
-                        $.ajax({
-                            url: url+'ajaxbarang',
-                            type: "POST",
-                            data: {
-                                idbarang: id,
-                            },
-                            success: function (res) { 
-                                var obj = JSON.parse(res);
+            <script>
+                $(document).ready(function(){
+                    var id = window.location.pathname.split("/").pop();
+                    var url = '/bigjill/index.php/Search/Detail/';
+                    $.ajax({
+                        url: url+'ajaxbarang',
+                        type: "POST",
+                        data: {
+                            idbarang: id,
+                        },
+                        success: function (res) { 
+                            var obj = JSON.parse(res);
 
-                                var nama = obj[0]['nama'];
-                                var angka = obj[0]['harga'];
-                                var reverse = angka.toString().split('').reverse().join(''),
-                                ribuan = reverse.match(/\d{1,3}/g);
-                                ribuan = ribuan.join('.').split('').reverse().join('');
-                                var link = obj[0]['link'];
-                                var deskripsi = obj[0]['deskripsi'];
-                                var jumlahukuran = obj[0]['ukuran_id'].split(',');
-                                var jumlahwarna = obj[0]['warna_id'].split(',');
+                            var nama = obj[0]['nama'];
+                            var angka = obj[0]['harga'];
+                            var reverse = angka.toString().split('').reverse().join(''),
+                            ribuan = reverse.match(/\d{1,3}/g);
+                            ribuan = ribuan.join('.').split('').reverse().join('');
+                            var link = obj[0]['link'];
+                            var deskripsi = obj[0]['deskripsi'];
+                            var jumlahukuran = [""];
+                            if (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "") {
+                              var jumlahukuran = obj[0]['ukuran_id'].split(',');
+                          }
+                          var jumlahwarna = obj[0]['warna_id'].split(',');
 
             //foto 
             var fotoutama = obj[0]['foto'];
@@ -357,6 +360,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 },
                 success: function (res3) {
                     var obj3 = JSON.parse(res3);
+
                     if (j==0 || j % 3 == 0) {
                         htmlwarna += '<div class="chip"><span class="closebtn">'+obj3[0]['nama']+'</span></div></li>';
                     } else if (j==1 || j % 4 == 0) {
@@ -374,10 +378,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
             }
 
-            if (obj[0]['ukuran']=='Y') {
-               var htmlukuran = '<br><h4>Ukuran :</h4>';
-               htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
-               for (var j = 0; j < jumlahukuran.length; j++) {
+            if (obj[0]['ukuran']=='Y'  &&  (obj[0]['ukuran_id'] != null && obj[0]['ukuran_id'].trim() != "")) {
+             var htmlukuran = '<br><h4>Ukuran :</h4>';
+             htmlukuran += '<ul class="w3layouts_social_list list-unstyled">';
+             for (var j = 0; j < jumlahukuran.length; j++) {
                 // console.log(j);
                 var ukuran = 0;
                 $.ajax({

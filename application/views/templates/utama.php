@@ -119,12 +119,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
            }
            ?>
            <br><br>
-           <?php echo $pagination; ?>
        </div>
    </div>
 </div>
 
 </section>
+<?php echo $pagination; ?>
+<br>
 <?php echo $this->load->view($footer); ?>
 
 <script>
