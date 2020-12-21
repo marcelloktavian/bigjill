@@ -9,6 +9,24 @@ class Model_dashboard extends CI_Model {
 		return $data;
 	}
 
+	public function listAllWA(){
+		$query = $this->db->query("SELECT CONCAT(REPLACE(SUBSTRING(nomor,1,1),'0','62'), SUBSTRING(nomor,2)) AS nomor, nomor AS display FROM tbl_wa WHERE deleted=0 ORDER BY nomor ASC");
+		$data = $query->result();
+		return $data;
+	}
+
+	public function listAllEmail(){
+		$query = $this->db->query("SELECT email FROM tbl_admin WHERE `display_email`='Y' AND deleted=0 ORDER BY email ASC");
+		$data = $query->result();
+		return $data;
+	}
+
+	public function listAllLokasi(){
+		$query = $this->db->query("SELECT nama, url FROM tbl_lokasi WHERE deleted=0 ORDER BY nama ASC");
+		$data = $query->result();
+		return $data;
+	}
+
 	public function listAllbarang($limit, $start)
 	{
 		// var_dump($limit,$start);die;
@@ -20,6 +38,6 @@ class Model_dashboard extends CI_Model {
 
 	public function get_barang_list($limit, $start){
 		$query = $this->db->get('tbl_barang', $limit, $start);
-        return $query;
+		return $query;
 	}
 }

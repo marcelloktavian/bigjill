@@ -59,6 +59,9 @@ class Search extends MX_Controller {
 		$data['daftar'] = $this->model_search->listKategoriById($id);
 		$data['kategori'] = $this->model_dashboard->listAllkategori();
 		$data['barang'] = $this->model_search->listAllKategori($id);
+		$data['wa'] = $this->model_dashboard->listAllWA();
+		$data['email'] = $this->model_dashboard->listAllEmail();
+		$data['lokasi'] = $this->model_dashboard->listAllLokasi();
 		$this->page->template('kategori');
 		$this->page->view('templates/kategori',$data);
 		
@@ -110,6 +113,9 @@ class Search extends MX_Controller {
 		$data['daftar'] = $this->model_search->listBarangByNama($barang);
 		$data['barang'] = $barang;
 		$data['kategori'] = $this->model_dashboard->listAllkategori();
+		$data['wa'] = $this->model_dashboard->listAllWA();
+		$data['email'] = $this->model_dashboard->listAllEmail();
+		$data['lokasi'] = $this->model_dashboard->listAllLokasi();
 		$this->page->template('barang');
 		$this->page->view('templates/barang',$data);
 	}
@@ -130,6 +136,9 @@ class Search extends MX_Controller {
 			echo json_encode($res);
 		} else {
 			$data['random'] = $this->model_search->recommendedItem($id);
+			$data['wa'] = $this->model_dashboard->listAllWA();
+			$data['email'] = $this->model_dashboard->listAllEmail();
+			$data['lokasi'] = $this->model_dashboard->listAllLokasi();
 			$this->page->template('detailBarang');
 			$this->page->view('templates/detailBarang',$data);
 		}

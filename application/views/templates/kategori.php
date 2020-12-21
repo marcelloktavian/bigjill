@@ -189,14 +189,5 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
          <?php echo $this->load->view($footer); ?>
          
-         <script>
-        function cari() {
-            var brg = document.getElementById("search").value;  
-            if (brg!='') {
-                var url = "<?php echo site_url('/cari/') ?>";
-                window.location.href = url+brg+'#catalog';
-            }
-        }
-        </script>
     </body>
     </html>

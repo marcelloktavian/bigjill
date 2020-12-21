@@ -42,15 +42,18 @@ class Site extends MX_Controller {
         $config['last_tagl_close']  = '</span></li>';
 
         $this->pagination->initialize($config);
-		$data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         $data['pagination'] = $this->pagination->create_links();
 
-		$data['daftar'] = $this->model_dashboard->listAllkategori();
-		$data['barang'] = $this->model_dashboard->listAllbarang($config["per_page"], $data['page']);
-		$this->page->template('utama');
-		$this->page->view('templates/utama',$data);
-	}
+        $data['daftar'] = $this->model_dashboard->listAllkategori();
+        $data['wa'] = $this->model_dashboard->listAllWA();
+        $data['email'] = $this->model_dashboard->listAllEmail();
+        $data['lokasi'] = $this->model_dashboard->listAllLokasi();
+        $data['barang'] = $this->model_dashboard->listAllbarang($config["per_page"], $data['page']);
+        $this->page->template('utama');
+        $this->page->view('templates/utama',$data);
+}
 
 }
 

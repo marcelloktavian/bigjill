@@ -7,27 +7,31 @@ class Contact extends MX_Controller {
 		parent::__construct();
 
 		$this->page->use_directory();
+		$this->load->model('model_dashboard');
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('email');
 	}
 	
 	public function index(){
 		$this->page->template('contact');
-		$this->page->view('templates/contact');
+		$data['wa'] = $this->model_dashboard->listAllWA();
+		$data['email'] = $this->model_dashboard->listAllEmail();
+		$data['lokasi'] = $this->model_dashboard->listAllLokasi();
+		$this->page->view('templates/contact',$data);
 		$this->load->library('form_validation');
 	}
 
 	public function kirimEmail()
 	{
 			//Get the form data
-			$name = $_POST['nama'];
-			$from_email = $_POST['email'];
-			$subject = $_POST['telp'];
-			$message = $_POST['pesan'];
-	
+		$name = $_POST['nama'];
+		$from_email = $_POST['email'];
+		$subject = $_POST['telp'];
+		$message = $_POST['pesan'];
+
 			//Web master email
 			$to_email = 'bigjill.indonesia@gmail.com'; //Webmaster email, who receive mails
-	
+
 			//Mail settings
 			$config['protocol'] = 'smtp';
 			$config['smtp_host'] = 'ssl://smtp.googlemail.com';
@@ -38,9 +42,9 @@ class Contact extends MX_Controller {
 			$config['charset'] = 'iso-8859-1';
 			$config['wordwrap'] = TRUE; //No quotes required
 			$config['newline'] = "\r\n"; //Double quotes required
-	
+
 			$this->email->initialize($config);                        
-	
+
 			//Send mail with data
 			$this->email->from('admin@apkblack17.net','BigJill_Info');
 			$this->email->to($to_email);
@@ -53,7 +57,7 @@ class Contact extends MX_Controller {
 			if ($this->email->send())
 			{
 				$this->session->set_flashdata('msg','<div class="alert alert-success">Mail sent!</div>');
-	
+
 				redirect('contact');
 			} else {
 				// var_dump($this->email->send());die;
@@ -61,8 +65,8 @@ class Contact extends MX_Controller {
 				redirect(site_url('contact'));
 			}
 			
+		}
 	}
-}
 
-/* End of file site.php */
+	/* End of file site.php */
 /* Location: .bigjill/admin_bl/application/controllers/site.php */
