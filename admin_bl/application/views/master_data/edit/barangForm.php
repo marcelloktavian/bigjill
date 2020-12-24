@@ -110,7 +110,7 @@
             <div class="form-group">
               <label for="warnaop">Warna</label>
               <div class="input-group">
-                <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4">
+                <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4 required>
                   <option value="" disabled selected>-- Pilih Warna --</option>
                   <?php foreach ($listWarna as $lw): ?>
                     <option value="<?= $lw->warna_id ?>"><?= $lw->nama ?></option>
@@ -130,15 +130,21 @@
             </div>
 
             <label for="imagesUtama">Gambar Utama: </label>
-            <img src="<?php echo base_url('assets/img/barang/').$detail->foto_utama?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            <img name="fotoUtama" id="fotoUtama" src="<?php echo base_url('assets/img/barang/').$detail->foto_utama?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            
+             <a class="btn btn-danger" onclick="$('#hidden_utama').val('0');$('#imagesUtama').val('');document.getElementById('fotoUtama').parentNode.removeChild(fotoUtama);" style="color:#fff; cursor:pointer; margin-left:60px;" data-toggle="tooltip" title="Delete Image">X</a>
+            
             <div class="box">
-              <input type="hidden" name="hidden_utama" value="<?= $detail->foto_utama?>">
+              <input type="hidden" name="hidden_utama" id="hidden_utama" value="<?= $detail->foto_utama?>">
               <input type="file" name="imagesUtama" id="imagesUtama" class="inputfile" />
               <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
             </div>
 
             <label for="images1">Gambar 1 (opsional): </label>
-            <img src="<?php echo base_url('assets/img/barang/').$detail->foto_1?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            <img name="foto1" id="foto1" src="<?php echo base_url('assets/img/barang/').$detail->foto_1?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            
+            <a class="btn btn-danger" onclick="$('#hidden_foto1').val('0');$('#images1').val('');document.getElementById('foto1').parentNode.removeChild(foto1);" style="color:#fff; cursor:pointer; margin-left:24px;" data-toggle="tooltip" title="Delete Image">X</a>
+            
             <div class="box">
               <input type="hidden" name="hidden_foto1" value="<?= $detail->foto_1?>">
               <input type="file" name="images1" id="images1" class="inputfile" />
@@ -146,7 +152,10 @@
             </div>
 
             <label for="images2">Gambar 2 (opsional): </label>
-            <img src="<?php echo base_url('assets/img/barang/').$detail->foto_2?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            <img name="foto2" id="foto2" src="<?php echo base_url('assets/img/barang/').$detail->foto_2?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            
+            <a class="btn btn-danger" onclick="$('#hidden_foto2').val('0');$('#images2').val('');document.getElementById('foto2').parentNode.removeChild(foto2);" style="color:#fff; cursor:pointer; margin-left:24px;" data-toggle="tooltip" title="Delete Image">X</a>
+            
             <div class="box">
               <input type="hidden" name="hidden_foto2" value="<?= $detail->foto_2?>">
               <input type="file" name="images2" id="images2" class="inputfile" />
@@ -154,7 +163,10 @@
             </div>
 
             <label for="images3">Gambar 3 (opsional): </label>
-            <img src="<?php echo base_url('assets/img/barang/').$detail->foto_3?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            <img name="foto3" id="foto3" src="<?php echo base_url('assets/img/barang/').$detail->foto_3?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            
+            <a class="btn btn-danger" onclick="$('#hidden_foto3').val('0');$('#images3').val('');document.getElementById('foto3').parentNode.removeChild(foto3);" style="color:#fff; cursor:pointer; margin-left:24px;" data-toggle="tooltip" title="Delete Image">X</a>
+            
             <div class="box">
               <input type="hidden" name="hidden_foto3" value="<?= $detail->foto_3?>">
               <input type="file" name="images3" id="images3" class="inputfile" />
@@ -162,7 +174,10 @@
             </div>
 
             <label for="images4">Gambar 4 (opsional): </label>
-            <img src="<?php echo base_url('assets/img/barang/').$detail->foto_4?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            <img name="foto4" id="foto4" src="<?php echo base_url('assets/img/barang/').$detail->foto_4?>" class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="" width="250px",height="250px" style="margin:5px;">
+            
+             <a class="btn btn-danger" onclick="$('#hidden_foto4').val('0');$('#images4').val('');document.getElementById('foto4').parentNode.removeChild(foto4);" style="color:#fff; cursor:pointer; margin-left:24px;" data-toggle="tooltip" title="Delete Image">X</a>
+             
             <div class="box">
               <input type="hidden" name="hidden_foto4" value="<?= $detail->foto_4?>">
               <input type="file" name="images4" id="images4" class="inputfile" />
@@ -193,10 +208,10 @@
 <!--Row-->
 </div>
 <script>
-  var  urlaj = '/bigjill/admin_bl/index.php/Master_Data/ajaxgetukuran';
+  var  urlaj = '/admin_bl/index.php/Master_Data/ajaxgetukuran';
   $(document).ready(function () {
-    var hasil = $( "#kategorihidden").val();
-        // console.log(hasil);
+    var hasil = $("#kategorihidden").val();
+        //console.log(hasil);
 
         $.ajax({
           url: urlaj,
@@ -205,7 +220,7 @@
             validasiukuran: hasil,
           },
           success: function (res) {
-        // console.log(res);
+        //console.log(res);
         var obj = JSON.parse(res);
         if (obj[0]['ukuran']=='Y') {
           $('#daftarUkuran').show();
