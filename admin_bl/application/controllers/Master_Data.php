@@ -319,32 +319,39 @@ class Master_Data extends MX_Controller {
 		$data['now'] = date('Y-m-d H:m:s');
 		// var_dump($_POST['hidden_utama'],$_FILES['imagesUtama']['name']);die;
 		if($_FILES['imagesUtama']['name']!==""){
+			unlink('./assets/img/barang/'.$_POST['hidden_utama']);
+		// var_dump($test);die;
 			$gambar['utama'] = $this->_uploadUtama('imagesUtama');
 		}else{
 			$gambar['utama'] = $_POST['hidden_utama'];
 		}
 		if( $_FILES['images1']['name']!==""){
+
+			unlink('./assets/img/barang/'.$_POST['hidden_foto1']);
 			$gambar['foto_1'] = $this->_uploadUtama('images1');
 		}else{
 			$gambar['foto_1']= $_POST['hidden_foto1'];
 		}
 		if( $_FILES['images2']['name']!==""){
+			unlink('./assets/img/barang/'.$_POST['hidden_foto2']);
 			$gambar['foto_2'] = $this->_uploadUtama('images2');
 		}else{
 			$gambar['foto_2']= $_POST['hidden_foto2'];
 		}
 		if( $_FILES['images3']['name']!==""){
+			unlink('./assets/img/barang/'.$_POST['hidden_foto3']);
 			$gambar['foto_3'] = $this->_uploadUtama('images3');
 		}else{
 			$gambar['foto_3']= $_POST['hidden_foto3'];
 		}
 		if( $_FILES['images4']['name']!==""){
+			unlink('./assets/img/barang/'.$_POST['hidden_foto4']);
 			$gambar['foto_4'] = $this->_uploadUtama('images4');
 		}else{
 			$gambar['foto_4']= $_POST['hidden_foto4'];
 		}
 		$gambar['barang_id'] = $_POST['idbarang'];
-		// // var_dump($gambar);die;
+		// var_dump($gambar);die;
 		// var_dump($data);
 		// var_dump($gambar);die;
 
@@ -352,6 +359,27 @@ class Master_Data extends MX_Controller {
 		// var_dump($result_master);die;
 		
 		$result_foto = $this->model_master->UpdatefotoBarang($gambar);
+
+		// delete directory foto barangnya
+		if($_POST['delete_utama'] !== ''){
+			unlink('./assets/img/barang'.$_POST['delete_utama']);
+		}
+
+		if($_POST['delete_foto1'] !== ''){
+				unlink('./assets/img/barang'.$_POST['delete_foto1']);
+		}
+
+		if($_POST['delete_foto2'] !== ''){
+				unlink('./assets/img/barang'.$_POST['delete_foto2']);
+		}
+
+		if($_POST['delete_foto3'] !== ''){
+				unlink('./assets/img/barang'.$_POST['delete_foto3']);
+		}
+
+		if($_POST['delete_foto4'] !== ''){
+				unlink('./assets/img/barang'.$_POST['delete_foto4']);
+		}
 
 		if($result_foto){
 			$this->session->set_flashdata('updateBarang', 'berhasil');
