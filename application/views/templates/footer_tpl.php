@@ -14,10 +14,10 @@
         <span class="fa fa-facebook-f"></span>
       </a>
     </li>
-    <li class="mx-2">
-     <a href="https://api.whatsapp.com/send?phone=6281222334054&fbclid=IwAR113_4-tRy1_uNzxfIcU_eqHc4krvdpCrZaTWkl9ZJiIrwf4OfeRX-V4fE" class="w3pvt_twitter" target="_blank">
-      <span class="fa fa-whatsapp"></span>
-    </a>
+    <li class="mx-1">
+  <!--   <a href="https://api.whatsapp.com/send?phone=6281222334054&fbclid=IwAR113_4-tRy1_uNzxfIcU_eqHc4krvdpCrZaTWkl9ZJiIrwf4OfeRX-V4fE" class="w3pvt_twitter" target="_blank">-->
+  <!--    <span class="fa fa-whatsapp"></span>-->
+  <!--  </a>-->
   </li>
   <li>
    <a href="https://www.instagram.com/bigjillofficial/" class="w3pvt_dribble" target="_blank">

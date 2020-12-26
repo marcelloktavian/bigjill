@@ -83,11 +83,22 @@
 			padding: 0.7em 2em;
 		}
 		.toggle{
-		    background-color:#AE8E7F;
-		    color:white;
+			background-color:#AE8E7F;
+			color:white;
+		}
+		.toggle:hover {
+			color: #fff;
+			background-color: #AE8E7F;
+		}
+
+		[id^=drop]:checked + ul {
+			display: block;
+			background: rgba(153, 115, 97, 0.85);
+			padding: 15px 0;
+			text-align: center;
 		}
 		.menu ul{
-		    background-color:#AE8E7F;
+			background-color:#AE8E7F;
 		}
 	</style>
 </head>

@@ -127,6 +127,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
+                                
                                 <a class="carousel-control-next" href="#displayImage" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
@@ -188,7 +189,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <div class="col-md-4 product-men">
                                 <div class="product-shoe-info shoe text-center">
                                     <div class="men-thumb-item">
+                                        <a href="<?php echo site_url('/detail/');echo $rand->barang_id; ?>">
                                         <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="">
+                                        </a>
                                         <span class="product-new-top">Recommended</span>
                                     </div>
                                     <div class="item-info-product">
@@ -198,7 +201,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
                                         <div class="product_price">
                                             <div class="grid-price">
-                                                <span class="money"><?= $rand->harga ?></span>
+                                                <span class="money"><?= "Rp. " . number_format($rand->harga,0,',','.'); ?></span>
                                             </div>
                                         </div>
                                     </div>
@@ -219,26 +222,27 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h4 class="modal-title">Pilih Nomer Whatsapp</h4>
+                    <h4 class="modal-title">Pilih Nomor Whatsapp</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
                     <input type="hidden" id="tmpdat">
                     <table class="table table-responsive-md">
                             <tr>
-                                <th><div class="">Nomer Admin</div></th>
+                                <th><div class="">Nomor Admin</div></th>
                                 <th><div class="">Kirim</div></th>
                             </tr>
                             <tr>
                             <?php foreach ($wa as $wa): ?>
-                                <td><?= $wa->nomor; ?></td>
-                                <td><button class="btn btn-primary" onclick="pesanWa('<?= $wa->nomor ?>','<?= $wa->message ?>')">Kirim Pesan</button></td>
+                            
+                                <td><?= $wa->display; ?></td>
+                                <td><button class="btn btn-success" onclick="pesanWa('<?= $wa->nomor ?>','<?= $wa->message ?>')"><img src="<?php echo base_url('/admin_bl/assets/img/wa.png');  ?>" height="20px" width="20px"> Kirim Pesan</button></td>
                             <?php endforeach; ?>
                             </tr>
                     </table>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                     </div>
                 </div>
                 
@@ -469,7 +473,7 @@ function pesanWa(nomer,message){
     var fixpesan = encodeURI(message_kat);
     // console.log(fixpesan);
 
-    var wa = 'https://api.whatsapp.com/send?phone='+detail[0]+'&text='+fixpesan;
+    var wa = 'https://api.whatsapp.com/send?phone='+nomer+'&text='+fixpesan;
     window.open(wa,'_blank');
 }
 </script>

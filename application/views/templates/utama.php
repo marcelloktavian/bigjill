@@ -60,7 +60,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                       foreach ($daftar as $d): ?>
                          <li>
                             <a href="<?php echo site_url('/kategori/');echo $d->kategori_id.'#catalog'; ?>">
-                               <input type="checkbox" class="checked" checked disabled>
+                               <input type="radio" disabled>
                                <span class="span"><?= $d->nama; ?></span></a>
                            </li>
                            <?php
