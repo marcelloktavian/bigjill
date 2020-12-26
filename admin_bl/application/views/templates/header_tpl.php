@@ -13,6 +13,17 @@ if (!$this->session->has_userdata('admin')){
 		text-decoration: none;
 		background-color: #A38871;
 	}
+	.toggle:hover {
+      color: #fff;
+      background-color: #AE8E7F;
+    }
+
+    [id^=drop]:checked + ul {
+      display: block;
+      background: rgba(153, 115, 97, 0.85);
+      padding: 15px 0;
+      text-align: center;
+    }
 </style>
 <!-- TopBar -->
 <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">

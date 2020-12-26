@@ -110,7 +110,7 @@
             <div class="form-group">
               <label for="warnaop">Warna</label>
               <div class="input-group">
-                <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4 required>
+              <select id="warnaop" class="form-control selectpicker" data-live-search="true" data-size="4">
                   <option value="" disabled selected>-- Pilih Warna --</option>
                   <?php foreach ($listWarna as $lw): ?>
                     <option value="<?= $lw->warna_id ?>"><?= $lw->nama ?></option>
