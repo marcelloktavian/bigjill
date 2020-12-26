@@ -15,7 +15,9 @@ class Site extends MX_Controller {
 	public function index(){
 		//konfigurasi pagination
         $config['base_url'] = site_url('site/index'); //site url
-        $config['total_rows'] = $this->db->count_all('tbl_barang'); //total row
+        $this->db->where('deleted',0);
+        $thid->db->from('tbl_barang');
+        $config['total_rows'] = $this->db->count_all_result(); //total row
         $config['per_page'] = 9;  //show record per halaman
         $config["uri_segment"] = 3;  // uri parameter
         $choice = $config["total_rows"] / $config["per_page"];
