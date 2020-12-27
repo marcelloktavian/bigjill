@@ -118,8 +118,8 @@
       function cari() {
         var brg = document.getElementById("search").value;
         if (brg!='') {
-            var url = "<?php echo site_url('/cari/') ?>";
-            window.location.href = url+brg+'#catalog';
+            var url = "<?php echo site_url('/search/barang/') ?>";
+            window.location.href = url+brg;
         }
     }
 </script>

@@ -23,9 +23,9 @@ class Model_search extends CI_Model {
 		$data = $query->result();
 		return $data;
 	}
-
-	public function listKategoriById($id){
-		$query = $this->db->query("SELECT nama, kategori_id FROM tbl_kategori WHERE kategori_id=$id AND deleted=0 ORDER BY nama ASC");
+//disini
+	public function listKategoriById($limit, $start,$id){
+		$query = $this->db->query("SELECT nama, kategori_id FROM tbl_kategori WHERE kategori_id=$id AND deleted=0 ORDER BY nama ASC LIMIT $start,$limit");
 		$data = $query->result();
 		return $data;
 	}
@@ -49,6 +49,15 @@ class Model_search extends CI_Model {
 		$result = $this->db->query("SELECT a.*,b.foto_utama,b.foto_1,b.foto_2,b.foto_3,b.foto_4 FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON (a.barang_id=b.barang_id) WHERE a.kategori_id = '$search->kategori_id'  ORDER BY RAND() ASC LIMIT 3")->result();
 
 		return $result;
+	}
+
+	public function listBarangByNamasearch($limit, $start,$search)
+	{
+		// var_dump($limit,$start);die;
+		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.nama LIKE '%$search%' AND a.deleted=0 ORDER BY a.nama ASC LIMIT $start,$limit ");
+		$data = $query->result();
+		return $data;
+		
 	}
 	
 }
