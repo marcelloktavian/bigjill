@@ -10,10 +10,125 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <?php echo $this->load->view($header); ?>
 
+<style>
+  .mySlides {display: none;}
+
+
+  /* Slideshow container */
+  .slideshow-container {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-size: cover;
+    position: relative;
+    height: 0em;
+    z-index: -1;
+  }
+
+
+  /* The dots/bullets/indicators */
+  .dot {
+    transition: background-color 0.6s ease;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  .slideimg{
+    vertical-align: middle;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-size: cover;
+    position: relative;
+    height: 45em;
+    z-index: -1;
+  }
+
+  /* Fading animation */
+  .fade {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 4s;
+    animation-name: fade;
+    animation-duration: 4s;
+  }
+
+  @-webkit-keyframes fade {
+    from {opacity: 4} 
+    to {opacity: 4}
+  }
+
+  @keyframes fade {
+    from {opacity: 4} 
+    to {opacity: 4}
+  }
+
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .text {font-size: 11px}
+  }
+</style>
+
 <body>
 
 	<!-- mian-content -->
-	<div class="main-banner" id="home">
+	<div class="main-banner" id="home" style="z-index: 1;">
+
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <!-- <div class="numbertext">1 / 3</div> -->
+        <img class="slideimg" src="<?php echo base_url('/admin_bl/assets/img/banner.jpg'); ?>" style="width:100%">
+        <!-- <div class="text">Caption Text</div> -->
+      </div>
+
+      <div class="mySlides fade">
+        <!-- <div class="numbertext">2 / 3</div> -->
+        <img class="slideimg" src="<?php echo base_url('/admin_bl/assets/img/man.png'); ?>" style="width:100%">
+        <!-- <div class="text">Caption Two</div> -->
+      </div>
+
+      <div class="mySlides fade">
+        <!-- <div class="numbertext">3 / 3</div> -->
+        <img class="slideimg" src="<?php echo base_url('/admin_bl/assets/img/banner3.jpg'); ?>" style="width:100%">
+        <!-- <div class="text">Caption Three</div> -->
+      </div>
+
+    </div>
+
+    <div style="text-align:center">
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+      <span class="dot"></span> 
+    </div>
+
+    <script>
+      var slideIndex = 0;
+      showSlides();
+
+      function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, "4000"); // Change image every 2 seconds
+}
+</script>
+
 		<!-- header -->
 		<header class="header">
 			<div class="container-fluid px-lg-5">
@@ -84,7 +199,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--/ab -->
 
     <a name="catalog"><section class="ab-info-main py-md-3 py-3"></a>
-    	<div class="container py-md-3">
+    	<div class="container py-md-3"><br>
     		<h3 class="tittle text-center">PRODUCTS (<?php foreach($daftar as $title): echo $title->nama; endforeach;?>)</h3>
     		<!-- top Products -->
     		<div class="row">

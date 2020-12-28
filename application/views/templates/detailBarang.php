@@ -253,7 +253,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <script>
                 $(document).ready(function(){
                     var id = window.location.pathname.split("/").pop();
-                    var url = '/index.php/Search/Detail/';
+                    var url = '/bigjill/index.php/Search/Detail/';
                     $.ajax({
                         url: url+'ajaxbarang',
                         type: "POST",

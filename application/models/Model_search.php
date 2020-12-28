@@ -24,14 +24,15 @@ class Model_search extends CI_Model {
 		return $data;
 	}
 //disini
-	public function listKategoriById($limit, $start,$id){
-		$query = $this->db->query("SELECT nama, kategori_id FROM tbl_kategori WHERE kategori_id=$id AND deleted=0 ORDER BY nama ASC LIMIT $start,$limit");
+	public function listKategoriById($id){
+		$query = $this->db->query("SELECT nama, kategori_id FROM tbl_kategori WHERE kategori_id=$id AND deleted=0 ORDER BY nama ASC");
+		//var_dump("SELECT nama, kategori_id FROM tbl_kategori WHERE kategori_id=$id AND deleted=0 ORDER BY nama ASC LIMIT $start,$limit");die;
 		$data = $query->result();
 		return $data;
 	}
 
-	public function listAllKategori($id){
-		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.kategori_id=$id AND a.deleted=0 ORDER BY a.nama ASC ");
+	public function listAllKategori($limit, $start,$id){
+		$query = $this->db->query("SELECT a.barang_id, a.nama, a.harga, b.foto_utama FROM tbl_barang a LEFT JOIN tbl_barang_foto b ON a.barang_id = b.barang_id WHERE a.kategori_id=$id AND a.deleted=0 ORDER BY a.nama ASC  LIMIT $start,$limit");
 		$data = $query->result();
 		return $data;
 	}
