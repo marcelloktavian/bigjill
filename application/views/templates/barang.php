@@ -95,7 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     											}else{
     												echo base_url('/admin_bl/assets/img/barang/'); echo $b->foto_utama;
     											}
-    											?>" class="img-fluid" alt=""  style="width:100%;height:225px;"></a>
+    											?>" class="img-fluid" alt=""  style="width:100%;height:300px;"></a>
     										</div>
     										<div class="item-info-product">
     											<h4>
