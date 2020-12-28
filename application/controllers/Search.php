@@ -22,7 +22,7 @@ class Search extends MX_Controller {
 		// $data = $this->model_search->getKategoriById($id);
 		
 		//konfigurasi pagination
-        $config['base_url'] = site_url('search/kategori'); //site url
+        $config['base_url'] = site_url('search/kategori/'.$id.'/'); //site url
         $this->db->where('deleted',0);
         $this->db->where('kategori_id',$id);
         $this->db->from('tbl_barang');
