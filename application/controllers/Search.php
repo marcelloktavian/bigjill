@@ -20,14 +20,15 @@ class Search extends MX_Controller {
 	{
 		// var_dump($id);die;
 		// $data = $this->model_search->getKategoriById($id);
+		
 		//konfigurasi pagination
-		$config['base_url'] = site_url('search/kategori'); //site url
-		// itung count
-		$this->db->where('kategori_id',$id);
-		$this->db->from('tbl_barang');
-		$config['total_rows'] = $this->db->count_all_results(); //total row
+        $config['base_url'] = site_url('search/kategori'); //site url
+        $this->db->where('deleted',0);
+        $this->db->where('kategori_id',$id);
+        $this->db->from('tbl_barang');
+        $config['total_rows'] = $this->db->count_all_results(); //total row
         $config['per_page'] = 9;  //show record per halaman
-        $config["uri_segment"] = 4;  // uri parameter
+        $config["uri_segment"] = 3;  // uri parameter
         $choice = $config["total_rows"] / $config["per_page"];
         $config["num_links"] = floor($choice);
 
@@ -56,9 +57,9 @@ class Search extends MX_Controller {
 
         $data['pagination'] = $this->pagination->create_links();
 
-		$data['daftar'] = $this->model_search->listKategoriById($config["per_page"], $data['page'],$id);
+		$data['daftar'] = $this->model_search->listKategoriById($id);
 		$data['kategori'] = $this->model_dashboard->listAllkategori();
-		$data['barang'] = $this->model_search->listAllKategori($id);
+		$data['barang'] = $this->model_search->listAllKategori($config["per_page"], $data['page'],$id);
 		$data['wa'] = $this->model_dashboard->listAllWA();
 		$data['email'] = $this->model_dashboard->listAllEmail();
 		$data['lokasi'] = $this->model_dashboard->listAllLokasi();
