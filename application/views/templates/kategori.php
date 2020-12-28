@@ -28,7 +28,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="banner-info">
 			<h3 class="mb-4">BigJill Official</h3>
 			<div class="ban-buttons">
-				<a href="#catalog" class="btn">Catalog</a>
+				<a href="#catalog" class="btn">Lihat Catalog</a>
 			</div>
 		</div>
 		<!--// banner-inner -->
