@@ -190,7 +190,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <div class="product-shoe-info shoe text-center">
                                     <div class="men-thumb-item">
                                         <a href="<?php echo site_url('/detail/');echo $rand->barang_id; ?>">
-                                        <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="">
+                                        <img src="<?= base_url("/admin_bl/assets/img/barang/").$rand->foto_utama ?>" class="img-fluid" alt="" style="width:100%;height:310px">
                                         </a>
                                         <span class="product-new-top">Recommended</span>
                                     </div>
@@ -253,7 +253,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <script>
                 $(document).ready(function(){
                     var id = window.location.pathname.split("/").pop();
-                    var url = '/bigjill/index.php/Search/Detail/';
+                    var url = '/index.php/Search/Detail/';
                     $.ajax({
                         url: url+'ajaxbarang',
                         type: "POST",
@@ -292,31 +292,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 baris += 1;
                 carousel += '<div class="carousel-item active"><img class="d-block w-100" src="';
                 carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + fotoutama;
-                carousel += '" alt="First slide"></div>';
+                carousel += '" alt="First slide" style="width:310px;height:365px;"></div>';
             }
             if (foto1!='' && foto1!=null && foto1!='null.png' && foto1!='0') {
                 baris += 1;
                 carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
                 carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto1;
-                carousel += '" alt="Second slide"></div>';
+                carousel += '" alt="Second slide" style="width:310px;height:365px;"></div>';
             }
             if (foto2!='' && foto2!=null && foto2!='null.png' && foto2!='0') {
                 baris += 1;
                 carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
                 carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto2;
-                carousel += '" alt="Third slide"></div>';
+                carousel += '" alt="Third slide" style="width:310px;height:365px;"></div>';
             }
             if (foto3!='' && foto3!=null && foto3!='null.png' && foto3!='0') {
                 baris += 1;
                 carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
                 carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto3;
-                carousel += '" alt="Fourth slide"></div>';
+                carousel += '" alt="Fourth slide" style="width:310px;height:365px;"></div>';
             }
             if (foto4!='' && foto4!=null && foto4!='null.png' && foto4!='0') {
                 baris += 1;
                 carousel += '<div class="carousel-item"><img class="d-block w-100" src="';
                 carousel += "<?php echo base_url('/admin_bl/assets/img/barang/');  ?>" + foto4;
-                carousel += '" alt="Five slide"></div>';
+                carousel += '" alt="Five slide" style="width:310px;height:365px;"></div>';
             }
             carousel += '</div>';
 
