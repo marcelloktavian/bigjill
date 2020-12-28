@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                  }else{
                                     echo base_url('/admin_bl/assets/img/barang/'); echo $b->foto_utama;
                                 }
-                                ?>" class="img-fluid" alt="" style="width:211px;height:211px;"></a>
+                                ?>" class="img-fluid" alt="" style="width:100%;height:225px;"></a>
                             </div>
                             <div class="item-info-product">
                              <h4>
@@ -122,9 +122,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
        </div>
    </div>
 </div>
-
-</section>
 <?php echo $pagination; ?>
+</section>
 <br>
 <?php echo $this->load->view($footer); ?>
 
